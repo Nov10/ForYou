@@ -7,8 +7,16 @@ public class Anemone : MonoBehaviour
     float BaseSize;
     [SerializeField] float SizePerLevel;
 
+    [SerializeField] PlayerFishDetector Detector;
+
     private void Start()
     {
+        if (Detector == null)
+            Detector = GetComponent<PlayerFishDetector>();
+
+        Detector.OnPlayerFishDetected += OnPlayerFishDetected;
+        Detector.StartDetect();
+
         BaseSize = transform.localScale.x;
         UpLevel(0);
     }

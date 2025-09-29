@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      anemone-removebg-preview_0: 3822315744932355863
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
