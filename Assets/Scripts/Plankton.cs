@@ -14,6 +14,8 @@ namespace ForYou.GamePlay
         int AnimatorNameHash_Idle;
         int AnimatorNameHash_Snatched;
         Animator ThisAnimator;
+        Rigidbody2D ThisRigidbody;
+        Collider2D ThisCollider;
         public bool IsSnatched { get; private set; } = false;
 
         private void Awake()
@@ -21,6 +23,9 @@ namespace ForYou.GamePlay
             ThisAnimator = GetComponent<Animator>();
             AnimatorNameHash_Idle = Animator.StringToHash(AnimationName_Idle);
             AnimatorNameHash_Snatched = Animator.StringToHash(AnimationName_Snatched);
+
+            ThisRigidbody = GetComponent<Rigidbody2D>();
+            ThisCollider = GetComponent<Collider2D>();
         }
 
         private void OnEnable()
@@ -36,12 +41,10 @@ namespace ForYou.GamePlay
             transform.SetParent(newParent);
             transform.SetLocalPositionAndRotation(Vector2.zero, Quaternion.identity);
 
-            if (TryGetComponent<Rigidbody2D>(out var rb))
-            {
-                rb.simulated = false;
-                rb.constraints = RigidbodyConstraints2D.FreezeAll;
-                rb.SetRotation(0);
-            }
+            ThisRigidbody.simulated = false;
+            ThisRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+            ThisRigidbody.SetRotation(0);
+            ThisCollider.enabled = false;
 
             ThisAnimator.Play(AnimatorNameHash_Snatched);
         }
@@ -51,12 +54,12 @@ namespace ForYou.GamePlay
             IsSnatched = false;
 
             transform.SetParent(null);
+
+            ThisRigidbody.simulated = true;
+            ThisRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+            ThisCollider.enabled = true;
+
             ThisAnimator.Play(AnimatorNameHash_Idle);
-            if (TryGetComponent<Rigidbody2D>(out var rb))
-            {
-                rb.simulated = true;
-                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            }
         }
     }
 }

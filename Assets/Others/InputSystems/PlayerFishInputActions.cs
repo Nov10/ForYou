@@ -99,6 +99,15 @@ public partial class @PlayerFishInputActions: IInputActionCollection2, IDisposab
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""SnatchPlankton"",
+                    ""type"": ""Button"",
+                    ""id"": ""5e2cfd87-52d4-4ca4-b08c-d6b7bdc0ecd9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -156,6 +165,17 @@ public partial class @PlayerFishInputActions: IInputActionCollection2, IDisposab
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a462b817-98e3-4ba3-8e6a-db16e0f8509d"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SnatchPlankton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -165,6 +185,7 @@ public partial class @PlayerFishInputActions: IInputActionCollection2, IDisposab
         // Base
         m_Base = asset.FindActionMap("Base", throwIfNotFound: true);
         m_Base_Move = m_Base.FindAction("Move", throwIfNotFound: true);
+        m_Base_SnatchPlankton = m_Base.FindAction("SnatchPlankton", throwIfNotFound: true);
     }
 
     ~@PlayerFishInputActions()
@@ -246,6 +267,7 @@ public partial class @PlayerFishInputActions: IInputActionCollection2, IDisposab
     private readonly InputActionMap m_Base;
     private List<IBaseActions> m_BaseActionsCallbackInterfaces = new List<IBaseActions>();
     private readonly InputAction m_Base_Move;
+    private readonly InputAction m_Base_SnatchPlankton;
     /// <summary>
     /// Provides access to input actions defined in input action map "Base".
     /// </summary>
@@ -261,6 +283,10 @@ public partial class @PlayerFishInputActions: IInputActionCollection2, IDisposab
         /// Provides access to the underlying input action "Base/Move".
         /// </summary>
         public InputAction @Move => m_Wrapper.m_Base_Move;
+        /// <summary>
+        /// Provides access to the underlying input action "Base/SnatchPlankton".
+        /// </summary>
+        public InputAction @SnatchPlankton => m_Wrapper.m_Base_SnatchPlankton;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -290,6 +316,9 @@ public partial class @PlayerFishInputActions: IInputActionCollection2, IDisposab
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @SnatchPlankton.started += instance.OnSnatchPlankton;
+            @SnatchPlankton.performed += instance.OnSnatchPlankton;
+            @SnatchPlankton.canceled += instance.OnSnatchPlankton;
         }
 
         /// <summary>
@@ -304,6 +333,9 @@ public partial class @PlayerFishInputActions: IInputActionCollection2, IDisposab
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @SnatchPlankton.started -= instance.OnSnatchPlankton;
+            @SnatchPlankton.performed -= instance.OnSnatchPlankton;
+            @SnatchPlankton.canceled -= instance.OnSnatchPlankton;
         }
 
         /// <summary>
@@ -351,5 +383,12 @@ public partial class @PlayerFishInputActions: IInputActionCollection2, IDisposab
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMove(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SnatchPlankton" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSnatchPlankton(InputAction.CallbackContext context);
     }
 }

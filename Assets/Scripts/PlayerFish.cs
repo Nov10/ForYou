@@ -30,6 +30,10 @@ namespace ForYou.GamePlay
         [Header("Plankton Settings")]
         [SerializeField] Transform _SnatchedPlanktonPosition;
         public Transform SnatchedPlanktonPosition { get { return _SnatchedPlanktonPosition; } }
+
+
+        [Header("Plankton")]
+        [SerializeField] PlanktonDetector Detector;
         public Vector2 NowVelocity
         {
             get { return ThisRigidbody.linearVelocity; }
@@ -61,6 +65,12 @@ namespace ForYou.GamePlay
             AnimatorNameHash_IdleWithPlankton = Animator.StringToHash(AnimationName_IdleWithPlankton);
             AnimatorNameHash_Moving = Animator.StringToHash(AnimationName_Moving);
             AnimatorNameHash_MovingWithPlankton = Animator.StringToHash(AnimationName_MovingWithPlankton);
+
+
+            if (Detector == null)
+                Detector = GetComponentInChildren<PlanktonDetector>();
+
+            Detector.OnPlanktonDetected += OnPlanktonDetected;
         }
 
 
@@ -102,10 +112,13 @@ namespace ForYou.GamePlay
             }
 
 
-
-            /////////////////////////////////////////////
-            ///시험용 : 플랑크톤 버리기
-            if(DoesHavePlankton == true && Input.GetKeyDown(KeyCode.F))
+            //이번 프레임에 눌렀으면, 감지 + 플랑크톤 Snatch 시도
+            if(DoesHavePlankton == false && PlayerInput.Base.SnatchPlankton.WasPressedThisFrame())
+            {
+                Detector.DetectOneFrame();
+            }
+            //버리기
+            else if(DoesHavePlankton == true && PlayerInput.Base.SnatchPlankton.IsPressed() == false)
             {
                 DropPlankton();
             }
