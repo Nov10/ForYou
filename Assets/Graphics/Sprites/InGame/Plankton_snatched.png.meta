@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Plankton_snatched_0: -3324365831913837884
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

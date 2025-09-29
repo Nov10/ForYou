@@ -107,9 +107,7 @@ namespace ForYou.GamePlay
             ///½ÃÇè¿ë : ÇÃ¶ûÅ©Åæ ¹ö¸®±â
             if(DoesHavePlankton == true && Input.GetKeyDown(KeyCode.F))
             {
-                SnatchedPlankton.OnDroppedByPlayerFish(this);
-
-                SnatchedPlankton = null;
+                DropPlankton();
             }
         }
 
@@ -166,6 +164,17 @@ namespace ForYou.GamePlay
         void OnSnatchingPlankton(Plankton plankton)
         {
             SnatchedPlankton = plankton;
+        }
+
+        public Plankton GetPlankton()
+        {
+            return SnatchedPlankton;
+        }
+        public void DropPlankton()
+        {
+            SnatchedPlankton.OnDroppedByPlayerFish(this);
+
+            SnatchedPlankton = null;
         }
     }
 }

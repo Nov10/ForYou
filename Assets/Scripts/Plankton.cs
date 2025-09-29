@@ -5,6 +5,7 @@ namespace ForYou.GamePlay
     public class Plankton : MonoBehaviour
     {
         [SerializeField] float Level = 1;
+        public float GetLevel() { return Level; }
 
         [Header("Animation Settings")]
         [SerializeField] string AnimationName_Idle = "Idle";
@@ -35,6 +36,13 @@ namespace ForYou.GamePlay
             transform.SetParent(newParent);
             transform.SetLocalPositionAndRotation(Vector2.zero, Quaternion.identity);
 
+            if (TryGetComponent<Rigidbody2D>(out var rb))
+            {
+                rb.simulated = false;
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                rb.SetRotation(0);
+            }
+
             ThisAnimator.Play(AnimatorNameHash_Snatched);
         }
 
@@ -44,6 +52,11 @@ namespace ForYou.GamePlay
 
             transform.SetParent(null);
             ThisAnimator.Play(AnimatorNameHash_Idle);
+            if (TryGetComponent<Rigidbody2D>(out var rb))
+            {
+                rb.simulated = true;
+                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            }
         }
     }
 }
