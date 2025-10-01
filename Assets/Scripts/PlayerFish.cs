@@ -2,6 +2,11 @@ using UnityEngine;
 
 namespace ForYou.GamePlay
 {
+    public enum ControlMode
+    {
+        Self = 0,
+        Cutscene
+    }
     public class PlayerFish : MonoBehaviour
     {
         Rigidbody2D ThisRigidbody;
@@ -26,6 +31,15 @@ namespace ForYou.GamePlay
         [SerializeField] float VelocitySnapping_Horizontal = 0.1f;
         [SerializeField] float NormalSpeed = 5;
         [SerializeField] float SnatchingPlanktonSpeed = 2;
+        public Vector2 GetSnapping()
+        {
+            return new Vector2(VelocitySnapping_Horizontal, VelocitySnapping_Vertical);
+        }
+        public void SetSnapping(Vector2 snap)
+        {
+            VelocitySnapping_Horizontal = snap.x;
+            VelocitySnapping_Vertical = snap.y;
+        }
 
         [Header("Plankton Settings")]
         [SerializeField] Transform _SnatchedPlanktonPosition;
@@ -41,7 +55,12 @@ namespace ForYou.GamePlay
         public bool IsMoving
         {
             // get { return NowVelocity.magnitude > 0.1f; } //Velocity 기반
-            get { return GetInputDirection().magnitude > 0.1f; } //Input 기반
+            get 
+            {
+                if (NowControlMode == ControlMode.Self) return GetInputDirection().magnitude > 0.1f;
+                else if (NowControlMode == ControlMode.Cutscene) return NowVelocity.sqrMagnitude > 0.1f;
+                return false;
+            } //Input 기반
         }
 
         public bool DoesHavePlankton
@@ -50,6 +69,11 @@ namespace ForYou.GamePlay
         }
         Plankton SnatchedPlankton;
 
+        [SerializeField] ControlMode NowControlMode;
+        public void ChangeControlMode(ControlMode mode)
+        {
+            NowControlMode = mode;
+        }
 
         private void Awake()
         {
@@ -157,9 +181,14 @@ namespace ForYou.GamePlay
 
 
         public static PlayerFishInputActions PlayerInput;
+        public Vector2 InputDirectionByCutscene;
         Vector2 GetInputDirection()
         {
-            return PlayerInput.Base.Move.ReadValue<Vector2>().normalized;
+            if (NowControlMode == ControlMode.Self)
+                return PlayerInput.Base.Move.ReadValue<Vector2>().normalized;
+            else if (NowControlMode == ControlMode.Cutscene)
+                return InputDirectionByCutscene;
+            return Vector2.zero;
         }
 
 

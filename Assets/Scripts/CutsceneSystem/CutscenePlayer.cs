@@ -1,5 +1,8 @@
+using ForYou.GamePlay;
 using Helpers;
+using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -22,6 +25,31 @@ namespace ForYou.Cutscene
             PlayNext();
         }
 
+        private void OnDrawGizmos()
+        {
+            DrawPlayerFishPath();
+        }
+
+        void DrawPlayerFishPath()
+        {
+            List<Vector2> positions = new();
+            foreach(var d in Data.Elements)
+            {
+                if (d == null)
+                    continue;
+                if(d.GetType() == typeof(MovePlayerFish))
+                {
+                    positions.Add(((MovePlayerFish)d).TargetPosition.position);
+                }
+            }
+
+            for(int i = 0; i < positions.Count - 1; i++)
+            {
+                Debug.DrawLine(positions[i], positions[i + 1]);
+            }
+        }
+
+
         void PlayNext()
         {
             NowIndex++;
@@ -36,8 +64,15 @@ namespace ForYou.Cutscene
             var type = element.GetType();
             if(type == typeof(Delay))
             {
-                yield return new WaitForSeconds(((Delay)element).Duration);
-                onEnd();
+                if (element.PlayWithNextElement == true)
+                {
+                    onEnd();
+                }
+                else
+                {
+                    yield return new WaitForSeconds(((Delay)element).Duration);
+                    onEnd();
+                }
             }
             else if(type == typeof(SpeechBubbleText))
             {
@@ -48,13 +83,66 @@ namespace ForYou.Cutscene
                 yield return null;
                 player.Play(text.Sentence, bubble.GetComponentInChildren<TMP_Text>());
 
-                while(player.IsEnd == false)
+                if (element.PlayWithNextElement == true)
+                    onEnd();
+                while (player.IsEnd == false)
                 {
                     yield return null;
                 }
-                DelayedFunctionHelper.InvokeDelayed(text.DestoryDelay, onEnd);
+                if (element.PlayWithNextElement == false)
+                    DelayedFunctionHelper.InvokeDelayed(text.DestoryDelay, onEnd);
                 Destroy(bubble.gameObject, text.DestoryDelay);
                 Destroy(player.gameObject, text.DestoryDelay);
+            }
+            else if(type == typeof(MovePlayerFish))
+            {
+                var move = (MovePlayerFish)element;
+                float allowDistance = move.AllowDistance;
+                float slowRadius = move.SlowDistance;
+
+                var target = move.TargetPosition;
+                var player = FindFirstObjectByType<PlayerFish>();
+                var playerRigidBody = player.GetComponent<Rigidbody2D>();
+
+                player.ChangeControlMode(ControlMode.Cutscene);
+                var snap = player.GetSnapping();
+                Vector2 diff = (Vector2)target.position - playerRigidBody.position;
+
+                if (element.PlayWithNextElement == true)
+                    onEnd();
+
+                while (diff.sqrMagnitude > allowDistance * allowDistance)
+                {
+                    diff = (Vector2)target.position - playerRigidBody.position;
+                    float t = Mathf.Clamp01((diff.magnitude - allowDistance)  / (slowRadius - allowDistance));
+                    player.InputDirectionByCutscene = diff.normalized * (t + 0.01f);
+
+                    if(diff.sqrMagnitude <= slowRadius * slowRadius)
+                    {
+                        player.SetSnapping(Vector2.one * (1-t) * 10f);
+                    }
+                    yield return new WaitForFixedUpdate();
+                }
+                player.SetSnapping(snap);
+                player.InputDirectionByCutscene = Vector2.zero;
+
+                if (move.AutoReturnToPlayerControlMode == true)
+                    player.ChangeControlMode(ControlMode.Self);
+                if (element.PlayWithNextElement == false)
+                    onEnd();
+            }
+            else if(type == typeof(ShakeCamera))
+            {
+                var shake = (ShakeCamera)element;
+                shake.Shake();
+
+                if (shake.PlayWithNextElement == true)
+                    onEnd();
+                else
+                {
+                    yield return new WaitForSeconds(shake.Duration);
+                    onEnd();
+                }
             }
         }
     }

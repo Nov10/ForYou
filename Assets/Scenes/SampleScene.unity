@@ -575,7 +575,7 @@ Transform:
   m_GameObject: {fileID: 280634211}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.91, y: 1.195, z: 0}
+  m_LocalPosition: {x: -1.89, y: 1.68, z: 0}
   m_LocalScale: {x: 0.40510952, y: 0.40510952, z: 0.40510952}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -629,6 +629,8 @@ MonoBehaviour:
   SnatchingPlanktonSpeed: 4
   _SnatchedPlanktonPosition: {fileID: 747060891}
   Detector: {fileID: 598319697}
+  NowControlMode: 0
+  InputDirectionByCutscene: {x: 0, y: 0}
 --- !u!50 &280634216
 Rigidbody2D:
   serializedVersion: 5
@@ -793,6 +795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Elements:
+  - rid: 1982472277290385523
   - rid: 1982472274260525245
   - rid: 1982472274260525246
   - rid: 1982472274260525247
@@ -801,16 +804,43 @@ MonoBehaviour:
   - rid: 1982472277290385505
   - rid: 1982472277290385506
   - rid: 1982472277290385507
+  - rid: 1982472278076817535
+  - rid: 1982472278076817532
+  - rid: 1982472278076817536
+  - rid: 1982472278076817533
+  - rid: 1982472278076817540
+  - rid: 1982472278076817548
+  - rid: 1982472278076817542
+  - rid: 1982472278076817543
+  - rid: 1982472278076817555
+  - rid: 1982472278076817560
+  - rid: 1982472278076817556
+  - rid: 1982472278076817570
+  - rid: 1982472278076817571
+  - rid: 1982472278076817572
+  - rid: 1982472278076817573
+  - rid: 1982472278076817561
+  - rid: 1982472278076817557
+  - rid: 1982472278076817562
+  - rid: 1982472278076817558
+  - rid: 1982472278076817563
+  - rid: 1982472278076817564
+  - rid: 1982472278076817565
+  - rid: 1982472278076817566
+  - rid: 1982472278076817567
+  - rid: 1982472278076817568
   references:
     version: 2
     RefIds:
     - rid: 1982472274260525245
       type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
       data:
-        Duration: 2
+        PlayWithNextElement: 0
+        Duration: 1
     - rid: 1982472274260525246
       type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
       data:
+        PlayWithNextElement: 0
         Sentence:
           Sentence: "{vibrate:shock_high:0.18}\uAC70\uAE30!{/}[1] \uC3D8\uC774\uAE30
             \uC2EB\uC73C\uBA74[0.2] {vibrate:shock_low:0.3}\uAC00\uAE4C\uC774 \uC624\uC9C0
@@ -826,10 +856,12 @@ MonoBehaviour:
     - rid: 1982472274260525247
       type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
       data:
-        Duration: 2
+        PlayWithNextElement: 0
+        Duration: 1
     - rid: 1982472277290385502
       type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
       data:
+        PlayWithNextElement: 0
         Sentence:
           Sentence: "\uC74C[0.2].[0.2].[0.2].[0.7] \uC548\uB155?"
           IntervalDelayBetweenCharacters: 0.03
@@ -843,10 +875,12 @@ MonoBehaviour:
     - rid: 1982472277290385504
       type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
       data:
+        PlayWithNextElement: 0
         Duration: 1
     - rid: 1982472277290385505
       type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
       data:
+        PlayWithNextElement: 0
         Sentence:
           Sentence: "\uC774\uB798 \uBCF4\uC5EC\uB3C4[0.4] \uAF64 \uC544\uD504\uB2E4\uACE0."
           IntervalDelayBetweenCharacters: 0.05
@@ -860,10 +894,12 @@ MonoBehaviour:
     - rid: 1982472277290385506
       type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
       data:
+        PlayWithNextElement: 0
         Duration: 2
     - rid: 1982472277290385507
       type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
       data:
+        PlayWithNextElement: 0
         Sentence:
           Sentence: "\uADF8\uB9CC \uC624\uB77C\uB2C8\uAE4C?[0.4] {vibrate:shock_middle:0.25}\uC9C4\uC9DC
             \uC3DC\uB2E4?{/}"
@@ -875,6 +911,300 @@ MonoBehaviour:
         SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
         Position: {fileID: 1691987275}
         DestoryDelay: 1
+    - rid: 1982472277290385523
+      type: {class: MovePlayerFish, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        TargetPosition: {fileID: 1519146128}
+        AllowDistance: 0.65
+        SlowDistance: 2.53
+        AutoReturnToPlayerControlMode: 0
+    - rid: 1982472278076817532
+      type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Sentence:
+          Sentence: "\uADF8\uB798 \uBCF4\uC5EC[0.15].[0.15].[0.15].[0.5] \uADFC\uB370[0.2].[0.2].[0.2].[0.7]"
+          IntervalDelayBetweenCharacters: 0.05
+          ShockSharpness: 6
+          ShockStairSteps: 0
+          Padding: {x: 10, y: 10}
+          MinSize: {x: 80, y: 50}
+        SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
+        Position: {fileID: 450523485}
+        DestoryDelay: 1
+    - rid: 1982472278076817533
+      type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Sentence:
+          Sentence: "\uB09C \uD63C\uC790\uAC00 \uC2EB\uC740\uAC78.[1.2] \uD654\uB0B4\uC9C0
+            \uB9C8."
+          IntervalDelayBetweenCharacters: 0.05
+          ShockSharpness: 6
+          ShockStairSteps: 0
+          Padding: {x: 10, y: 10}
+          MinSize: {x: 80, y: 50}
+        SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
+        Position: {fileID: 450523485}
+        DestoryDelay: 2
+    - rid: 1982472278076817535
+      type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Duration: 1
+    - rid: 1982472278076817536
+      type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Duration: 1
+    - rid: 1982472278076817540
+      type: {class: MovePlayerFish, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        TargetPosition: {fileID: 2142239588}
+        AllowDistance: 0.2
+        SlowDistance: 3
+        AutoReturnToPlayerControlMode: 0
+    - rid: 1982472278076817542
+      type: {class: MovePlayerFish, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        TargetPosition: {fileID: 1110676237}
+        AllowDistance: 0.5
+        SlowDistance: 2
+        AutoReturnToPlayerControlMode: 0
+    - rid: 1982472278076817543
+      type: {class: MovePlayerFish, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        TargetPosition: {fileID: 1621310037}
+        AllowDistance: 0.5
+        SlowDistance: 2
+        AutoReturnToPlayerControlMode: 0
+    - rid: 1982472278076817548
+      type: {class: ShakeCamera, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Intensity: 0.5
+        Duration: 1
+        Frequency: 25
+        UnscaledTime: 0
+        AffectRotation: 0
+        RotationAmount: 8
+        AxisMask: {x: 1, y: 1}
+        Damping:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+    - rid: 1982472278076817555
+      type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Sentence:
+          Sentence: "\uD765[0.15], \uC138\uC0C1\uC740 \uC6D0\uB798 \uB530\uB054\uD55C\uAC70\uC57C."
+          IntervalDelayBetweenCharacters: 0.08
+          ShockSharpness: 6
+          ShockStairSteps: 0
+          Padding: {x: 10, y: 10}
+          MinSize: {x: 80, y: 50}
+        SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
+        Position: {fileID: 1691987275}
+        DestoryDelay: 1
+    - rid: 1982472278076817556
+      type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Sentence:
+          Sentence: "\uADF8\uB7FC[0.12] \uC775\uC219\uD574\uC9C0\uBA74 \uB418\uC9C0."
+          IntervalDelayBetweenCharacters: 0.08
+          ShockSharpness: 6
+          ShockStairSteps: 0
+          Padding: {x: 10, y: 10}
+          MinSize: {x: 80, y: 50}
+        SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
+        Position: {fileID: 450523485}
+        DestoryDelay: 1
+    - rid: 1982472278076817557
+      type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Sentence:
+          Sentence: "{vibrate:smooth_low}\uC6B0\uB9AC[0.15] \uB458\uC774\uC11C!{/}"
+          IntervalDelayBetweenCharacters: 0.08
+          ShockSharpness: 6
+          ShockStairSteps: 0
+          Padding: {x: 10, y: 10}
+          MinSize: {x: 80, y: 50}
+        SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
+        Position: {fileID: 450523485}
+        DestoryDelay: 1
+    - rid: 1982472278076817558
+      type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Sentence:
+          Sentence: '[0.15].[0.15].[0.15].'
+          IntervalDelayBetweenCharacters: 0.08
+          ShockSharpness: 6
+          ShockStairSteps: 0
+          Padding: {x: 10, y: 10}
+          MinSize: {x: 80, y: 50}
+        SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
+        Position: {fileID: 1691987275}
+        DestoryDelay: 1
+    - rid: 1982472278076817560
+      type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Duration: 1
+    - rid: 1982472278076817561
+      type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Duration: 1
+    - rid: 1982472278076817562
+      type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Duration: 1
+    - rid: 1982472278076817563
+      type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Duration: 1
+    - rid: 1982472278076817564
+      type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Sentence:
+          Sentence: "\uB124\uAC00 \uB098\uD55C\uD14C [0.15]\uBB58 \uD574\uC904 \uC218
+            \uC788\uB294\uB370? [0.55]\uC870\uADF8\uB9CC \uAC8C."
+          IntervalDelayBetweenCharacters: 0.08
+          ShockSharpness: 6
+          ShockStairSteps: 0
+          Padding: {x: 10, y: 10}
+          MinSize: {x: 80, y: 50}
+        SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
+        Position: {fileID: 1691987275}
+        DestoryDelay: 1
+    - rid: 1982472278076817565
+      type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Duration: 1
+    - rid: 1982472278076817566
+      type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Sentence:
+          Sentence: "\uC74C[0.15].[0.15].[0.15]."
+          IntervalDelayBetweenCharacters: 0.08
+          ShockSharpness: 6
+          ShockStairSteps: 0
+          Padding: {x: 10, y: 10}
+          MinSize: {x: 80, y: 50}
+        SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
+        Position: {fileID: 450523485}
+        DestoryDelay: 1
+    - rid: 1982472278076817567
+      type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Duration: 1
+    - rid: 1982472278076817568
+      type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Sentence:
+          Sentence: "\uBC30\uACE0\uD30C? [0.55]\uAE08\uBC29 \uB2E4\uB140\uC62C\uAC8C."
+          IntervalDelayBetweenCharacters: 0.08
+          ShockSharpness: 6
+          ShockStairSteps: 0
+          Padding: {x: 10, y: 10}
+          MinSize: {x: 80, y: 50}
+        SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
+        Position: {fileID: 450523485}
+        DestoryDelay: 1
+    - rid: 1982472278076817570
+      type: {class: MovePlayerFish, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        TargetPosition: {fileID: 1054737490}
+        AllowDistance: 0.5
+        SlowDistance: 3
+        AutoReturnToPlayerControlMode: 1
+    - rid: 1982472278076817571
+      type: {class: ShakeCamera, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Intensity: 0.5
+        Duration: 0.6
+        Frequency: 25
+        UnscaledTime: 0
+        AffectRotation: 0
+        RotationAmount: 8
+        AxisMask: {x: 1, y: 1}
+        Damping:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+    - rid: 1982472278076817572
+      type: {class: MovePlayerFish, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        TargetPosition: {fileID: 562512629}
+        AllowDistance: 0.5
+        SlowDistance: 2
+        AutoReturnToPlayerControlMode: 1
+    - rid: 1982472278076817573
+      type: {class: MovePlayerFish, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        TargetPosition: {fileID: 731957491}
+        AllowDistance: 0.5
+        SlowDistance: 2
+        AutoReturnToPlayerControlMode: 1
 --- !u!1 &416169409
 GameObject:
   m_ObjectHideFlags: 0
@@ -1161,6 +1491,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1285,6 +1616,49 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c0714954a038a045acdaa1f82b951c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &562512628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 562512629}
+  m_Layer: 0
+  m_Name: Pos6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &562512629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 562512628}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.65, y: -0.73, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1691188478}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &593105153
 GameObject:
@@ -1706,6 +2080,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &731957490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 731957491}
+  m_Layer: 0
+  m_Name: Pos7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &731957491
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731957490}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.07, y: 0.62, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1691188478}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &747060890
 GameObject:
   m_ObjectHideFlags: 0
@@ -2061,6 +2466,68 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 6.04, y: 5.26}
   m_EdgeRadius: 0
+--- !u!1 &1054737489
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1054737490}
+  m_Layer: 0
+  m_Name: Pos5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1054737490
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054737489}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.59, y: -1.62, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1691188478}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1110676236
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1110676237}
+  m_Layer: 0
+  m_Name: Pos3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1110676237
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110676236}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.19, y: -0.06, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1691188478}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1456371762
 GameObject:
   m_ObjectHideFlags: 0
@@ -2240,6 +2707,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 280634213}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1519146127
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1519146128}
+  m_Layer: 0
+  m_Name: Pos1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1519146128
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519146127}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.56000006, y: -0.6299999, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1691188478}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1607550564
 GameObject:
@@ -2474,6 +2972,37 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!1 &1621310036
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1621310037}
+  m_Layer: 0
+  m_Name: Pos4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1621310037
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621310036}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.06, y: 0.02, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1691188478}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1681371906
 GameObject:
   m_ObjectHideFlags: 0
@@ -2612,6 +3141,44 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1691188477
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1691188478}
+  m_Layer: 0
+  m_Name: PlayerFishPositions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1691188478
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691188477}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.87, y: -1.73, z: -0.026107213}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1519146128}
+  - {fileID: 2142239588}
+  - {fileID: 1110676237}
+  - {fileID: 1621310037}
+  - {fileID: 1054737490}
+  - {fileID: 562512629}
+  - {fileID: 731957491}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1691987275
 GameObject:
   m_ObjectHideFlags: 0
@@ -2644,7 +3211,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 688, y: -372}
+  m_AnchoredPosition: {x: 673, y: -290}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1818337972
@@ -3036,6 +3603,37 @@ Transform:
   - {fileID: 811106475}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2142239587
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2142239588}
+  m_Layer: 0
+  m_Name: Pos2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2142239588
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142239587}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.3900003, y: -1.9200001, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1691188478}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3057,3 +3655,4 @@ SceneRoots:
   - {fileID: 689010680}
   - {fileID: 408973841}
   - {fileID: 1472435846}
+  - {fileID: 1691188478}
