@@ -1153,7 +1153,7 @@ MonoBehaviour:
         TargetPosition: {fileID: 1054737490}
         AllowDistance: 0.5
         SlowDistance: 3
-        AutoReturnToPlayerControlMode: 1
+        AutoReturnToPlayerControlMode: 0
     - rid: 1982472278076817571
       type: {class: ShakeCamera, ns: ForYou.Cutscene, asm: Assembly-CSharp}
       data:
@@ -1196,7 +1196,7 @@ MonoBehaviour:
         TargetPosition: {fileID: 562512629}
         AllowDistance: 0.5
         SlowDistance: 2
-        AutoReturnToPlayerControlMode: 1
+        AutoReturnToPlayerControlMode: 0
     - rid: 1982472278076817573
       type: {class: MovePlayerFish, ns: ForYou.Cutscene, asm: Assembly-CSharp}
       data:
@@ -1204,7 +1204,7 @@ MonoBehaviour:
         TargetPosition: {fileID: 731957491}
         AllowDistance: 0.5
         SlowDistance: 2
-        AutoReturnToPlayerControlMode: 1
+        AutoReturnToPlayerControlMode: 0
 --- !u!1 &416169409
 GameObject:
   m_ObjectHideFlags: 0
