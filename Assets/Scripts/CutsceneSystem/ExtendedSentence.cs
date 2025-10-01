@@ -8,6 +8,14 @@ public class ExtendedSentence
     [SerializeField, TextArea] string Sentence;
     [SerializeField] float IntervalDelayBetweenCharacters = 0.03f;
 
+    [Header("Shock Wave (Square-like)")]
+    [SerializeField, Tooltip("Shock 파형의 날카로움(↑ 더 각지게)")] public float ShockSharpness = 6f;
+    [SerializeField, Tooltip("Shock 파형 계단 단계 수(0 또는 1이면 비활성)")] public int ShockStairSteps = 0;
+
+    [Header("Chat Bubble")]
+    [SerializeField] public Vector2 Padding = new Vector2(10, 10);
+    [SerializeField] public Vector2 MinSize = new Vector2(80, 50);
+
     enum TagType { Rich, Time, Vibrate }
 
     public enum Waveform { Smooth, Shock }
@@ -118,7 +126,7 @@ public class ExtendedSentence
     ///
     /// duration이 0 이하이면 무한 지속으로 처리.
     /// </summary>
-    public string Evaluate(float time, out List<VibrateSample> vibrates)
+    public string Evaluate(float time, out List<VibrateSample> vibrates, out bool isEnd)
     {
         vibrates = new List<VibrateSample>();
 
@@ -138,8 +146,15 @@ public class ExtendedSentence
         int vibCharIndex = 0;
         int visibleIndex = 0;
 
+        bool isend = false;
+
         for (int i = 0; i < Sentence.Length; i++)
         {
+            if (i == Sentence.Length - 1)
+            {
+                isend = true;
+            }
+
             char c = Sentence[i];
             bool isTagJustStarted = false;
 
@@ -186,7 +201,10 @@ public class ExtendedSentence
                 visibleIndex++;
 
                 timer += IntervalDelayBetweenCharacters;
-                if (timer >= time) break;
+                if (timer >= time)
+                {
+                    break;
+                }
             }
             else if (isTagJustStarted)
             {
@@ -286,6 +304,7 @@ public class ExtendedSentence
                 isOnTag = false;
         }
 
+        isEnd = isend;
         return result;
     }
 }

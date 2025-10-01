@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &822888396981128647
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4101204398206699328}
+  - component: {fileID: 1891429155901928894}
+  m_Layer: 0
+  m_Name: ExtendedStringPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4101204398206699328
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822888396981128647}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.6315238, y: 0.7475975, z: 0.012955098}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1891429155901928894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822888396981128647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d937bc748caf55645969f7dd254099d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sentence:
+    Sentence: "{vibrate:shock_high:0.18}\uAC70\uAE30!{/}[1] \uC3D8\uC774\uAE30 \uC2EB\uC73C\uBA74[0.2]
+      {vibrate:shock_low:0.3}\uAC00\uAE4C\uC774 \uC624\uC9C0 \uB9C8{/}.\r\n"
+    IntervalDelayBetweenCharacters: 0.06
+    ShockSharpness: 6
+    ShockStairSteps: 0
+    Padding: {x: 0, y: 0}
+    MinSize: {x: 80, y: 50}
+  Text: {fileID: 0}
+  StartDelay: 0
+  TimeScale: 1
+  GlobalAmplitude: 1

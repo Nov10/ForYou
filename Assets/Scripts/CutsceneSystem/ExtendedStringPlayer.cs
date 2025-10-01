@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+[System.Serializable]
 public class ExtendedStringPlayer : MonoBehaviour
 {
     [Header("Data")]
-    [SerializeField] public ExtendedSentence Sentence;
+    [SerializeField] ExtendedSentence Sentence;
     [SerializeField] TMP_Text Text;
 
     [Header("Playback")]
@@ -16,14 +17,6 @@ public class ExtendedStringPlayer : MonoBehaviour
     [Header("Vibrate Tuning")]
     [SerializeField, Tooltip("진동 전체 크기 배율")] float GlobalAmplitude = 1f;
 
-    [Header("Shock Wave (Square-like)")]
-    [SerializeField, Tooltip("Shock 파형의 날카로움(↑ 더 각지게)")] float ShockSharpness = 6f;
-    [SerializeField, Tooltip("Shock 파형 계단 단계 수(0 또는 1이면 비활성)")] int ShockStairSteps = 0;
-
-    [Header("Chat Bubble")]
-    [SerializeField] Vector2 Padding = Vector2.zero;
-    [SerializeField] Vector2 MinSize = new Vector2(80, 50);
-
     TMP_MeshInfo[] _cachedMeshInfo;
     string _lastText = null;
     int _lastCharCount = -1;
@@ -31,16 +24,12 @@ public class ExtendedStringPlayer : MonoBehaviour
 
     readonly List<ExtendedSentence.VibrateSample> _samples = new();
 
-    void Awake()
-    {
-        if (Text == null) Text = GetComponent<TMP_Text>();
-    }
+    //void OnEnable() => ResetTimer();
 
-    void OnEnable() => ResetTimer();
-
-    public void Play(ExtendedSentence sentence, Transform _unused = null)
+    public void Play(ExtendedSentence sentence, TMP_Text text, Transform _unused = null)
     {
         Sentence = sentence;
+        Text = text;
         ResetTimer();
     }
 
@@ -50,7 +39,8 @@ public class ExtendedStringPlayer : MonoBehaviour
         _lastText = null;
         _lastCharCount = -1;
     }
-
+    bool _IsEnd;
+    public bool IsEnd => _IsEnd;
     void Update()
     {
         if (Sentence == null || Text == null) return;
@@ -58,7 +48,8 @@ public class ExtendedStringPlayer : MonoBehaviour
         float elapsed = Mathf.Max(0f, (Time.time - _t0) * TimeScale);
 
         // 1) 현재 시점 텍스트/진동 샘플
-        string display = Sentence.Evaluate(elapsed, out var vibrates);
+        string display = Sentence.Evaluate(elapsed, out var vibrates, out _IsEnd);
+        //Debug.Log($"{elapsed} / {_IsEnd}");
 
         // 2) 텍스트 변경/캐시
         bool needRebuild = _lastText != display;
@@ -135,21 +126,21 @@ public class ExtendedStringPlayer : MonoBehaviour
             Text.UpdateGeometry(mi.mesh, i);
         }
 
-        var rect = Text.transform.parent.GetComponent<RectTransform>();
-        rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Mathf.Max(Text.renderedWidth + Padding.x, MinSize.x));
-        rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Mathf.Max(Text.renderedHeight + Padding.y, MinSize.y));
+        var rect = Helpers.TransformFinder.FindChild(Text.transform.parent, "Background").GetComponent<RectTransform>();
+        rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Mathf.Max(Text.renderedWidth + Sentence.Padding.x, Sentence.MinSize.x));
+        rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Mathf.Max(Text.renderedHeight + Sentence.Padding.y, Sentence.MinSize.y));
     }
 
     // Shock 파형: soft-square (tanh(sin)) + (선택) 계단화
     float ShockWave(float arg)
     {
         // 소프트 스퀘어: -1..1
-        float soft = System.MathF.Tanh(ShockSharpness * Mathf.Sin(arg));
+        float soft = System.MathF.Tanh(Sentence.ShockSharpness * Mathf.Sin(arg));
 
         // 계단화(선택): 단계 수가 2 이상이면 양자화
-        if (ShockStairSteps > 1)
+        if (Sentence.ShockStairSteps > 1)
         {
-            float s = ShockStairSteps;
+            float s = Sentence.ShockStairSteps;
             soft = Mathf.Round(soft * s) / s;
         }
         return soft;
