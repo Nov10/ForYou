@@ -21,11 +21,13 @@ public class ExtendedStringPlayer : MonoBehaviour
     IEnumerator _Play(ExtendedSentence sentence, Transform position)
     {
         float timer = 0f;
+            Text.GetComponent<TMPVibrateAnimator>().Sentence = sentence;
+            Text.GetComponent<TMPVibrateAnimator>().ResetTimer();
         while (true)
         {
             timer += Time.deltaTime;
-            string text = sentence.Evaluate(timer);
-            Text.text = text;
+            // text = sentence.Evaluate(timer, out var vibrates);
+            //Text.text = text;
             yield return null;
         }
     }

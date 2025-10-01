@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 56136168}
   - component: {fileID: 56136170}
   - component: {fileID: 56136169}
+  - component: {fileID: 56136171}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -255,6 +256,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 56136167}
   m_CullTransparentMesh: 1
+--- !u!114 &56136171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56136167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf969f5ce0b9c0e48a91240b84081fed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sentence:
+    Sentence: 
+    IntervalDelayBetweenCharacters: 0.03
+  StartDelay: 0
+  TimeScale: 1
 --- !u!1 &150604141
 GameObject:
   m_ObjectHideFlags: 0
@@ -2385,8 +2403,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sentence:
-    Sentence: "{1/0.5/1/40.0.15|1/1/40/0.2}\uAC70\uAE30{/}[1], \uC3D8\uC774\uAE30
-      \uC2EB\uC73C\uBA74[0.2] \uAC00\uAE4C\uC774 \uC624\uC9C0 \uB9C8."
+    Sentence: "{1.6/0.75/8/60/0.75|0.30/16/84/0.35}\uAC70\uAE30{/}[1], \uC3D8\uC774\uAE30
+      \uC2EB\uC73C\uBA74[0.2] {2/0.4/10/48/0.4|0.15/20/64/0.2}\r\n\uAC00\uAE4C\uC774
+      \uC624\uC9C0 \uB9C8{/}."
     IntervalDelayBetweenCharacters: 0.08
   Text: {fileID: 56136169}
 --- !u!4 &1618960614
