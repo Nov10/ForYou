@@ -1,9 +1,8 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class ExtendedSentence
 {
     [SerializeField, TextArea] string Sentence;
@@ -11,17 +10,48 @@ public class ExtendedSentence
 
     enum TagType { Rich, Time, Vibrate }
 
-    // ¹öÅØ½º ¾Ö´Ï¸ŞÀÌ¼Ç¿¡¼­ »ç¿ëÇÒ 1¹®ÀÚ ´ÜÀ§ »ùÇÃ
+    public enum Waveform { Smooth, Shock }
+
     [Serializable]
     public struct VibrateSample
     {
-        public int visibleCharIndex; // TMP »ó¿¡¼­ÀÇ °¡½Ã ¹®ÀÚ ÀÎµ¦½º
-        public int localIndex;       // ÇØ´ç Vibrate ±¸°£ ³» n¹øÂ° ¹®ÀÚ (À§»ó Áõ°¡¿ë)
-        public float startTime;      // ÀÌ ¹®ÀÚÀÇ Áøµ¿ ½ÃÀÛ ½Ã°£(Å¸ÀÚ È¿°ú ¹İ¿µ, Evaluate ±âÁØ ½Ã°£Ãà)
+        public int visibleCharIndex;
+        public int localIndex;
+        public float startTime;
         public float duration;
+
         public float linAmpY, expAmpY, freqY, phasePerCharY;
         public float linAmpX, expAmpX, freqX, phasePerCharX;
+
+        public Waveform waveform;
     }
+
+    struct Preset
+    {
+        public Waveform waveform;
+        public float duration;
+        public float linY, expY, freqY, phaseY;
+        public float linX, expX, freqX, phaseX;
+
+        public Preset(Waveform wf, float d, float ly, float ey, float fy, float py,
+                      float lx, float ex, float fx, float px)
+        {
+            waveform = wf; duration = d;
+            linY = ly; expY = ey; freqY = fy; phaseY = py;
+            linX = lx; expX = ex; freqX = fx; phaseX = px;
+        }
+    }
+
+    static readonly Dictionary<string, Preset> s_presets = new(StringComparer.OrdinalIgnoreCase)
+    {
+        ["smooth_high"] = new Preset(Waveform.Smooth, 1.20f, 0.60f, 1.0f, 22f, 0.20f, 0.40f, 1.0f, 18f, 0.15f),
+        ["smooth_middle"] = new Preset(Waveform.Smooth, 1.00f, 0.45f, 1.0f, 20f, 0.18f, 0.25f, 1.0f, 16f, 0.12f),
+        ["smooth_low"] = new Preset(Waveform.Smooth, 0.80f, 0.30f, 1.0f, 14f, 0.12f, 0.15f, 1.0f, 12f, 0.08f),
+
+        ["shock_high"] = new Preset(Waveform.Shock, 0.90f, 0.70f, 1.2f, 35f, 0.35f, 0.35f, 1.2f, 28f, 0.25f),
+        ["shock_middle"] = new Preset(Waveform.Shock, 0.80f, 0.50f, 1.2f, 32f, 0.30f, 0.25f, 1.2f, 24f, 0.20f),
+        ["shock_low"] = new Preset(Waveform.Shock, 0.70f, 0.35f, 1.2f, 30f, 0.25f, 0.15f, 1.2f, 20f, 0.15f),
+    };
 
     int FindFirstCharacterFromIndex(string str, char target, int startIndex)
     {
@@ -30,9 +60,63 @@ public class ExtendedSentence
         return -1;
     }
 
+    // {vibrate:<preset>[:<durationSeconds>]} íŒŒì„œ
+    bool TryApplyPreset(string raw, out Preset preset, out bool hasDurationOverride, out float durationOverride)
+    {
+        preset = default;
+        hasDurationOverride = false;
+        durationOverride = 0f;
+
+        const string prefix = "vibrate:";
+        if (!raw.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+            return false;
+
+        string rest = raw.Substring(prefix.Length).Trim();          // "smooth_high[:1.2]"
+        if (string.IsNullOrEmpty(rest)) return false;
+
+        // ì´ë¦„ê³¼ ì§€ì†ì‹œê°„ ë¶„ë¦¬: smooth_high[:1.2]
+        // ì½œë¡ ì´ ì—¬ëŸ¬ ê°œì—¬ë„ ì²« í† í°=ì´ë¦„, ë‘ë²ˆì§¸ í† í°=ì§€ì†ì‹œê°„ìœ¼ë¡œ ì²˜ë¦¬
+        var parts = rest.Split(':');
+        string name = parts[0].Trim();
+
+        if (!s_presets.TryGetValue(name, out preset))
+            return false;
+
+        if (parts.Length >= 2)
+        {
+            string durToken = parts[1].Trim();
+            if (durToken.EndsWith("s", StringComparison.OrdinalIgnoreCase))
+                durToken = durToken.Substring(0, durToken.Length - 1).Trim();
+
+            if (float.TryParse(durToken,
+                System.Globalization.NumberStyles.Float,
+                System.Globalization.CultureInfo.InvariantCulture,
+                out float d))
+            {
+                hasDurationOverride = true;
+                durationOverride = d; // <=0 ì´ë©´ ë¬´í•œìœ¼ë¡œ ì·¨ê¸‰(ì•„ë˜ ë¡œì§ê³¼ ë™ì¼)
+            }
+            else
+            {
+                Debug.LogWarning($"ExtendedSentence: invalid duration '{parts[1]}' in preset tag '{raw}'. Using preset default.");
+            }
+        }
+
+        return true;
+    }
+
     /// <summary>
-    /// time: Å¸ÀÚ/È¿°ú¸¦ À§ÇÑ °æ°ú½Ã°£(ÃÊ). ¸®ÅÏÀº ÇöÀç ½ÃÁ¡¿¡ º¸¿©ÁÙ ÅØ½ºÆ®.
-    /// out vibrates: ÇöÀç 'º¸ÀÌ´Â' ¹®ÀÚµé Áß Áøµ¿ÇØ¾ß ÇÒ ¹®ÀÚµéÀÇ ÆÄ¶ó¹ÌÅÍ ¸ñ·Ï.
+    /// time: ê²½ê³¼ì‹œê°„(ì´ˆ). ë°˜í™˜: í˜„ì¬ ì‹œì  "ë³´ì—¬ì¤„" í…ìŠ¤íŠ¸.
+    /// vibrates: í˜„ì¬ ë³´ì´ëŠ” ë¬¸ìë“¤ ì¤‘ ì§„ë™ ì ìš© ëŒ€ìƒ ëª©ë¡.
+    ///
+    /// íƒœê·¸:
+    /// - ë¦¬ì¹˜: &lt;b&gt;...&lt;/b&gt; ë“±
+    /// - ì§€ì—°: [0.5]
+    /// - ì§„ë™(í”„ë¦¬ì…‹): {vibrate:smooth_high[:1.2]} ... {/}
+    /// - ì§„ë™(ìˆ˜ì¹˜):   {dur/linY/expY/freqY[/phaseY]|linX/expX/freqX[/phaseX]} ... {/}
+    /// - ì¢…ë£Œ: {/}
+    ///
+    /// durationì´ 0 ì´í•˜ì´ë©´ ë¬´í•œ ì§€ì†ìœ¼ë¡œ ì²˜ë¦¬.
     /// </summary>
     public string Evaluate(float time, out List<VibrateSample> vibrates)
     {
@@ -40,22 +124,19 @@ public class ExtendedSentence
 
         bool isOnTag = false;
         TagType type = TagType.Rich;
-        float timer = 0f;                  // Å¸ÀÚ ÁøÇà¿ë ´©Àû Å¸ÀÌ¸Ó
+        float timer = 0f;
         string result = string.Empty;
 
-        // Vibrate ±¸°£ »óÅÂ
         bool vibrateActive = false;
         float vibDuration = 0f;
 
-        // Y(¼¼·Î)
         float vibLinAmpY = 0f, vibExpAmpY = 0f, vibFreqY = 0f, vibPhasePerCharY = 0f;
-        // X(°¡·Î)
         float vibLinAmpX = 0f, vibExpAmpX = 0f, vibFreqX = 0f, vibPhasePerCharX = 0f;
+        Waveform vibWaveform = Waveform.Shock;
 
-        float vibStartTimer = 0f; // ÇØ´ç Vibrate ±¸°£ÀÇ ½ÃÀÛ Å¸ÀÓ(Å¸ÀÚ ±âÁØ ½Ã°£)
-        int vibCharIndex = 0;     // Vibrate ±¸°£ ³» °¡½Ã¹®ÀÚ ¼ø¹ø
-
-        int visibleIndex = 0;     // TMP »óÀÇ 'º¸ÀÌ´Â' ¹®ÀÚ ÀÎµ¦½º
+        float vibStartTimer = 0f;
+        int vibCharIndex = 0;
+        int visibleIndex = 0;
 
         for (int i = 0; i < Sentence.Length; i++)
         {
@@ -73,10 +154,8 @@ public class ExtendedSentence
 
             if (!isOnTag)
             {
-                // °¡½Ã ±ÛÀÚ 1°³ Ãâ·Â
                 result += c;
 
-                // ÇöÀç ±ÛÀÚ°¡ Vibrate Àû¿ë ´ë»óÀÌ¸é »ùÇÃÀ» ±â·Ï(¹öÅØ½º¿¡¼­ »ç¿ë)
                 if (vibrateActive)
                 {
                     float localStart = vibStartTimer + vibCharIndex * IntervalDelayBetweenCharacters;
@@ -97,6 +176,8 @@ public class ExtendedSentence
                         expAmpX = vibExpAmpX,
                         freqX = vibFreqX,
                         phasePerCharX = vibPhasePerCharX,
+
+                        waveform = vibWaveform
                     });
 
                     vibCharIndex++;
@@ -104,9 +185,8 @@ public class ExtendedSentence
 
                 visibleIndex++;
 
-                // Å¸ÀÚ °£°İ ½Ã°£ ÁøÇà
                 timer += IntervalDelayBetweenCharacters;
-                if (timer >= time) break; // ¾ÆÁ÷ º¸¿©ÁÙ ½Ã°£ÀÌ ¾È µÈ °æ¿ì Áß´Ü
+                if (timer >= time) break;
             }
             else if (isTagJustStarted)
             {
@@ -114,7 +194,6 @@ public class ExtendedSentence
                 {
                     case TagType.Rich:
                         {
-                            // TMP ¸®Ä¡ÅÂ±×´Â ÅØ½ºÆ®¿¡ ±×´ë·Î Æ÷ÇÔ (°¡½Ã¹®ÀÚ Ä«¿îÆ®¿¡´Â Æ÷ÇÔ ¾È µÊ)
                             int end = FindFirstCharacterFromIndex(Sentence, '>', i + 1);
                             if (end == -1) { isOnTag = false; break; }
                             result += Sentence.Substring(i, end - i + 1);
@@ -126,8 +205,10 @@ public class ExtendedSentence
                             if (end == -1) { isOnTag = false; break; }
 
                             var delayStr = Sentence.Substring(i + 1, end - i - 1);
-                            if (float.TryParse(delayStr, System.Globalization.NumberStyles.Float,
-                                System.Globalization.CultureInfo.InvariantCulture, out var val))
+                            if (float.TryParse(delayStr,
+                                System.Globalization.NumberStyles.Float,
+                                System.Globalization.CultureInfo.InvariantCulture,
+                                out var val))
                                 timer += val;
                             else
                                 Debug.LogError("ExtendedSentence: Cannot parse time tag to float: " + delayStr);
@@ -135,7 +216,6 @@ public class ExtendedSentence
                         }
                     case TagType.Vibrate:
                         {
-                            // "{/}" -> ±¸°£ Á¾·á
                             if (i + 1 < Sentence.Length && Sentence[i + 1] == '/')
                             {
                                 vibrateActive = false;
@@ -145,37 +225,57 @@ public class ExtendedSentence
                                 int end = FindFirstCharacterFromIndex(Sentence, '}', i + 1);
                                 if (end == -1) { isOnTag = false; break; }
 
-                                var raw = Sentence.Substring(i + 1, end - i - 1);
+                                var raw = Sentence.Substring(i + 1, end - i - 1).Trim();
 
-                                // "Yºí·Ï|Xºí·Ï" À¸·Î ºĞ¸® (Xºí·ÏÀº ¼±ÅÃ)
-                                var blocks = raw.Split('|');
-                                var yargs = blocks[0].Split('/');
-
-                                float Parse(string s, float dflt) =>
-                                    float.TryParse(s, System.Globalization.NumberStyles.Float,
-                                        System.Globalization.CultureInfo.InvariantCulture, out var v) ? v : dflt;
-
-                                // Y: dur/lin/exp/freq[/phase]
-                                vibDuration = (yargs.Length > 0) ? Parse(yargs[0], 1f) : 1f;
-                                vibLinAmpY = (yargs.Length > 1) ? Parse(yargs[1], 0.5f) : 0.5f;
-                                vibExpAmpY = (yargs.Length > 2) ? Parse(yargs[2], 1f) : 1f;
-                                vibFreqY = (yargs.Length > 3) ? Parse(yargs[3], 40f) : 40f;
-                                vibPhasePerCharY = (yargs.Length > 4) ? Parse(yargs[4], 0f) : 0f;
-
-                                // X: lin/exp/freq[/phase]  (¾øÀ¸¸é X Èçµé¸² ²¨Áü)
-                                vibLinAmpX = vibExpAmpX = vibFreqX = vibPhasePerCharX = 0f;
-                                if (blocks.Length > 1)
+                                // 1) í”„ë¦¬ì…‹(+ì„ íƒì  ì§€ì†ì‹œê°„) ìš°ì„ 
+                                if (TryApplyPreset(raw, out var p, out bool hasOverride, out float durOverride))
                                 {
-                                    var xargs = blocks[1].Split('/');
-                                    vibLinAmpX = (xargs.Length > 0) ? Parse(xargs[0], 0f) : 0f;
-                                    vibExpAmpX = (xargs.Length > 1) ? Parse(xargs[1], 1f) : 1f;
-                                    vibFreqX = (xargs.Length > 2) ? Parse(xargs[2], 40f) : 40f;
-                                    vibPhasePerCharX = (xargs.Length > 3) ? Parse(xargs[3], 0f) : 0f;
-                                }
+                                    vibDuration = hasOverride ? durOverride : p.duration;
 
-                                vibrateActive = true;
-                                vibStartTimer = timer; // ÇöÀç Å¸ÀÚ ÁøÇà ½Ã°¢À» ±¸°£ ½ÃÀÛÀ¸·Î
-                                vibCharIndex = 0;
+                                    vibLinAmpY = p.linY; vibExpAmpY = p.expY; vibFreqY = p.freqY; vibPhasePerCharY = p.phaseY;
+                                    vibLinAmpX = p.linX; vibExpAmpX = p.expX; vibFreqX = p.freqX; vibPhasePerCharX = p.phaseX;
+
+                                    vibWaveform = p.waveform;
+
+                                    vibrateActive = true;
+                                    vibStartTimer = timer;
+                                    vibCharIndex = 0;
+                                }
+                                else
+                                {
+                                    // 2) ê¸°ì¡´ ìˆ˜ì¹˜ ë¬¸ë²•: "Yë¸”ë¡|Xë¸”ë¡"
+                                    var blocks = raw.Split('|');
+                                    var yargs = blocks[0].Split('/');
+
+                                    float Parse(string s, float dflt) =>
+                                        float.TryParse(s,
+                                            System.Globalization.NumberStyles.Float,
+                                            System.Globalization.CultureInfo.InvariantCulture,
+                                            out var v) ? v : dflt;
+
+                                    // Y: dur/lin/exp/freq[/phase]
+                                    vibDuration = (yargs.Length > 0) ? Parse(yargs[0], 1f) : 1f;
+                                    vibLinAmpY = (yargs.Length > 1) ? Parse(yargs[1], 0.6f) : 0.6f;
+                                    vibExpAmpY = (yargs.Length > 2) ? Parse(yargs[2], 1f) : 1f;
+                                    vibFreqY = (yargs.Length > 3) ? Parse(yargs[3], 40f) : 40f;
+                                    vibPhasePerCharY = (yargs.Length > 4) ? Parse(yargs[4], 0f) : 0f;
+
+                                    vibLinAmpX = vibExpAmpX = vibFreqX = vibPhasePerCharX = 0f;
+                                    if (blocks.Length > 1)
+                                    {
+                                        var xargs = blocks[1].Split('/');
+                                        vibLinAmpX = (xargs.Length > 0) ? Parse(xargs[0], 0.0f) : 0.0f;
+                                        vibExpAmpX = (xargs.Length > 1) ? Parse(xargs[1], 1f) : 1f;
+                                        vibFreqX = (xargs.Length > 2) ? Parse(xargs[2], 25f) : 25f;
+                                        vibPhasePerCharX = (xargs.Length > 3) ? Parse(xargs[3], 0f) : 0f;
+                                    }
+
+                                    // ìˆ˜ì¹˜ ë¬¸ë²•ì€ ê¸°ì¡´ê³¼ ë™ì¼í•˜ê²Œ Shock íŒŒí˜• ê¸°ë³¸
+                                    vibWaveform = Waveform.Shock;
+                                    vibrateActive = true;
+                                    vibStartTimer = timer;
+                                    vibCharIndex = 0;
+                                }
                             }
                             break;
                         }
@@ -185,6 +285,7 @@ public class ExtendedSentence
             if (c == '>' || c == ']' || c == '}')
                 isOnTag = false;
         }
+
         return result;
     }
 }
