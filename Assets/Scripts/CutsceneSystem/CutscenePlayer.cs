@@ -11,10 +11,11 @@ namespace ForYou.Cutscene
     public class CutscenePlayer : MonoBehaviour
     {
         [SerializeField] CutsceneData Data;
-
+        [SerializeField] bool PlayOnStart;
         private void Start()
         {
-            Play();
+            if(PlayOnStart)
+                Play();
         }
 
         int NowIndex = 0;
