@@ -6,8 +6,6 @@ namespace ForYou.GamePlay
 {
     public class Plankton : MonoBehaviour
     {
-        [SerializeField] float Level = 1;
-        public float GetLevel() { return Level; }
 
         [Header("Animation Settings")]
         [SerializeField] string AnimationName_Idle = "Idle";

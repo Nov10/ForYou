@@ -1,9 +1,45 @@
 using ForYou.GamePlay;
+using TMPro;
 using UnityEngine;
 
 public class Anemone : MonoBehaviour
 {
-    [SerializeField] float Level;
+    [SerializeField] int Gage;
+    [SerializeField] int[] GageThresholdsForLevelUp;
+    [SerializeField] TMP_Text GageText;
+
+    public int GetNowLevel()
+    {
+        int gage = Gage;
+        for(int i = 0; i < GageThresholdsForLevelUp.Length; i++)
+        {
+            gage -= GageThresholdsForLevelUp[i];
+            if(gage < 0)
+            {
+                return i + 1;
+            }
+        }
+        return GageThresholdsForLevelUp.Length + 1;
+    }
+
+    int GetGageThreshold(int level)
+    {
+        return GageThresholdsForLevelUp[level - 1];
+    }
+    int GetNetGage()
+    {
+        int gage = Gage;
+        for (int i = 0; i < GageThresholdsForLevelUp.Length; i++)
+        {
+            gage -= GageThresholdsForLevelUp[i];
+            if (gage < 0)
+            {
+                return GageThresholdsForLevelUp[i] + gage;
+            }
+        }
+        return -1;
+    }
+
     float BaseSize;
     [SerializeField] float SizePerLevel;
 
@@ -18,22 +54,23 @@ public class Anemone : MonoBehaviour
         Detector.StartDetect();
 
         BaseSize = transform.localScale.x;
-        UpLevel(0);
+        UpGage(0);
     }
 
-    public void UpLevel(float delta)
+    public void UpGage(int delta)
     {
-        Level += delta;
-        SetSizeByLevel(Level);
+        Gage += delta;
+        SetSizeByLevel();
+        GageText.text = $"{GetNetGage()} / {GetGageThreshold(GetNowLevel())}";
     }
 
-    void SetSizeByLevel(float level)
+    void SetSizeByLevel()
     {
-        float size = CalculateSizeByLevel(level);
+        float size = CalculateSizeByLevel(GetNowLevel());
         transform.localScale = new Vector3(size, size, 1);
     }
 
-    float CalculateSizeByLevel(float level)
+    float CalculateSizeByLevel(int level)
     {
         return BaseSize + level * SizePerLevel;
     }
@@ -46,8 +83,7 @@ public class Anemone : MonoBehaviour
             var plankton = fish.GetPlankton();
             fish.DropPlankton();
 
-            float additionalLevel = plankton.GetLevel();
-            UpLevel(additionalLevel);
+            UpGage(plankton.GetComponent<EatableByAnemone>().GetGage());
 
             Destroy(plankton.gameObject);
         }
