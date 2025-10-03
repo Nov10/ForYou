@@ -31,6 +31,20 @@ namespace ForYou.GamePlay
         [SerializeField] float VelocitySnapping_Horizontal = 0.1f;
         [SerializeField] float NormalSpeed = 5;
         [SerializeField] float SnatchingPlanktonSpeed = 2;
+        float SpeedByCutsceneControl;
+        public float GetNormalSpeed() { return NormalSpeed; }
+        public void SetSpeedByCutscene(float speed)
+        {
+            SpeedByCutsceneControl = speed;
+        }
+        public float GetTargetSpeed()
+        {
+            if (NowControlMode == ControlMode.Cutscene)
+                return SpeedByCutsceneControl;
+
+            if (DoesHavePlankton) return SnatchingPlanktonSpeed;
+            else return NormalSpeed;
+        }
         public Vector2 GetSnapping()
         {
             return new Vector2(VelocitySnapping_Horizontal, VelocitySnapping_Vertical);
@@ -54,13 +68,12 @@ namespace ForYou.GamePlay
         }
         public bool IsMoving
         {
-            // get { return NowVelocity.magnitude > 0.1f; } //Velocity 기반
             get 
             {
                 if (NowControlMode == ControlMode.Self) return GetInputDirection().magnitude > 0.1f;
                 else if (NowControlMode == ControlMode.Cutscene) return NowVelocity.sqrMagnitude > 0.1f;
                 return false;
-            } //Input 기반
+            }
         }
 
         public bool DoesHavePlankton

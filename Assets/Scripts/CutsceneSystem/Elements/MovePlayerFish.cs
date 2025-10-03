@@ -7,7 +7,7 @@ namespace ForYou.Cutscene
     {
         public Transform TargetPosition;
         public float AllowDistance = 0.5f;
-        public float SlowDistance = 2.5f;
+        public float Speed = -1.0f;
         public bool AutoReturnToPlayerControlMode = false;
     }
 }

@@ -98,14 +98,23 @@ namespace ForYou.Cutscene
             {
                 var move = (MovePlayerFish)element;
                 float allowDistance = move.AllowDistance;
-                float slowRadius = move.SlowDistance;
+                float spd = move.Speed;
+                
 
                 var target = move.TargetPosition;
                 var player = FindFirstObjectByType<PlayerFish>();
                 var playerRigidBody = player.GetComponent<Rigidbody2D>();
 
-                player.ChangeControlMode(ControlMode.Cutscene);
-                var snap = player.GetSnapping();
+                if (spd > 0)
+                {
+                    player.SetSpeedByCutscene(spd);
+                }
+                else
+                {
+                    player.SetSpeedByCutscene(player.GetNormalSpeed());
+                }
+
+                    player.ChangeControlMode(ControlMode.Cutscene);
                 Vector2 diff = (Vector2)target.position - playerRigidBody.position;
 
                 if (element.PlayWithNextElement == true)
@@ -114,16 +123,16 @@ namespace ForYou.Cutscene
                 while (diff.sqrMagnitude > allowDistance * allowDistance)
                 {
                     diff = (Vector2)target.position - playerRigidBody.position;
-                    float t = Mathf.Clamp01((diff.magnitude - allowDistance)  / (slowRadius - allowDistance));
-                    player.InputDirectionByCutscene = diff.normalized * (t + 0.01f);
-
-                    if(diff.sqrMagnitude <= slowRadius * slowRadius)
-                    {
-                        player.SetSnapping(Vector2.one * (1-t) * 10f);
-                    }
+                    playerRigidBody.linearVelocity = Vector2.Lerp(playerRigidBody.linearVelocity, diff.normalized * player.GetTargetSpeed(), 10 * Time.fixedDeltaTime);
                     yield return new WaitForFixedUpdate();
                 }
-                player.SetSnapping(snap);
+                while(playerRigidBody.linearVelocity.magnitude > 0.4f)
+                {
+                    playerRigidBody.linearVelocity = Vector2.Lerp(playerRigidBody.linearVelocity, Vector2.zero, 5 * Time.fixedDeltaTime);
+                    yield return new WaitForFixedUpdate();
+                }
+
+                playerRigidBody.linearVelocity = Vector2.zero;
                 player.InputDirectionByCutscene = Vector2.zero;
 
                 if (move.AutoReturnToPlayerControlMode == true)
