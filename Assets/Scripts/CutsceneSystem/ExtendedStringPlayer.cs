@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Helpers;
+using Unity.VisualScripting;
 
 [System.Serializable]
 public class ExtendedStringPlayer : MonoBehaviour
@@ -20,35 +22,54 @@ public class ExtendedStringPlayer : MonoBehaviour
     TMP_MeshInfo[] _cachedMeshInfo;
     string _lastText = null;
     int _lastCharCount = -1;
-    float _t0;
+    //float _t0;
 
     readonly List<ExtendedSentence.VibrateSample> _samples = new();
 
     //void OnEnable() => ResetTimer();
-
+    public bool IsTextPlaying = false;
+    public float ElapsedTextTime = 0.0f;
     public void Play(ExtendedSentence sentence, TMP_Text text, Transform _unused = null)
     {
         Sentence = sentence;
         Text = text;
         ResetTimer();
+
+
+        var parent = Text.transform.parent;
+        parent.transform.localScale = Vector3.one * 0.4f;
+        ObjectMoveHelper.ScaleObject(parent, Vector3.one, sentence.ChatBubbleScaleDuration);
+        DelayedFunctionHelper.InvokeDelayed(sentence.ChatBubbleScaleDuration, () =>
+        {
+            IsTextPlaying = true;
+        });
     }
 
     void ResetTimer()
     {
-        _t0 = Time.time + StartDelay;
+        ElapsedTextTime = 0.0f;
+        //_t0 = Time.time + StartDelay;
         _lastText = null;
         _lastCharCount = -1;
     }
-    bool _IsEnd;
-    public bool IsEnd => _IsEnd;
+    bool IsTextPlayEnd;
+    bool IsChatBubbleOffAnimationPlaying;
+    bool IsChatBubbleOffAnimationEnd;
+    public bool IsEnd => IsTextPlayEnd && IsChatBubbleOffAnimationEnd;
     void Update()
     {
         if (Sentence == null || Text == null) return;
 
-        float elapsed = Mathf.Max(0f, (Time.time - _t0) * TimeScale);
+        if (IsTextPlaying == false)
+            return;
+
+        ElapsedTextTime += Time.deltaTime * TimeScale;
+        if (ElapsedTextTime <= StartDelay)
+            return;
+        float elapsed = Mathf.Max(0f, ElapsedTextTime);
 
         // 1) 현재 시점 텍스트/진동 샘플
-        string display = Sentence.Evaluate(elapsed, out var vibrates, out _IsEnd);
+        string display = Sentence.Evaluate(elapsed, out var vibrates, out IsTextPlayEnd);
         //Debug.Log($"{elapsed} / {_IsEnd}");
 
         // 2) 텍스트 변경/캐시
@@ -129,6 +150,25 @@ public class ExtendedStringPlayer : MonoBehaviour
         var rect = Helpers.TransformFinder.FindChild(Text.transform.parent, "Background").GetComponent<RectTransform>();
         rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Mathf.Max(Text.renderedWidth + Sentence.Padding.x, Sentence.MinSize.x));
         rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Mathf.Max(Text.renderedHeight + Sentence.Padding.y, Sentence.MinSize.y));
+
+        if(IsTextPlayEnd == true)
+        {
+            if(IsChatBubbleOffAnimationEnd == false && IsChatBubbleOffAnimationPlaying == false)
+            {
+                IsChatBubbleOffAnimationPlaying = true;
+
+                DelayedFunctionHelper.InvokeDelayed(Sentence.ChatKeepAliveDurationBeforeBubbleOff, () =>
+                {
+                    var parent = Text.transform.parent;
+                    ObjectMoveHelper.ScaleObject(parent, Vector3.one * 0.4f, Sentence.ChatBubbleScaleDuration);
+                    DelayedFunctionHelper.InvokeDelayed(Sentence.ChatBubbleScaleDuration, () =>
+                    {
+                        IsChatBubbleOffAnimationEnd = true;
+                        IsChatBubbleOffAnimationPlaying = false;
+                    });
+                });
+            }
+        }
     }
 
     // Shock 파형: soft-square (tanh(sin)) + (선택) 계단화

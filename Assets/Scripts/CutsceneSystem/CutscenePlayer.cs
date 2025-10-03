@@ -90,9 +90,9 @@ namespace ForYou.Cutscene
                     yield return null;
                 }
                 if (element.PlayWithNextElement == false)
-                    DelayedFunctionHelper.InvokeDelayed(text.DestoryDelay, onEnd);
-                Destroy(bubble.gameObject, text.DestoryDelay);
-                Destroy(player.gameObject, text.DestoryDelay);
+                    onEnd();
+                Destroy(bubble.gameObject);
+                Destroy(player.gameObject);
             }
             else if(type == typeof(MovePlayerFish))
             {

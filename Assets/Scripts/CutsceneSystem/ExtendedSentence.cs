@@ -15,6 +15,8 @@ public class ExtendedSentence
     [Header("Chat Bubble")]
     [SerializeField] public Vector2 Padding = new Vector2(10, 10);
     [SerializeField] public Vector2 MinSize = new Vector2(80, 50);
+    [SerializeField] public float ChatBubbleScaleDuration = 0.18f;
+    [SerializeField] public float ChatKeepAliveDurationBeforeBubbleOff = 1.0f;
 
     enum TagType { Rich, Time, Vibrate }
 

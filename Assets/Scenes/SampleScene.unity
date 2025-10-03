@@ -848,11 +848,12 @@ MonoBehaviour:
           IntervalDelayBetweenCharacters: 0.06
           ShockSharpness: 6
           ShockStairSteps: 0
-          Padding: {x: 10, y: 10}
+          Padding: {x: 15, y: 15}
           MinSize: {x: 80, y: 50}
+          ChatBubbleScaleDuration: 0.1
+          ChatKeepAliveDurationBeforeBubbleOff: 1
         SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
         Position: {fileID: 1691987275}
-        DestoryDelay: 1
     - rid: 1982472274260525247
       type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
       data:
@@ -867,11 +868,12 @@ MonoBehaviour:
           IntervalDelayBetweenCharacters: 0.03
           ShockSharpness: 6
           ShockStairSteps: 0
-          Padding: {x: 10, y: 10}
+          Padding: {x: 15, y: 15}
           MinSize: {x: 80, y: 50}
+          ChatBubbleScaleDuration: 0.1
+          ChatKeepAliveDurationBeforeBubbleOff: 1
         SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
         Position: {fileID: 450523485}
-        DestoryDelay: 1
     - rid: 1982472277290385504
       type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
       data:
@@ -886,11 +888,12 @@ MonoBehaviour:
           IntervalDelayBetweenCharacters: 0.05
           ShockSharpness: 6
           ShockStairSteps: 0
-          Padding: {x: 10, y: 10}
+          Padding: {x: 15, y: 15}
           MinSize: {x: 80, y: 50}
+          ChatBubbleScaleDuration: 0.2
+          ChatKeepAliveDurationBeforeBubbleOff: 1
         SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
         Position: {fileID: 1691987275}
-        DestoryDelay: 1
     - rid: 1982472277290385506
       type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
       data:
@@ -908,9 +911,10 @@ MonoBehaviour:
           ShockStairSteps: 0
           Padding: {x: 10, y: 10}
           MinSize: {x: 80, y: 50}
+          ChatBubbleScaleDuration: 0.2
+          ChatKeepAliveDurationBeforeBubbleOff: 1
         SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
         Position: {fileID: 1691987275}
-        DestoryDelay: 1
     - rid: 1982472277290385523
       type: {class: MovePlayerFish, ns: ForYou.Cutscene, asm: Assembly-CSharp}
       data:
@@ -930,9 +934,10 @@ MonoBehaviour:
           ShockStairSteps: 0
           Padding: {x: 10, y: 10}
           MinSize: {x: 80, y: 50}
+          ChatBubbleScaleDuration: 0.2
+          ChatKeepAliveDurationBeforeBubbleOff: 1
         SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
         Position: {fileID: 450523485}
-        DestoryDelay: 1
     - rid: 1982472278076817533
       type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
       data:
@@ -945,9 +950,10 @@ MonoBehaviour:
           ShockStairSteps: 0
           Padding: {x: 10, y: 10}
           MinSize: {x: 80, y: 50}
+          ChatBubbleScaleDuration: 0.2
+          ChatKeepAliveDurationBeforeBubbleOff: 1
         SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
         Position: {fileID: 450523485}
-        DestoryDelay: 2
     - rid: 1982472278076817535
       type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
       data:
@@ -1028,9 +1034,10 @@ MonoBehaviour:
           ShockStairSteps: 0
           Padding: {x: 10, y: 10}
           MinSize: {x: 80, y: 50}
+          ChatBubbleScaleDuration: 0.2
+          ChatKeepAliveDurationBeforeBubbleOff: 1
         SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
         Position: {fileID: 1691987275}
-        DestoryDelay: 1
     - rid: 1982472278076817556
       type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
       data:
@@ -1042,9 +1049,10 @@ MonoBehaviour:
           ShockStairSteps: 0
           Padding: {x: 10, y: 10}
           MinSize: {x: 80, y: 50}
+          ChatBubbleScaleDuration: 0.2
+          ChatKeepAliveDurationBeforeBubbleOff: 1
         SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
         Position: {fileID: 450523485}
-        DestoryDelay: 1
     - rid: 1982472278076817557
       type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
       data:
@@ -1056,9 +1064,10 @@ MonoBehaviour:
           ShockStairSteps: 0
           Padding: {x: 10, y: 10}
           MinSize: {x: 80, y: 50}
+          ChatBubbleScaleDuration: 0.2
+          ChatKeepAliveDurationBeforeBubbleOff: 1
         SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
         Position: {fileID: 450523485}
-        DestoryDelay: 1
     - rid: 1982472278076817558
       type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
       data:
@@ -1070,9 +1079,10 @@ MonoBehaviour:
           ShockStairSteps: 0
           Padding: {x: 10, y: 10}
           MinSize: {x: 80, y: 50}
+          ChatBubbleScaleDuration: 0.2
+          ChatKeepAliveDurationBeforeBubbleOff: 1
         SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
         Position: {fileID: 1691987275}
-        DestoryDelay: 1
     - rid: 1982472278076817560
       type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
       data:
@@ -1105,9 +1115,10 @@ MonoBehaviour:
           ShockStairSteps: 0
           Padding: {x: 10, y: 10}
           MinSize: {x: 80, y: 50}
+          ChatBubbleScaleDuration: 0.2
+          ChatKeepAliveDurationBeforeBubbleOff: 1
         SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
         Position: {fileID: 1691987275}
-        DestoryDelay: 1
     - rid: 1982472278076817565
       type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
       data:
@@ -1124,9 +1135,10 @@ MonoBehaviour:
           ShockStairSteps: 0
           Padding: {x: 10, y: 10}
           MinSize: {x: 80, y: 50}
+          ChatBubbleScaleDuration: 0.2
+          ChatKeepAliveDurationBeforeBubbleOff: 1
         SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
         Position: {fileID: 450523485}
-        DestoryDelay: 1
     - rid: 1982472278076817567
       type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
       data:
@@ -1143,9 +1155,10 @@ MonoBehaviour:
           ShockStairSteps: 0
           Padding: {x: 10, y: 10}
           MinSize: {x: 80, y: 50}
+          ChatBubbleScaleDuration: 0.2
+          ChatKeepAliveDurationBeforeBubbleOff: 1
         SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
         Position: {fileID: 450523485}
-        DestoryDelay: 1
     - rid: 1982472278076817570
       type: {class: MovePlayerFish, ns: ForYou.Cutscene, asm: Assembly-CSharp}
       data:

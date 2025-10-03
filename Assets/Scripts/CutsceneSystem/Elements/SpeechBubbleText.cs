@@ -9,7 +9,5 @@ namespace ForYou.Cutscene
 
         public GameObject SpeechBubblePrefab;
         public GameObject Position;
-
-        public float DestoryDelay = 0.0f;
     }
 }

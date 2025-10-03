@@ -126,6 +126,27 @@ namespace Helpers
             mover.localScale = target;
             onEnd?.Invoke();
         }
+        public static int ScaleObject_Log(Transform mover, Vector3 target, float time)
+        {
+            ExtendedEnumerator info = new ExtendedEnumerator(_ScaleObject_Log(mover, target, time, null));
+
+            ExtendedEnumeratorRunner.Instance.Run(info);
+            return info.ID;
+        }
+        static IEnumerator _ScaleObject_Log(Transform mover, Vector3 target, float time, Action onEnd)
+        {
+            float t = 0.0f;
+            Vector3 startPos;
+            startPos = mover.localScale;
+            while (t <= time)
+            {
+                t += Time.deltaTime;
+                mover.localScale = Vector3.Slerp(startPos, target, t / time);
+                yield return null;
+            }
+            mover.localScale = target;
+            onEnd?.Invoke();
+        }
 
 
         /// <summary> mover를 현재 위치에서 target까지 time의 시간동안 Lerp로 이동시킵니다. ID를 반환합니다. </summary>
