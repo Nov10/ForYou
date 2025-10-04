@@ -5,6 +5,7 @@ public class NavigationHelper
 {
     public const float AllowDistance_Plankton = 0.3f;
     public const float AllowDistance_NormalEnemy = 0.3f;
+    public const float AllowDistance_BacurdaDash = 0.5f;
     public static bool RandomPoint2D(Vector2 center, float radius, out Vector3 result)
     {
         for (int i = 0; i < 30; i++)
