@@ -22,6 +22,8 @@ namespace ForYou.GamePlay
 
         //EnemyFishState NowState;
 
+        [SerializeField] PlayerFishDetector RecognizePlayerFishRange;
+
 
         [Header("Movement Settings")]
         [SerializeField] protected float NormalSpeed = 0.5f;
@@ -47,6 +49,13 @@ namespace ForYou.GamePlay
             ThisAnimator = GetComponent<Animator>();
             ThisSpriteRenderer = GetComponent<SpriteRenderer>();
 
+            if(RecognizePlayerFishRange == null)
+            {
+                Debug.LogError($"RecognizePlayerFishRange를 설정해야 합니다. {transform}");
+            }
+
+            RecognizePlayerFishRange.OnPlayerFishDetected += OnRecognizePlayerFish;
+
             //AnimatorNameHash_Idle = Animator.StringToHash(AnimationName_Idle);
             //AnimatorNameHash_Moving = Animator.StringToHash(AnimationName_Moving);
             //AnimatorNameHash_Attack = Animator.StringToHash(AnimationName_Attack);
@@ -55,6 +64,19 @@ namespace ForYou.GamePlay
             ThisAgent.updateRotation = false;
             ThisAgent.updateUpAxis = false;
             ThisAgent.updatePosition = false;
+        }
+
+        protected virtual void OnEnable()
+        {
+            RecognizePlayerFishRange.StartDetect();
+        }
+        protected void StartRecognizePlayerFish()
+        {
+            RecognizePlayerFishRange.StartDetect();
+        }
+        protected void EndRecognizePlayerFish()
+        {
+            RecognizePlayerFishRange.EndDetect();
         }
         protected virtual void Start()
         {
@@ -85,5 +107,7 @@ namespace ForYou.GamePlay
         protected abstract float GetTargetSpeedByNowFishState();
 
         public abstract void OnAttackedByAnemone(Anemone anemone);
+
+        public abstract void OnRecognizePlayerFish(PlayerFish fish);
     }
 }

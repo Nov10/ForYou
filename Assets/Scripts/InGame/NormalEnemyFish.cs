@@ -17,12 +17,14 @@ namespace ForYou.GamePlay
         [Header("Animation Settings")]
         [SerializeField] string AnimationName_Idle = "Idle";
         [SerializeField] string AnimationName_Attack = "Attack";
-        [SerializeField] string AnimationName_Moving = "Moving";
+        [SerializeField] string AnimationName_Moving_Patrol = "Moving";
+        [SerializeField] string AnimationName_Moving_Chase = "Moving";
         [SerializeField] string AnimationName_Eaten = "Eaten";
 
         int AnimatorNameHash_Idle;
         int AnimatorNameHash_Attack;
-        int AnimatorNameHash_Moving;
+        int AnimatorNameHash_Moving_Patrol;
+        int AnimatorNameHash_Moving_Chase;
         int AnimatorNameHash_Eaten;
 
         [Header("Patrol Settings")]
@@ -33,17 +35,11 @@ namespace ForYou.GamePlay
         protected override void Awake()
         {
             base.Awake();
-            Patrol2ChaseRange.OnPlayerFishDetected += OnPlayerFishDetected_Patrol2ChaseRange;
-
             AnimatorNameHash_Idle = Animator.StringToHash(AnimationName_Idle);
             AnimatorNameHash_Attack = Animator.StringToHash(AnimationName_Attack);
-            AnimatorNameHash_Moving = Animator.StringToHash(AnimationName_Moving);
+            AnimatorNameHash_Moving_Patrol = Animator.StringToHash(AnimationName_Moving_Patrol);
+            AnimatorNameHash_Moving_Chase = Animator.StringToHash(AnimationName_Moving_Chase);
             AnimatorNameHash_Eaten = Animator.StringToHash(AnimationName_Eaten);
-        }
-
-        private void OnEnable()
-        {
-            Patrol2ChaseRange.StartDetect();
         }
 
         private void OnDrawGizmos()
@@ -55,8 +51,6 @@ namespace ForYou.GamePlay
                 Gizmos.DrawWireSphere(transform.position, PatrolRadius);
 #endif
         }
-
-        [SerializeField] PlayerFishDetector Patrol2ChaseRange;
 
         PlayerFish Target;
 
@@ -122,7 +116,10 @@ namespace ForYou.GamePlay
         {
             if (IsMoving)
             {
-                ThisAnimator.Play(AnimatorNameHash_Moving);
+                if(NowState == State.Chase)
+                    ThisAnimator.Play(AnimatorNameHash_Moving_Chase);
+                else
+                    ThisAnimator.Play(AnimatorNameHash_Moving_Patrol);
                 if (NowVelocity.x < 0) transform.rotation = IsSpriteLookLeft ? Quaternion.Euler(0, 0, 0) : Quaternion.Euler(0, 180, 0);
                 if (NowVelocity.x > 0) transform.rotation = IsSpriteLookLeft ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
             }
@@ -138,7 +135,8 @@ namespace ForYou.GamePlay
             PatrolCenterPosition = transform.position;
             SetState(State.Patrol);
         }
-        void OnPlayerFishDetected_Patrol2ChaseRange(PlayerFish fish)
+
+        public override void OnRecognizePlayerFish(PlayerFish fish)
         {
             if (NowState == State.Patrol)
             {
@@ -149,8 +147,8 @@ namespace ForYou.GamePlay
         public override void OnAttackedByAnemone(Anemone anemone)
         {
             SetState(State.Patrol);
-            Patrol2ChaseRange.EndDetect();
-            DelayedFunctionHelper.InvokeDelayed(3.0f, () => Patrol2ChaseRange.StartDetect());
+            EndRecognizePlayerFish();
+            DelayedFunctionHelper.InvokeDelayed(3.0f, StartRecognizePlayerFish);
         }
     }
 }
