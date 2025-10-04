@@ -23,5 +23,12 @@ namespace ForYou.GamePlay
         {
             IsGameOver = true;
         }
+
+        [SerializeField] SquidFX SquidBlackFX;
+
+        public void PlaySquidBlackFX()
+        {
+            SquidBlackFX.Play();
+        }
     }
 }
