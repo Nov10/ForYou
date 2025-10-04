@@ -56,18 +56,26 @@ namespace ForYou.GamePlay
 
         public void SetState(State state)
         {
-            switch(NowState)
-            {
-                case State.Patrol:
-                    break;
-            }
             NowState = state;
             switch(NowState)
             {
                 case State.Patrol:
                     {
+                        EndDetectAttackRange();
                         NavigationHelper.RandomPoint2D(PatrolCenterPosition, PatrolRadius, out NowTargetPosition);
                         ThisAgent.destination = NowTargetPosition;
+                    }
+                    break;
+                case State.Chase:
+                    {
+                        StartDetectAttackRange();
+                    }
+                    break;
+                case State.Attack:
+                    {
+                        EndDetectAttackRange();
+                        ThisAnimator.Play(AnimatorNameHash_Attack);
+                        Target.OnAttackedByEnemyFish(this, true);
                     }
                     break;
             }
@@ -150,6 +158,15 @@ namespace ForYou.GamePlay
             SetState(State.Patrol);
             EndRecognizePlayerFish();
             DelayedFunctionHelper.InvokeDelayed(3.0f, StartRecognizePlayerFish);
+        }
+
+        public override void OnPlayerFishInAttackRange(PlayerFish fish)
+        {
+            if (NowState != State.Chase)
+                return;
+
+            Target = fish;
+            SetState(State.Attack);
         }
     }
 }

@@ -1,3 +1,4 @@
+using Helpers;
 using UnityEngine;
 
 namespace ForYou.GamePlay
@@ -17,11 +18,13 @@ namespace ForYou.GamePlay
         [SerializeField] string AnimationName_IdleWithPlankton = "IdleWithPlankton";
         [SerializeField] string AnimationName_Moving = "Moving";
         [SerializeField] string AnimationName_MovingWithPlankton = "MovingWithPlankton";
+        [SerializeField] string AnimationName_Die = "Moving";
 
         int AnimatorNameHash_Idle;
         int AnimatorNameHash_IdleWithPlankton;
         int AnimatorNameHash_Moving;
         int AnimatorNameHash_MovingWithPlankton;
+        int AnimatorNameHash_Die;
 
         //[SerializeField] bool FlipFlag_MovingRight;
         [SerializeField] float FlipThresholdSpeed_X = 0.5f;
@@ -102,7 +105,7 @@ namespace ForYou.GamePlay
             AnimatorNameHash_IdleWithPlankton = Animator.StringToHash(AnimationName_IdleWithPlankton);
             AnimatorNameHash_Moving = Animator.StringToHash(AnimationName_Moving);
             AnimatorNameHash_MovingWithPlankton = Animator.StringToHash(AnimationName_MovingWithPlankton);
-
+            AnimatorNameHash_Die = Animator.StringToHash(AnimationName_Die);
 
             if (Detector == null)
                 Detector = GetComponentInChildren<PlanktonDetector>();
@@ -113,6 +116,9 @@ namespace ForYou.GamePlay
 
         private void Update()
         {
+            if (InGameManager.Instance.IsGameOver == true)
+                return;
+
             //에니메이션
             if(IsMoving == true && DoesHavePlankton == true)
             {
@@ -193,7 +199,7 @@ namespace ForYou.GamePlay
         }
 
 
-        public static PlayerFishInputActions PlayerInput;
+        static PlayerFishInputActions PlayerInput;
         public Vector2 InputDirectionByCutscene;
         Vector2 GetInputDirection()
         {
@@ -230,6 +236,23 @@ namespace ForYou.GamePlay
             SnatchedPlankton.OnDroppedByPlayerFish(this);
 
             SnatchedPlankton = null;
+        }
+
+
+        public void OnAttackedByEnemyFish(EnemyFish enemyFish, bool shouldPlayerFishDie)
+        {
+            if(shouldPlayerFishDie)
+            {
+                InGameManager.Instance.GameOver();
+
+                PlayerInput.Disable();
+                ThisAnimator.Play(AnimatorNameHash_Die);
+                DelayedFunctionHelper.InvokeDelayed(1.0f, () => gameObject.SetActive(false));
+            }
+            else
+            {
+                //...
+            }
         }
     }
 }
