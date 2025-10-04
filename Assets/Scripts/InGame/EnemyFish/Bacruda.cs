@@ -208,6 +208,8 @@ namespace ForYou.GamePlay
                     EndDetectAttackRange();
                     ThisAnimator.Play(AnimatorNameHash_Attack);
                     Target.OnAttackedByEnemyFish(this, true);
+
+                    DelayedFunctionHelper.InvokeDelayed(1.0f, () => SetState(State.Patrol));
                     break;
                 case State.Eaten:
                     EndDetectAttackRange();
