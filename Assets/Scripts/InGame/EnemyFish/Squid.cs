@@ -26,12 +26,13 @@ namespace ForYou.GamePlay
         Vector3 NowTargetPosition;
 
         [SerializeField] float BlackFXAttackCoolDownTime;
-        float LastBlackFXAttackUsedTime;
+        float LastBlackFXAttackUsedTime = 0;
         protected override void OnEnable()
         {
             base.OnEnable();
             PatrolCenterPosition = transform.position;
             SetState(State.Patrol);
+            LastBlackFXAttackUsedTime = Time.time - BlackFXAttackCoolDownTime;
         }
         protected override void Awake()
         {

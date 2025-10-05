@@ -25,10 +25,15 @@ namespace ForYou.GamePlay
         }
 
         [SerializeField] SquidFX SquidBlackFX;
-
+        [SerializeField] JellyFishFX JellyFishBlurFX;
         public void PlaySquidBlackFX()
         {
             SquidBlackFX.Play();
+        }
+
+        public void PlayJellyFishBlurFX(float duration)
+        {
+            JellyFishBlurFX.Play(duration);
         }
     }
 }

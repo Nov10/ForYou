@@ -22,4 +22,31 @@ public class NavigationHelper
         result = center;
         return false;
     }
+
+    public static bool RandomPointEllipse2D(Vector2 center, Vector2 radii, out Vector3 result,
+                                        int attempts = 30, float sampleMaxDistance = 1.0f, int areaMask = NavMesh.AllAreas)
+    {
+        if (radii.x <= 0f || radii.y <= 0f)
+        {
+            result = new Vector3(center.x, center.y, 0f);
+            return false;
+        }
+
+        for (int i = 0; i < attempts; i++)
+        {
+            // 단위원 내부(균일) → 타원으로 스케일
+            Vector2 u = Random.insideUnitCircle;               // [-1..1] 원 내부
+            Vector2 p = new Vector2(u.x * radii.x, u.y * radii.y);
+
+            var query = new Vector3(center.x + p.x, center.y + p.y, 0f);
+            if (NavMesh.SamplePosition(query, out var hit, sampleMaxDistance, areaMask))
+            {
+                result = hit.position;
+                return true;
+            }
+        }
+
+        result = new Vector3(center.x, center.y, 0f);
+        return false;
+    }
 }
