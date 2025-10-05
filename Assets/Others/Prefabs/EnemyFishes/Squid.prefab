@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5259905193464365342}
   - component: {fileID: 356495018515851993}
   - component: {fileID: 2444099121182048225}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Squid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 6118855768181173997}
   - component: {fileID: 4834597137862432065}
   - component: {fileID: 7697812094951598689}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerFishDetector (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -447,7 +447,7 @@ GameObject:
   - component: {fileID: 6856278070771893683}
   - component: {fileID: 7412434649120570621}
   - component: {fileID: 670532877787922398}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttackRange (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

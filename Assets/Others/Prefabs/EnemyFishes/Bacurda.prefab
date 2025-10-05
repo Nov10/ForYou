@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7615224326966211268}
   - component: {fileID: 1925079241194633725}
   - component: {fileID: 6044290238104093848}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerFishDetector (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 3698056142012484097}
   - component: {fileID: 8930984606978111080}
   - component: {fileID: 2561067868100358362}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttackRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 5887105867479269256}
   - component: {fileID: 6045270935871842020}
   - component: {fileID: 5171745887896078452}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bacurda
   m_TagString: Untagged
   m_Icon: {fileID: 0}

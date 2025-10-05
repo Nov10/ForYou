@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4273997831765790558}
   - component: {fileID: 6860971231692218942}
   - component: {fileID: 5659377529763469584}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerFishDetector (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 7158824739985124814}
   - component: {fileID: 4574594577202042987}
   - component: {fileID: 8428261127908051098}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttackRange (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 325225786190706367}
   - component: {fileID: 2087601886324861105}
   - component: {fileID: 9057206889621351658}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Moray
   m_TagString: Untagged
   m_Icon: {fileID: 0}

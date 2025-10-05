@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4841103783307549149}
   - component: {fileID: 2922013642866924411}
   - component: {fileID: 2292333970609008}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BlowFish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 6323254677612268074}
   - component: {fileID: 1418779774150697168}
   - component: {fileID: 6225420946636757730}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttackRange (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -393,7 +393,7 @@ GameObject:
   - component: {fileID: 5682051946138956635}
   - component: {fileID: 2130181980936016571}
   - component: {fileID: 2540542702525450808}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerFishDetector (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

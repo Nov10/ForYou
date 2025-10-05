@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1191034325641960443}
   - component: {fileID: 6667328466417916773}
   - component: {fileID: 7072631758777005792}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttackRange (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 436985782833136520}
   - component: {fileID: 6547226054095979106}
   - component: {fileID: 6297525437607506274}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerFishDetector (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 745736346590863712}
   - component: {fileID: 3704107829595771158}
   - component: {fileID: 7011749637956136461}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: JellyFish
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5027532266225707225}
   - component: {fileID: 4549404345985957353}
   - component: {fileID: 8086350668351174568}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttackRange (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 7225941823570453401}
   - component: {fileID: 5363732458880035498}
   - component: {fileID: 1172890302892776190}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerFishDetector (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 4141676519615054516}
   - component: {fileID: 2526952460813802817}
   - component: {fileID: 544659042831030308}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: NormalEnemyFish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
