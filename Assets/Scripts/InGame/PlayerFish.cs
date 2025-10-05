@@ -1,4 +1,6 @@
 using Helpers;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ForYou.GamePlay
@@ -8,6 +10,22 @@ namespace ForYou.GamePlay
         Self = 0,
         Cutscene
     }
+
+    public class SpeedMultipler
+    {
+        public float Duration;
+        public float StartTime;
+        public float Value;
+
+        public SpeedMultipler(float duration, float startTime, float value)
+        {
+            Duration = duration;
+            StartTime = startTime;
+            Value = value;
+        }
+    }
+
+
     public class PlayerFish : MonoBehaviour
     {
         Rigidbody2D ThisRigidbody;
@@ -35,7 +53,15 @@ namespace ForYou.GamePlay
         [SerializeField] float NormalSpeed = 5;
         [SerializeField] float SnatchingPlanktonSpeed = 2;
         float SpeedByCutsceneControl;
+
+        Dictionary<int, SpeedMultipler> SpeedMultipliersLastTimes = new Dictionary<int, SpeedMultipler>();
         public float GetNormalSpeed() { return NormalSpeed; }
+
+        public void SetSpeedMultiplier(int id, SpeedMultipler data)
+        {
+            SpeedMultipliersLastTimes[id] = data;
+        }
+
         public void SetSpeedByCutscene(float speed)
         {
             SpeedByCutsceneControl = speed;
@@ -189,13 +215,40 @@ namespace ForYou.GamePlay
             float speed = NormalSpeed;
             if(DoesHavePlankton == true)
             {
-                speed = SnatchingPlanktonSpeed;
+                speed = (SnatchingPlanktonSpeed);
             }
             else
             {
-                speed = NormalSpeed;
+                speed = (NormalSpeed);
             }
-            return direction * speed;
+            return direction * speed * GetSpeedMultipler();
+        }
+
+
+        float GetSpeedMultipler()
+        {
+            float multipler = 1;
+            List<int> indices2Removed = new List<int>();
+            foreach(var v in SpeedMultipliersLastTimes)
+            {
+                var data = v.Value;
+                if(Time.time - data.StartTime < data.Duration)
+                {
+                    multipler = multipler * data.Value;
+                }
+                else
+                {
+                    indices2Removed.Add(v.Key);
+                }
+            }
+
+            foreach(var k in indices2Removed)
+            {
+                SpeedMultipliersLastTimes.Remove(k);
+            }
+
+
+            return multipler;
         }
 
 
