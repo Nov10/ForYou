@@ -233,6 +233,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Squid (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2976831959132928991, guid: 0e89a7e01219cd449a22aa30042ed240, type: 3}
+      propertyPath: m_Radius
+      value: 7.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -865,7 +869,7 @@ Transform:
   m_GameObject: {fileID: 280634211}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.26, y: 22.94, z: 0}
+  m_LocalPosition: {x: 14.31, y: -7.66, z: 0}
   m_LocalScale: {x: 5.0615163, y: 5.0615163, z: 5.0615163}
   m_ConstrainProportionsScale: 0
   m_Children:

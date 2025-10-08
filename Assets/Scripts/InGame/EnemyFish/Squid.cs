@@ -25,6 +25,8 @@ namespace ForYou.GamePlay
         Vector3 PatrolCenterPosition;
         Vector3 NowTargetPosition;
 
+        [SerializeField] PlayerFishDetector PlayerDetector_Attack;
+
         [SerializeField] float BlackFXAttackCoolDownTime;
         float LastBlackFXAttackUsedTime = 0;
         protected override void OnEnable()
@@ -33,6 +35,9 @@ namespace ForYou.GamePlay
             PatrolCenterPosition = transform.position;
             SetState(State.Patrol);
             LastBlackFXAttackUsedTime = Time.time - BlackFXAttackCoolDownTime;
+
+            PlayerDetector_Attack.OnPlayerFishDetected += OnPlayerFishInAttackRange_Attack;
+            PlayerDetector_Attack.StartDetect();
         }
         protected override void Awake()
         {
@@ -71,11 +76,26 @@ namespace ForYou.GamePlay
                         StartDetectAttackRange();
                     }
                     break;
+                case State.Attack_BlackFX:
+                    {
+                        //Target.OnAttackedByEnemyFish(this, true);
+                        if (Time.time - LastBlackFXAttackUsedTime > BlackFXAttackCoolDownTime)
+                        {
+                            LastBlackFXAttackUsedTime = Time.time;
+                            EndDetectAttackRange();
+                            ThisAnimator.Play(AnimatorNameHash_Attack);
+                            InGameManager.Instance.PlaySquidBlackFX();
+                        }
+                        DelayedFunctionHelper.InvokeDelayed(1.0f, () => SetState(State.Chase));
+                    }
+                    break;
                 case State.Attack:
                     {
-
-                        //Target.OnAttackedByEnemyFish(this, true);
-                        
+                        EndDetectAttackRange();
+                        PlayerDetector_Attack.EndDetect();
+                        ThisAnimator.Play(AnimatorNameHash_Attack);
+                        Target.OnAttackedByEnemyFish(this, true);
+                        DelayedFunctionHelper.InvokeDelayed(1.0f, () => SetState(State.Patrol));
                     }
                     break;
             }
@@ -92,6 +112,15 @@ namespace ForYou.GamePlay
         public override void OnPlayerFishInAttackRange(PlayerFish fish)
         {
             if (NowState != State.Chase)
+                return;
+
+            Target = fish;
+            SetState(State.Attack_BlackFX);
+        }
+
+        public void OnPlayerFishInAttackRange_Attack(PlayerFish fish)
+        {
+            if (NowState != State.Chase && NowState != State.Attack_BlackFX)
                 return;
 
             Target = fish;
@@ -115,7 +144,7 @@ namespace ForYou.GamePlay
                     return NormalSpeed;
                 case State.Chase:
                     return ChaseSpeed;
-                case State.Attack:
+                case State.Attack_BlackFX:
                     return ChaseSpeed;
             }
             return 0;
@@ -147,30 +176,30 @@ namespace ForYou.GamePlay
                         PlayAnimationByNowVelocity();
                     }
                     break;
-                case State.Attack:
+                case State.Attack_BlackFX:
                     {
                         //공격 직후에 이동에 대한 딜레이를 부여
-                        if(Time.time - LastBlackFXAttackUsedTime > BlackFXAttackCoolDownTime * 0.5f)
-                        {
-                            NowTargetPosition = Target.transform.position;
-                            SetDestination(NowTargetPosition);
-                            MoveStepToDestination();
-                            PlayAnimationByNowVelocity();
-                            ThisAnimator.Play(AnimatorNameHash_Idle);
-                        }
-                        else
-                        {
-                            ThisRigidbody.linearVelocity = Vector2.zero;
-                        }
+                        //if(Time.time - LastBlackFXAttackUsedTime > BlackFXAttackCoolDownTime * 0.5f)
+                        //{
+                        //    NowTargetPosition = Target.transform.position;
+                        //    SetDestination(NowTargetPosition);
+                        //    MoveStepToDestination();
+                        //    PlayAnimationByNowVelocity();
+                        //    ThisAnimator.Play(AnimatorNameHash_Idle);
+                        //}
+                        //else
+                        //{
+                        //    ThisRigidbody.linearVelocity = Vector2.zero;
+                        //}
 
 
-                        if (Time.time - LastBlackFXAttackUsedTime > BlackFXAttackCoolDownTime)
-                        {
-                            LastBlackFXAttackUsedTime = Time.time;
-                            EndDetectAttackRange();
-                            ThisAnimator.Play(AnimatorNameHash_Attack);
-                            InGameManager.Instance.PlaySquidBlackFX();
-                        }
+                        //if (Time.time - LastBlackFXAttackUsedTime > BlackFXAttackCoolDownTime)
+                        //{
+                        //    LastBlackFXAttackUsedTime = Time.time;
+                        //    EndDetectAttackRange();
+                        //    ThisAnimator.Play(AnimatorNameHash_Attack);
+                        //    InGameManager.Instance.PlaySquidBlackFX();
+                        //}
                     }
                     break;
             }
@@ -197,6 +226,7 @@ namespace ForYou.GamePlay
         {
             Patrol,
             Chase,
+            Attack_BlackFX,
             Attack,
             Eaten
         }
