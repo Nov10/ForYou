@@ -296,6 +296,7 @@ namespace ForYou.GamePlay
         {
             if(shouldPlayerFishDie)
             {
+                return;
                 InGameManager.Instance.GameOver();
 
                 PlayerInput.Disable();

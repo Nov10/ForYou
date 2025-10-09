@@ -89,6 +89,7 @@ public class Anemone : MonoBehaviour
             fish.DropPlankton();
 
             UpGage(plankton.GetComponent<EatableByAnemone>().Gage);
+            InGameManager.Instance.OnAnemoneEatPlankton(plankton);
 
             Destroy(plankton.gameObject);
         }
@@ -108,6 +109,7 @@ public class Anemone : MonoBehaviour
             //¸Ô±â
             var gage = data.Gage;
             UpGage(gage);
+            InGameManager.Instance.OnAnemoneEatEnemyFish(fish);
             Destroy(fish.gameObject);
         }
         else
