@@ -109,6 +109,7 @@ namespace ForYou.GamePlay
         {
             get { return SnatchedPlankton != null; }
         }
+        public bool PreventDropPlankton;
         Plankton SnatchedPlankton;
 
         [SerializeField] ControlMode NowControlMode;
@@ -139,6 +140,10 @@ namespace ForYou.GamePlay
             Detector.OnPlanktonDetected += OnPlanktonDetected;
         }
 
+        private void OnDestroy()
+        {
+            PlayerInput.Disable();
+        }
 
         private void Update()
         {
@@ -187,7 +192,7 @@ namespace ForYou.GamePlay
                 Detector.DetectOneFrame();
             }
             //¹ö¸®±â
-            else if(DoesHavePlankton == true && PlayerInput.Base.SnatchPlankton.IsPressed() == false)
+            else if(DoesHavePlankton == true && PlayerInput.Base.SnatchPlankton.IsPressed() == false && PreventDropPlankton == false)
             {
                 DropPlankton();
             }

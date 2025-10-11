@@ -28,7 +28,7 @@ public class Anemone : MonoBehaviour
     {
         return GageThresholdsForLevelUp[level - 1];
     }
-    int GetNetGage()
+    public int GetNetGage()
     {
         int gage = Gage;
         for (int i = 0; i < GageThresholdsForLevelUp.Length; i++)
@@ -67,6 +67,11 @@ public class Anemone : MonoBehaviour
         Gage += delta;
         SetSizeByLevel();
         GageText.text = $"{GetNetGage()} / {GetGageThreshold(GetNowLevel())}";
+    }
+
+    public int GetGage()
+    {
+        return (int)Gage;
     }
 
     void SetSizeByLevel()

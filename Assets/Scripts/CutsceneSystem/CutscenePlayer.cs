@@ -50,6 +50,10 @@ namespace ForYou.Cutscene
             }
         }
 
+        public bool IsPlaying
+        {
+            get { return (NowIndex < Data.Elements.Length); }
+        }
 
         void PlayNext()
         {
@@ -94,6 +98,20 @@ namespace ForYou.Cutscene
                     onEnd();
                 Destroy(bubble.gameObject);
                 Destroy(player.gameObject);
+            }
+            else if (type == typeof(TutorialText))
+            {
+                var text = (TutorialText)element;
+                InGameManager.Instance.PlayTutorial(text.Prefab);
+                yield return null;
+                if (element.PlayWithNextElement == true)
+                    onEnd();
+                while (InGameManager.Instance.IsTutorialMessagePlaying() == false)
+                {
+                    yield return null;
+                }
+                if (element.PlayWithNextElement == false)
+                    onEnd();
             }
             else if(type == typeof(MovePlayerFish))
             {
@@ -153,6 +171,46 @@ namespace ForYou.Cutscene
                     yield return new WaitForSeconds(shake.Duration);
                     onEnd();
                 }
+            }
+            else if(type == typeof(ChangePlayerFishControlMode))
+            {
+                var changer = (ChangePlayerFishControlMode)element;
+                FindFirstObjectByType<PlayerFish>().ChangeControlMode(changer.Mode);
+                onEnd();
+            }
+            else if(type == typeof(CustomFunctionPlayer))
+            {
+                var func = (CustomFunctionPlayer)element;
+
+                var method = func.Target.GetType().GetMethod(func.FunctionName);
+                var endMethod = func.Target.GetType().GetMethod(func.EndCheckFunction);
+
+                method.Invoke(func.Target, null);
+                if (element.PlayWithNextElement == true)
+                    onEnd();
+                while (((bool)endMethod.Invoke(func.Target, null)) == true)
+                {
+                    yield return null;
+                }
+                if (element.PlayWithNextElement == false)
+                    onEnd();
+            }
+            else if(type == typeof(ChangeCameraOffset))
+            {
+                var offset = (ChangeCameraOffset)element;
+                var cam = FindFirstObjectByType<CameraController>();
+                var initial = cam.GetOffset();
+                cam.SetOffset(offset.Offset, offset.Duration);
+                if (element.PlayWithNextElement == true)
+                    onEnd();
+                yield return new WaitForSeconds(offset.Duration);
+                if(offset.AutoReturn)
+                {
+                    cam.SetOffset(initial, offset.Duration);
+                }
+                yield return new WaitForSeconds(offset.Duration);
+                if (element.PlayWithNextElement == false)
+                    onEnd();
             }
         }
     }

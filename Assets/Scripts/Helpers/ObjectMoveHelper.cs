@@ -105,6 +105,10 @@ namespace Helpers
         {
             return ExtendedEnumeratorRunner.Instance.Stop(ID);
         }
+        public static bool IsPlaying(int ID)
+        {
+            return ExtendedEnumeratorRunner.Instance.IsPlaying(ID);
+        }
         public static int ScaleObject(Transform mover, Vector3 target, float time)
         {
             ExtendedEnumerator info = new ExtendedEnumerator(_ScaleObject(mover, target, time, null));

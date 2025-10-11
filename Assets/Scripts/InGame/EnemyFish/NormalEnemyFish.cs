@@ -32,6 +32,7 @@ namespace ForYou.GamePlay
         Vector3 PatrolCenterPosition;
         Vector3 NowTargetPosition;
 
+        public bool IsRunningAI = true;
         protected override void Awake()
         {
             base.Awake();
@@ -53,6 +54,10 @@ namespace ForYou.GamePlay
         }
 
         PlayerFish Target;
+        public void SetTarget(PlayerFish target)
+        {
+            Target = target;
+        }
 
         public void SetState(State state)
         {
@@ -96,6 +101,11 @@ namespace ForYou.GamePlay
         protected override void Update()
         {
             base.Update();
+            if (IsRunningAI == false)
+            {
+                PlayAnimationByNowVelocity();
+                return;
+            }
             switch(NowState)
             {
                 case State.Patrol:

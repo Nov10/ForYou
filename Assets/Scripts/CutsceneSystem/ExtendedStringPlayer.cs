@@ -29,20 +29,28 @@ public class ExtendedStringPlayer : MonoBehaviour
     //void OnEnable() => ResetTimer();
     public bool IsTextPlaying = false;
     public float ElapsedTextTime = 0.0f;
-    public void Play(ExtendedSentence sentence, TMP_Text text, Transform _unused = null)
+    bool PlayBubble = true;
+    public void Play(ExtendedSentence sentence, TMP_Text text, bool playBubble = true, Transform _unused = null)
     {
         Sentence = sentence;
         Text = text;
         ResetTimer();
+        PlayBubble = playBubble;
 
-
-        var parent = Text.transform.parent;
-        parent.transform.localScale = Vector3.one * 0.4f;
-        ObjectMoveHelper.ScaleObject(parent, Vector3.one, sentence.ChatBubbleScaleDuration);
-        DelayedFunctionHelper.InvokeDelayed(sentence.ChatBubbleScaleDuration, () =>
+        if (playBubble == true)
+        {
+            var parent = Text.transform.parent;
+            parent.transform.localScale = Vector3.one * 0.4f;
+            ObjectMoveHelper.ScaleObject(parent, Vector3.one, sentence.ChatBubbleScaleDuration);
+            DelayedFunctionHelper.InvokeDelayed(sentence.ChatBubbleScaleDuration, () =>
+            {
+                IsTextPlaying = true;
+            });
+        }
+        else
         {
             IsTextPlaying = true;
-        });
+        }
     }
 
     void ResetTimer()
@@ -147,26 +155,38 @@ public class ExtendedStringPlayer : MonoBehaviour
             Text.UpdateGeometry(mi.mesh, i);
         }
 
-        var rect = Helpers.TransformFinder.FindChild(Text.transform.parent, "Background").GetComponent<RectTransform>();
-        rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Mathf.Max(Text.renderedWidth + Sentence.Padding.x, Sentence.MinSize.x));
-        rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Mathf.Max(Text.renderedHeight + Sentence.Padding.y, Sentence.MinSize.y));
+        if(PlayBubble == true)
+        {
+            var rect = Helpers.TransformFinder.FindChild(Text.transform.parent, "Background").GetComponent<RectTransform>();
+            rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Mathf.Max(Text.renderedWidth + Sentence.Padding.x, Sentence.MinSize.x));
+            rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Mathf.Max(Text.renderedHeight + Sentence.Padding.y, Sentence.MinSize.y));
+        }
 
         if(IsTextPlayEnd == true)
         {
-            if(IsChatBubbleOffAnimationEnd == false && IsChatBubbleOffAnimationPlaying == false)
+            if(PlayBubble == true)
+            {
+                if (IsChatBubbleOffAnimationEnd == false && IsChatBubbleOffAnimationPlaying == false)
+                {
+                    IsChatBubbleOffAnimationPlaying = true;
+
+                    DelayedFunctionHelper.InvokeDelayed(Sentence.ChatKeepAliveDurationBeforeBubbleOff, () =>
+                    {
+                        var parent = Text.transform.parent;
+                        ObjectMoveHelper.ScaleObject(parent, Vector3.one * 0.4f, Sentence.ChatBubbleScaleDuration);
+                        DelayedFunctionHelper.InvokeDelayed(Sentence.ChatBubbleScaleDuration, () =>
+                        {
+                            IsChatBubbleOffAnimationEnd = true;
+                            IsChatBubbleOffAnimationPlaying = false;
+                        });
+                    });
+                }
+            }
+            else
             {
                 IsChatBubbleOffAnimationPlaying = true;
-
-                DelayedFunctionHelper.InvokeDelayed(Sentence.ChatKeepAliveDurationBeforeBubbleOff, () =>
-                {
-                    var parent = Text.transform.parent;
-                    ObjectMoveHelper.ScaleObject(parent, Vector3.one * 0.4f, Sentence.ChatBubbleScaleDuration);
-                    DelayedFunctionHelper.InvokeDelayed(Sentence.ChatBubbleScaleDuration, () =>
-                    {
-                        IsChatBubbleOffAnimationEnd = true;
-                        IsChatBubbleOffAnimationPlaying = false;
-                    });
-                });
+                IsChatBubbleOffAnimationEnd = true;
+                IsChatBubbleOffAnimationPlaying = false;
             }
         }
     }

@@ -1,4 +1,6 @@
+using ForYou.Cutscene;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace ForYou.GamePlay
@@ -160,7 +162,11 @@ namespace ForYou.GamePlay
 
         private void Update()
         {
-            ScoreText.text = (Time.time - LastEatTime <= ComboDuration ? $"ÄÞº¸ ½Ã°£({NowComboCounter}) : {Time.time - LastEatTime}\n" : "")+ GetScoreExplainString().ToString();
+            var cutscene = FindFirstObjectByType<CutscenePlayer>();
+            if (cutscene != null && cutscene.IsPlaying == false)
+                ScoreText.text = (Time.time - LastEatTime <= ComboDuration ? $"ÄÞº¸ ½Ã°£({NowComboCounter}) : {Time.time - LastEatTime}\n" : "") + GetScoreExplainString().ToString();
+            else
+                ScoreText.text = string.Empty;
         }
 
         [SerializeField] SquidFX SquidBlackFX;
@@ -173,6 +179,16 @@ namespace ForYou.GamePlay
         public void PlayJellyFishBlurFX(float duration)
         {
             JellyFishBlurFX.Play(duration);
+        }
+
+        [SerializeField] TutorialMessageDrawer TutorialMessage;
+        public void PlayTutorial(GameObject prefab)
+        {
+            TutorialMessage.Play(prefab);
+        }
+        public bool IsTutorialMessagePlaying()
+        {
+            return TutorialMessage.IsEnd;
         }
     }
 }

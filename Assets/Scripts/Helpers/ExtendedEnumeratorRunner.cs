@@ -53,6 +53,10 @@ namespace Helpers
             Stop(id);
         }
 
+        public bool IsPlaying(int id)
+        {
+            return Coroutines.ContainsKey(id);
+        }
         public bool Stop(int id)
         {
 #if UNITY_EDITOR
