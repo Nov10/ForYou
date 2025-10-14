@@ -186,13 +186,28 @@ namespace ForYou.GamePlay
             }
 
 
-            //이번 프레임에 눌렀으면, 감지 + 플랑크톤 Snatch 시도
-            if(DoesHavePlankton == false && PlayerInput.Base.SnatchPlankton.WasPressedThisFrame())
+            var targetVelocity = CalculateTargetVelocity();
+            if(targetVelocity.y > 0.1f)
+            {
+                ThisAnimator.SetFloat("MoveY", 1);
+            }
+            else if (targetVelocity.y < -0.1f)
+            {
+                ThisAnimator.SetFloat("MoveY", 0);
+            }
+            else
+            {
+                ThisAnimator.SetFloat("MoveY", 0.5f);
+            }
+
+
+                //이번 프레임에 눌렀으면, 감지 + 플랑크톤 Snatch 시도
+                if (DoesHavePlankton == false && PlayerInput.Base.SnatchPlankton.WasPressedThisFrame())
             {
                 Detector.DetectOneFrame();
             }
             //버리기
-            else if(DoesHavePlankton == true && PlayerInput.Base.SnatchPlankton.IsPressed() == false && PreventDropPlankton == false)
+            else if (DoesHavePlankton == true && PlayerInput.Base.SnatchPlankton.IsPressed() == false && PreventDropPlankton == false)
             {
                 DropPlankton();
             }
