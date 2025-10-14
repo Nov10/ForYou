@@ -24,6 +24,8 @@ namespace ForYou.Cutscene
         {
             NowIndex = -1;
             PlayNext();
+
+            FindFirstObjectByType<Anemone>()?.SetActiveGageSlider(false);
         }
 
         private void OnDrawGizmos()
@@ -59,7 +61,10 @@ namespace ForYou.Cutscene
         {
             NowIndex++;
             if (NowIndex >= Data.Elements.Length)
+            {
+                FindFirstObjectByType<Anemone>()?.SetActiveGageSlider(true);
                 return;
+            }
             StartCoroutine(_PlaySingleElement(Data.Elements[NowIndex], PlayNext));
         }
 
