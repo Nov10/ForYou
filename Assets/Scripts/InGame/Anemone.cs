@@ -127,6 +127,16 @@ public class Anemone : MonoBehaviour
         {
             //ÂÑ¾Æ³»±â
             fish.OnAttackedByAnemone(this);
+
+            if(Detector.IsDetectingPlayerFish)
+            {
+                var player = FindFirstObjectByType<PlayerFish>();
+
+                player.AddForceByAnemone(Vector2.up * ForcePower, ForceDuration);
+            }
         }
     }
+
+    [SerializeField] float ForcePower = 10;
+    [SerializeField] float ForceDuration = 0.8f;
 }

@@ -8,14 +8,26 @@ namespace ForYou.GamePlay
     {
         public System.Action<PlayerFish> OnPlayerFishDetected;
 
+        bool _IsDetectingPlayerFish;
+        public bool IsDetectingPlayerFish
+        {
+            get { return _IsDetectingPlayerFish; }
+        }
+
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            _IsDetectingPlayerFish = true;
             TriggerEnterOrStay(collision);
         }
         private void OnTriggerStay2D(Collider2D collision)
         {
+            _IsDetectingPlayerFish = true;
             TriggerEnterOrStay(collision);
+        }
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            _IsDetectingPlayerFish = false;
         }
         void TriggerEnterOrStay(Collider2D collision)
         {

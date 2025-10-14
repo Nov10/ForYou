@@ -201,8 +201,8 @@ namespace ForYou.GamePlay
             }
 
 
-                //이번 프레임에 눌렀으면, 감지 + 플랑크톤 Snatch 시도
-                if (DoesHavePlankton == false && PlayerInput.Base.SnatchPlankton.WasPressedThisFrame())
+            //이번 프레임에 눌렀으면, 감지 + 플랑크톤 Snatch 시도
+            if (DoesHavePlankton == false && PlayerInput.Base.SnatchPlankton.WasPressedThisFrame())
             {
                 Detector.DetectOneFrame();
             }
@@ -216,6 +216,8 @@ namespace ForYou.GamePlay
 
         private void FixedUpdate()
         {
+            if (IsForcedByAnemone == true)
+                return;
             var targetVelocity = CalculateTargetVelocity();
             var nowVelocity = ThisRigidbody.linearVelocity;
 
@@ -227,7 +229,14 @@ namespace ForYou.GamePlay
             ThisRigidbody.linearVelocity = finalVelocity;
         }
 
+        bool IsForcedByAnemone;
+        public void AddForceByAnemone(Vector2 force, float duration)
+        {
+            IsForcedByAnemone = true;
+            DelayedFunctionHelper.InvokeDelayed(duration, () => IsForcedByAnemone = false);
 
+            ThisRigidbody.AddForce(force, ForceMode2D.Impulse);
+        }
 
         Vector2 CalculateTargetVelocity()
         {
