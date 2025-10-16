@@ -150,214 +150,278 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Elements:
   - rid: 1982472589742440540
-  - rid: 1982472589742440535
-  - rid: 1982472498572427337
-  - rid: 1982472498572427334
-  - rid: 1982472498572427335
-  - rid: 1982472498572427336
-  - rid: 1982472589742440448
-  - rid: 1982472589742440449
-  - rid: 1982472589742440523
-  - rid: 1982472589742440524
-  - rid: 1982472589742440525
-  - rid: 1982472589742440526
-  - rid: 1982472589742440527
-  - rid: 1982472589742440528
-  - rid: 1982472589742440529
-  - rid: 1982472589742440530
-  - rid: 1982472589742440531
-  - rid: 1982472589742440532
-  - rid: 1982472589742440536
-  - rid: 1982472589742440539
+  - rid: 1982472589742440553
+  - rid: 1982472589742440554
+  - rid: 1982472589742440561
+  - rid: 1982472589742440559
+  - rid: 1982472589742440604
+  - rid: 1982472589742440562
+  - rid: 1982472589742440563
+  - rid: 1982472589742440564
+  - rid: 1982472589742440565
+  - rid: 1982472589742440566
+  - rid: 1982472589742440567
+  - rid: 1982472589742440577
+  - rid: 1982472589742440580
+  - rid: 1982472589742440605
+  - rid: 1982472589742440607
+  - rid: 1982472589742440606
+  - rid: 1982472589742440581
+  - rid: 1982472589742440582
+  - rid: 1982472589742440584
+  - rid: 1982472589742440583
+  - rid: 1982472589742440574
+  - rid: 1982472589742440587
+  - rid: 1982472589742440588
+  - rid: 1982472589742440589
+  - rid: 1982472589742440590
+  - rid: 1982472589742440591
+  - rid: 1982472589742440592
+  - rid: 1982472589742440593
   references:
     version: 2
     RefIds:
-    - rid: 1982472498572427334
-      type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
-      data:
-        PlayWithNextElement: 0
-        Sentence:
-          Sentence: "\uC5B4\uB54C? \uC774\uC81C \uB410\uC5B4?"
-          IntervalDelayBetweenCharacters: 0.06
-          ShockSharpness: 6
-          ShockStairSteps: 0
-          Padding: {x: 10, y: 10}
-          MinSize: {x: 80, y: 50}
-          ChatBubbleScaleDuration: 0.18
-          ChatKeepAliveDurationBeforeBubbleOff: 1
-        SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
-        Position: {fileID: 521417509}
-    - rid: 1982472498572427335
-      type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
-      data:
-        PlayWithNextElement: 0
-        Duration: 1
-    - rid: 1982472498572427336
-      type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
-      data:
-        PlayWithNextElement: 0
-        Sentence:
-          Sentence: "\uD558\uB098\uB85C\uB294 \uAC04\uC5D0 \uAE30\uBCC4\uB3C4 \uC548
-            \uAC00.    "
-          IntervalDelayBetweenCharacters: 0.06
-          ShockSharpness: 6
-          ShockStairSteps: 0
-          Padding: {x: 10, y: 10}
-          MinSize: {x: 80, y: 50}
-          ChatBubbleScaleDuration: 0.18
-          ChatKeepAliveDurationBeforeBubbleOff: 1
-        SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
-        Position: {fileID: 1000936163}
-    - rid: 1982472498572427337
-      type: {class: ChangePlayerFishControlMode, ns: ForYou.Cutscene, asm: Assembly-CSharp}
-      data:
-        PlayWithNextElement: 0
-        Mode: 1
-    - rid: 1982472589742440448
-      type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
-      data:
-        PlayWithNextElement: 0
-        Duration: 1
-    - rid: 1982472589742440449
-      type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
-      data:
-        PlayWithNextElement: 0
-        Sentence:
-          Sentence: "\uB354 \uAC00\uC838 \uC62C\uAC8C."
-          IntervalDelayBetweenCharacters: 0.08
-          ShockSharpness: 6
-          ShockStairSteps: 0
-          Padding: {x: 20, y: 20}
-          MinSize: {x: 80, y: 50}
-          ChatBubbleScaleDuration: 0.18
-          ChatKeepAliveDurationBeforeBubbleOff: 1
-        SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
-        Position: {fileID: 521417509}
-    - rid: 1982472589742440523
-      type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
-      data:
-        PlayWithNextElement: 0
-        Duration: 1
-    - rid: 1982472589742440524
-      type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
-      data:
-        PlayWithNextElement: 0
-        Sentence:
-          Sentence: "\uAD1C\uD788 \uB2E4\uCE58\uC9C0\uB098 \uB9D0\uACE0."
-          IntervalDelayBetweenCharacters: 0.08
-          ShockSharpness: 6
-          ShockStairSteps: 0
-          Padding: {x: 20, y: 20}
-          MinSize: {x: 80, y: 50}
-          ChatBubbleScaleDuration: 0.18
-          ChatKeepAliveDurationBeforeBubbleOff: 1
-        SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
-        Position: {fileID: 1000936163}
-    - rid: 1982472589742440525
-      type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
-      data:
-        PlayWithNextElement: 0
-        Duration: 1
-    - rid: 1982472589742440526
-      type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
-      data:
-        PlayWithNextElement: 0
-        Sentence:
-          Sentence: "\uC9C0\uAE08 \uAC71\uC815\uD574 \uC900 \uAC70\uC57C?\r\n"
-          IntervalDelayBetweenCharacters: 0.08
-          ShockSharpness: 6
-          ShockStairSteps: 0
-          Padding: {x: 20, y: 20}
-          MinSize: {x: 80, y: 50}
-          ChatBubbleScaleDuration: 0.18
-          ChatKeepAliveDurationBeforeBubbleOff: 1
-        SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
-        Position: {fileID: 521417509}
-    - rid: 1982472589742440527
-      type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
-      data:
-        PlayWithNextElement: 0
-        Duration: 1
-    - rid: 1982472589742440528
-      type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
-      data:
-        PlayWithNextElement: 0
-        Sentence:
-          Sentence: .[0.2].[0.2].
-          IntervalDelayBetweenCharacters: 0.08
-          ShockSharpness: 6
-          ShockStairSteps: 0
-          Padding: {x: 20, y: 20}
-          MinSize: {x: 80, y: 50}
-          ChatBubbleScaleDuration: 0.18
-          ChatKeepAliveDurationBeforeBubbleOff: 1
-        SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
-        Position: {fileID: 1000936163}
-    - rid: 1982472589742440529
-      type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
-      data:
-        PlayWithNextElement: 0
-        Duration: 0.7
-    - rid: 1982472589742440530
-      type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
-      data:
-        PlayWithNextElement: 0
-        Sentence:
-          Sentence: "\uC774\uB807\uAC8C \uADC0\uCC2E\uC740 \uAC74 \uC5B4\uB514\uC11C
-            \uC628 \uAC70\uC57C?"
-          IntervalDelayBetweenCharacters: 0.08
-          ShockSharpness: 6
-          ShockStairSteps: 0
-          Padding: {x: 20, y: 20}
-          MinSize: {x: 80, y: 50}
-          ChatBubbleScaleDuration: 0.18
-          ChatKeepAliveDurationBeforeBubbleOff: 1
-        SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
-        Position: {fileID: 1000936163}
-    - rid: 1982472589742440531
-      type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
-      data:
-        PlayWithNextElement: 0
-        Duration: 1
-    - rid: 1982472589742440532
-      type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
-      data:
-        PlayWithNextElement: 0
-        Sentence:
-          Sentence: "\uB2E4\uB140\uC62C\uAC8C!"
-          IntervalDelayBetweenCharacters: 0.08
-          ShockSharpness: 6
-          ShockStairSteps: 0
-          Padding: {x: 20, y: 20}
-          MinSize: {x: 80, y: 50}
-          ChatBubbleScaleDuration: 0.18
-          ChatKeepAliveDurationBeforeBubbleOff: 1
-        SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
-        Position: {fileID: 521417509}
-    - rid: 1982472589742440535
-      type: {class: ChangeCameraOffset, ns: ForYou.Cutscene, asm: Assembly-CSharp}
-      data:
-        PlayWithNextElement: 0
-        Offset: {x: -2.14, y: -2.06}
-        Duration: 0
-        AutoReturn: 0
-    - rid: 1982472589742440536
-      type: {class: ChangeCameraOffset, ns: ForYou.Cutscene, asm: Assembly-CSharp}
-      data:
-        PlayWithNextElement: 0
-        Offset: {x: 0, y: 0}
-        Duration: 0.7
-        AutoReturn: 0
-    - rid: 1982472589742440539
-      type: {class: ChangePlayerFishControlMode, ns: ForYou.Cutscene, asm: Assembly-CSharp}
-      data:
-        PlayWithNextElement: 0
-        Mode: 0
     - rid: 1982472589742440540
       type: {class: ChangePlayerFishControlMode, ns: ForYou.Cutscene, asm: Assembly-CSharp}
       data:
         PlayWithNextElement: 0
         Mode: 1
+    - rid: 1982472589742440553
+      type: {class: MovePlayerFish, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        TargetPosition: {fileID: 1248468192}
+        AllowDistance: 0.5
+        Speed: -1
+        AutoReturnToPlayerControlMode: 0
+    - rid: 1982472589742440554
+      type: {class: MovePlayerFish, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        TargetPosition: {fileID: 1445831728}
+        AllowDistance: 0.05
+        Speed: 2
+        AutoReturnToPlayerControlMode: 0
+    - rid: 1982472589742440559
+      type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Duration: 0.1
+    - rid: 1982472589742440561
+      type: {class: ChangeCameraOffset, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 1
+        Offset: {x: 0.92, y: 2.47}
+        Duration: 1
+        AutoReturn: 0
+    - rid: 1982472589742440562
+      type: {class: ChangeCameraOffset, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Offset: {x: 0, y: 0}
+        Duration: 1
+        AutoReturn: 0
+    - rid: 1982472589742440563
+      type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Sentence:
+          Sentence: "\uAC70\uAE30...\r"
+          IntervalDelayBetweenCharacters: 0.08
+          ShockSharpness: 6
+          ShockStairSteps: 0
+          Padding: {x: 20, y: 20}
+          MinSize: {x: 80, y: 50}
+          ChatBubbleScaleDuration: 0.18
+          ChatKeepAliveDurationBeforeBubbleOff: 1
+        SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
+        Position: {fileID: 1000936163}
+    - rid: 1982472589742440564
+      type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Duration: 1
+    - rid: 1982472589742440565
+      type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Sentence:
+          Sentence: "\uC751?\r"
+          IntervalDelayBetweenCharacters: 0.08
+          ShockSharpness: 6
+          ShockStairSteps: 0
+          Padding: {x: 20, y: 20}
+          MinSize: {x: 80, y: 50}
+          ChatBubbleScaleDuration: 0.18
+          ChatKeepAliveDurationBeforeBubbleOff: 1
+        SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
+        Position: {fileID: 521417509}
+    - rid: 1982472589742440566
+      type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Duration: 0.6
+    - rid: 1982472589742440567
+      type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Sentence:
+          Sentence: "{vibrate:shock_middle}\uB0B4 \uC548\uC73C\uB85C \uD53C\uD574!{/}\r\n"
+          IntervalDelayBetweenCharacters: 0.03
+          ShockSharpness: 6
+          ShockStairSteps: 0
+          Padding: {x: 20, y: 20}
+          MinSize: {x: 80, y: 50}
+          ChatBubbleScaleDuration: 0.18
+          ChatKeepAliveDurationBeforeBubbleOff: 2
+        SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
+        Position: {fileID: 1000936163}
+    - rid: 1982472589742440574
+      type: {class: ChangePlayerFishControlMode, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Mode: 0
+    - rid: 1982472589742440577
+      type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Duration: 0.6
+    - rid: 1982472589742440580
+      type: {class: MovePlayerFish, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 1
+        TargetPosition: {fileID: 419502037}
+        AllowDistance: 0.5
+        Speed: -1
+        AutoReturnToPlayerControlMode: 0
+    - rid: 1982472589742440581
+      type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Duration: 1
+    - rid: 1982472589742440582
+      type: {class: MovePlayerFish, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        TargetPosition: {fileID: 903257227}
+        AllowDistance: 0.5
+        Speed: 3
+        AutoReturnToPlayerControlMode: 0
+    - rid: 1982472589742440583
+      type: {class: MovePlayerFish, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        TargetPosition: {fileID: 734835918}
+        AllowDistance: 0.5
+        Speed: 2
+        AutoReturnToPlayerControlMode: 0
+    - rid: 1982472589742440584
+      type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Duration: 0.1
+    - rid: 1982472589742440587
+      type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Sentence:
+          Sentence: "\uACE0\uB9C8\uC6CC\u2026"
+          IntervalDelayBetweenCharacters: 0.08
+          ShockSharpness: 6
+          ShockStairSteps: 0
+          Padding: {x: 20, y: 20}
+          MinSize: {x: 80, y: 50}
+          ChatBubbleScaleDuration: 0.18
+          ChatKeepAliveDurationBeforeBubbleOff: 1
+        SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
+        Position: {fileID: 521417509}
+    - rid: 1982472589742440588
+      type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Duration: 1
+    - rid: 1982472589742440589
+      type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Sentence:
+          Sentence: "\uC55E\uC73C\uB85C \uC800\uB7F0 \uB188\uC774 \uC624\uBA74 \uB098\uD55C\uD14C
+            \uB370\uB824\uC640.\r"
+          IntervalDelayBetweenCharacters: 0.08
+          ShockSharpness: 6
+          ShockStairSteps: 0
+          Padding: {x: 20, y: 20}
+          MinSize: {x: 80, y: 50}
+          ChatBubbleScaleDuration: 0.18
+          ChatKeepAliveDurationBeforeBubbleOff: 1
+        SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
+        Position: {fileID: 1000936163}
+    - rid: 1982472589742440590
+      type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Duration: 1
+    - rid: 1982472589742440591
+      type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Sentence:
+          Sentence: "\uC815\uB9D0?\r"
+          IntervalDelayBetweenCharacters: 0.06
+          ShockSharpness: 6
+          ShockStairSteps: 0
+          Padding: {x: 20, y: 20}
+          MinSize: {x: 80, y: 50}
+          ChatBubbleScaleDuration: 0.18
+          ChatKeepAliveDurationBeforeBubbleOff: 1
+        SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
+        Position: {fileID: 521417509}
+    - rid: 1982472589742440592
+      type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Duration: 1
+    - rid: 1982472589742440593
+      type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Sentence:
+          Sentence: "\uC18D\uACE0\uB9CC \uC0B4\uC558\uC5B4? [1.5] \uC798 \uBD80\uD0C1\uD574."
+          IntervalDelayBetweenCharacters: 0.08
+          ShockSharpness: 6
+          ShockStairSteps: 0
+          Padding: {x: 20, y: 20}
+          MinSize: {x: 80, y: 50}
+          ChatBubbleScaleDuration: 0.18
+          ChatKeepAliveDurationBeforeBubbleOff: 1
+        SpeechBubblePrefab: {fileID: 2668487274763625409, guid: cc560a8b8fe7d804599caedd3ef0d244, type: 3}
+        Position: {fileID: 1000936163}
+    - rid: 1982472589742440604
+      type: {class: CustomFunctionPlayer, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Target: {fileID: 1041235882}
+        FunctionName: CUTSCENE_FUNCTION_ShowEnemyFish1
+        EndCheckFunction: CUTSCENE_ENDFUNCTION_ShowEnemyFish1
+    - rid: 1982472589742440605
+      type: {class: CustomFunctionPlayer, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Target: {fileID: 1041235882}
+        FunctionName: CUTSCENE_FUNCTION_ShowEnemyFish2
+        EndCheckFunction: CUTSCENE_ENDFUNCTION_ShowEnemyFish2
+    - rid: 1982472589742440606
+      type: {class: CustomFunctionPlayer, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Target: {fileID: 1041235882}
+        FunctionName: CUTSCENE_FUNCTION_ShowEnemyFish3
+        EndCheckFunction: CUTSCENE_ENDFUNCTION_ShowEnemyFish3
+    - rid: 1982472589742440607
+      type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Duration: 1
 --- !u!4 &97903707
 Transform:
   m_ObjectHideFlags: 0
@@ -367,11 +431,12 @@ Transform:
   m_GameObject: {fileID: 97903705}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 557.27264, y: 420.20605, z: -3.5665104}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1086408260}
+  - {fileID: 1648897803}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &199237821
@@ -1280,6 +1345,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &394467017
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 394467018}
+  m_Layer: 0
+  m_Name: Pos1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &394467018
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394467017}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.28, y: 23.82, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1648897803}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &416169409
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,6 +1557,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b4260c472d62343a79f515a94b4da6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &419502036
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 419502037}
+  m_Layer: 0
+  m_Name: Pos3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &419502037
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419502036}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9.003, y: 16.879, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086408260}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &474989771
 GameObject:
   m_ObjectHideFlags: 0
@@ -1510,11 +1637,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6100167282494229976, guid: b48a95ca9b4d7de49b6df23a0ebff33e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.12
+      value: -3.89
       objectReference: {fileID: 0}
     - target: {fileID: 6100167282494229976, guid: b48a95ca9b4d7de49b6df23a0ebff33e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19.74
+      value: 21.26
       objectReference: {fileID: 0}
     - target: {fileID: 6100167282494229976, guid: b48a95ca9b4d7de49b6df23a0ebff33e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1754,6 +1881,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1691188478}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &605515627
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 605515628}
+  m_Layer: 0
+  m_Name: Pos2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &605515628
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605515627}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -8.68, y: 18.65, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1648897803}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &619394800
 GameObject:
@@ -2100,6 +2258,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1691188478}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &734835917
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 734835918}
+  m_Layer: 0
+  m_Name: Pos5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &734835918
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734835917}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.69, y: 19.09, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086408260}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &787158335
 GameObject:
   m_ObjectHideFlags: 0
@@ -2402,6 +2591,106 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &903257226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 903257227}
+  m_Layer: 0
+  m_Name: Pos4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &903257227
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903257226}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.02, y: 19.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086408260}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &945646671
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 544659042831030308, guid: 455f909bf594e554ebd5efeffb4e1453, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4961165309569347072, guid: 455f909bf594e554ebd5efeffb4e1453, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 4961165309569347072, guid: 455f909bf594e554ebd5efeffb4e1453, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 26.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 4961165309569347072, guid: 455f909bf594e554ebd5efeffb4e1453, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4961165309569347072, guid: 455f909bf594e554ebd5efeffb4e1453, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4961165309569347072, guid: 455f909bf594e554ebd5efeffb4e1453, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4961165309569347072, guid: 455f909bf594e554ebd5efeffb4e1453, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4961165309569347072, guid: 455f909bf594e554ebd5efeffb4e1453, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4961165309569347072, guid: 455f909bf594e554ebd5efeffb4e1453, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4961165309569347072, guid: 455f909bf594e554ebd5efeffb4e1453, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4961165309569347072, guid: 455f909bf594e554ebd5efeffb4e1453, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7283157940007705303, guid: 455f909bf594e554ebd5efeffb4e1453, type: 3}
+      propertyPath: m_Name
+      value: NormalEnemyFish
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2526952460813802817, guid: 455f909bf594e554ebd5efeffb4e1453, type: 3}
+    - {fileID: 4141676519615054516, guid: 455f909bf594e554ebd5efeffb4e1453, type: 3}
+    - {fileID: 7729532132631923457, guid: 455f909bf594e554ebd5efeffb4e1453, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 455f909bf594e554ebd5efeffb4e1453, type: 3}
+--- !u!4 &945646672 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4961165309569347072, guid: 455f909bf594e554ebd5efeffb4e1453, type: 3}
+  m_PrefabInstance: {fileID: 945646671}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1000936163 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 830723845898288935, guid: e13f78df480784b4a89fd9712c0fa3b7, type: 3}
@@ -2463,6 +2752,57 @@ Transform:
   - {fileID: 1706494647}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1041235881
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1041235883}
+  - component: {fileID: 1041235882}
+  m_Layer: 0
+  m_Name: Stage2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1041235882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041235881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c3ed06977c90624cb8ec3254c7c0768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy: {fileID: 945646672}
+  EnemyMoveTarget1: {fileID: 394467018}
+  Duration1: 3
+  EnemyMoveTarget2: {fileID: 605515628}
+  Duration2: 1.5
+  EnemyMoveTarget3: {fileID: 2054567753}
+  Duration3: 3
+--- !u!4 &1041235883
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041235881}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.765242, y: 25.61741, z: -0.016545784}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1054737489
 GameObject:
   m_ObjectHideFlags: 0
@@ -2519,11 +2859,15 @@ Transform:
   m_GameObject: {fileID: 1086408259}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -562.23267, y: -398.17606, z: 3.5404031}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1248468192}
+  - {fileID: 1445831728}
+  - {fileID: 419502037}
+  - {fileID: 903257227}
+  - {fileID: 734835918}
   m_Father: {fileID: 97903707}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1110676236
@@ -2567,11 +2911,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4961165309569347072, guid: 455f909bf594e554ebd5efeffb4e1453, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.58
+      value: 0.53
       objectReference: {fileID: 0}
     - target: {fileID: 4961165309569347072, guid: 455f909bf594e554ebd5efeffb4e1453, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.17
+      value: 5.7
       objectReference: {fileID: 0}
     - target: {fileID: 4961165309569347072, guid: 455f909bf594e554ebd5efeffb4e1453, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2609,6 +2953,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NormalEnemyFish
       objectReference: {fileID: 0}
+    - target: {fileID: 7283157940007705303, guid: 455f909bf594e554ebd5efeffb4e1453, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2624,51 +2972,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6100167282494229976, guid: b48a95ca9b4d7de49b6df23a0ebff33e, type: 3}
   m_PrefabInstance: {fileID: 529456804}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1197317643
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1197317645}
-  - component: {fileID: 1197317644}
-  m_Layer: 0
-  m_Name: Stage1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1197317644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1197317643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 126ea4ef2b130d448a4dbc035aaffa52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SceneTransitionDelay: 3
---- !u!4 &1197317645
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1197317643}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.840967, y: 20.306536, z: -0.19288278}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1236990906
 GameObject:
   m_ObjectHideFlags: 0
@@ -2996,7 +3299,7 @@ Transform:
   m_GameObject: {fileID: 1248468191}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.41, y: -1.84, z: 0}
+  m_LocalPosition: {x: -4.45, y: 21.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3699,6 +4002,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1445831727
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1445831728}
+  m_Layer: 0
+  m_Name: Pos2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1445831728
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445831727}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -7.6199994, y: 19.279999, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086408260}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1472435844
 GameObject:
   m_ObjectHideFlags: 0
@@ -3729,7 +4063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 97903706}
-  PlayOnStart: 0
+  PlayOnStart: 1
   PlayerPrefab: {fileID: 1891429155901928894, guid: 0bcc9110797a71d4586afec4f92798d0, type: 3}
 --- !u!4 &1472435846
 Transform:
@@ -3869,6 +4203,40 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1691188478}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1648897802
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1648897803}
+  m_Layer: 0
+  m_Name: EnemyPositions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1648897803
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648897802}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 394467018}
+  - {fileID: 605515628}
+  - {fileID: 2054567753}
+  m_Father: {fileID: 97903707}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1691188477
 GameObject:
@@ -5147,6 +5515,37 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!1 &2054567752
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2054567753}
+  m_Layer: 0
+  m_Name: Pos3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2054567753
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054567752}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -7.62, y: 33.37, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1648897803}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2142239587
 GameObject:
   m_ObjectHideFlags: 0
@@ -5192,11 +5591,11 @@ PrefabInstance:
       objectReference: {fileID: 1147631538}
     - target: {fileID: 2036690761000573403, guid: 12f2b8fdc05e8e04bb7d4945323e9990, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.44
+      value: -7.7
       objectReference: {fileID: 0}
     - target: {fileID: 2036690761000573403, guid: 12f2b8fdc05e8e04bb7d4945323e9990, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19.78
+      value: 19.27
       objectReference: {fileID: 0}
     - target: {fileID: 2036690761000573403, guid: 12f2b8fdc05e8e04bb7d4945323e9990, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5328,4 +5727,5 @@ SceneRoots:
   - {fileID: 97903707}
   - {fileID: 529456804}
   - {fileID: 416818728}
-  - {fileID: 1197317645}
+  - {fileID: 945646671}
+  - {fileID: 1041235883}

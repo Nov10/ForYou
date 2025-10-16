@@ -28,7 +28,14 @@ namespace ForYou.GamePlay
         public void SetOffset(Vector2 offset, float duration)
         {
             ObjectMoveHelper.TryStop(OffsetID);
-            OffsetID = ObjectMoveHelper.MoveObject(OffsetObject, offset, duration, ePosition.Local);
+
+            if(duration == 0.0f)
+            {
+                OffsetObject.localPosition = offset;
+                return;
+            }
+
+            OffsetID = ObjectMoveHelper.MoveObjectSmooth(OffsetObject, offset, duration, ePosition.Local);
         }
     }
 }

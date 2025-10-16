@@ -6,4 +6,5 @@ public class ConstValue
 
     public const int SCENE_INDEX_Tutorial = 0;
     public const int SCENE_INDEX_Stage1 = 1;
+    public const int SCENE_INDEX_Stage2 = 2;
 }

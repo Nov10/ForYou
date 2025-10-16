@@ -24,15 +24,21 @@ namespace ForYou.GamePlay
 
         [SerializeField] int Score;
         [SerializeField] TMP_Text ScoreText;
+        [SerializeField] RectTransform FinalScoreTextContainer;
+        [SerializeField] TMP_Text FinalScoreText;
 
 
         public void GameOver()
         {
             IsGameOver = true;
+
+            FinalScoreTextContainer.gameObject.SetActive(true);
+            FinalScoreText.text = "최종 점수 : " + CalculateScore().ToString();
         }
         private void OnEnable()
         {
             LastEatTime = -ComboDuration * 10;
+            FinalScoreTextContainer.gameObject.SetActive(false);
         }
         int EatedPlanktonCount = 0;
         int EatedCount_NormalEnemy_L2 = 0;

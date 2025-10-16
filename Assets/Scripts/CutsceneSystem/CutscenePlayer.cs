@@ -12,6 +12,7 @@ namespace ForYou.Cutscene
     {
         [SerializeField] CutsceneData Data;
         [SerializeField] bool PlayOnStart;
+        bool Started = false;
         private void Start()
         {
             if(PlayOnStart)
@@ -24,6 +25,7 @@ namespace ForYou.Cutscene
         {
             NowIndex = -1;
             PlayNext();
+            Started = true;
 
             FindFirstObjectByType<Anemone>()?.SetActiveGageSlider(false);
         }
@@ -54,7 +56,7 @@ namespace ForYou.Cutscene
 
         public bool IsPlaying
         {
-            get { return (NowIndex < Data.Elements.Length); }
+            get { return Started == true && (NowIndex < Data.Elements.Length); }
         }
 
         void PlayNext()

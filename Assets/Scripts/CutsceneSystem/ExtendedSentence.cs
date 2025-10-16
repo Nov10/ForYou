@@ -6,14 +6,14 @@ using UnityEngine;
 public class ExtendedSentence
 {
     [SerializeField, TextArea] string Sentence;
-    [SerializeField] float IntervalDelayBetweenCharacters = 0.03f;
+    [SerializeField] float IntervalDelayBetweenCharacters = 0.08f;
 
     [Header("Shock Wave (Square-like)")]
     [SerializeField, Tooltip("Shock 파형의 날카로움(↑ 더 각지게)")] public float ShockSharpness = 6f;
     [SerializeField, Tooltip("Shock 파형 계단 단계 수(0 또는 1이면 비활성)")] public int ShockStairSteps = 0;
 
     [Header("Chat Bubble")]
-    [SerializeField] public Vector2 Padding = new Vector2(10, 10);
+    [SerializeField] public Vector2 Padding = new Vector2(20, 20);
     [SerializeField] public Vector2 MinSize = new Vector2(80, 50);
     [SerializeField] public float ChatBubbleScaleDuration = 0.18f;
     [SerializeField] public float ChatKeepAliveDurationBeforeBubbleOff = 1.0f;

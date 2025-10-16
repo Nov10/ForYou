@@ -439,7 +439,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1122508623
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 3822315744932355863, guid: 0110a5a3cb340624f873e0cc514f7ef5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -521,6 +521,8 @@ MonoBehaviour:
   AttackOrEatRange: {fileID: 1752516292326177376}
   SizePerLevel: 0.04
   Detector: {fileID: 5507386606352251333}
+  ForcePower: 10
+  ForceDuration: 0.8
 --- !u!1 &6135213949353840430
 GameObject:
   m_ObjectHideFlags: 0

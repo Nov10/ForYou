@@ -42,7 +42,7 @@ namespace ForYou.GamePlay
 
                     var position_center = position_lefttop - 0.5f * new Vector2(Screen.width, Screen.height);
 
-                    var g = CreateSingleFXObject(Images[0], position_center);
+                    var g = CreateSingleFXObject(Images[Random.Range(0, Images.Length)], position_center);
                     g.transform.localScale = Vector3.zero;
                     g.transform.rotation = Quaternion.Euler(0, 0, 360.0f * UnityEngine.Random.value);
 

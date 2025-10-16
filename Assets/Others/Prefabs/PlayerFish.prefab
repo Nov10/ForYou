@@ -288,6 +288,7 @@ MonoBehaviour:
   AnimationName_Moving: Moving_UD
   AnimationName_MovingWithPlankton: Moving_UD
   AnimationName_Die: Die
+  RotateMode: 1
   FlipThresholdSpeed_X: 0.5
   VelocitySnapping_Vertical: 3
   VelocitySnapping_Horizontal: 2

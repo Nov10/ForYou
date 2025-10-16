@@ -37,6 +37,12 @@ namespace ForYou.GamePlay
         [SerializeField] string AnimationName_Moving = "Moving";
         [SerializeField] string AnimationName_MovingWithPlankton = "MovingWithPlankton";
         [SerializeField] string AnimationName_Die = "Moving";
+        public enum RotationMode
+        {
+            Sprtie,
+            Transform
+        }
+        public RotationMode RotateMode;
 
         int AnimatorNameHash_Idle;
         int AnimatorNameHash_IdleWithPlankton;
@@ -172,33 +178,67 @@ namespace ForYou.GamePlay
                 ThisAnimator.Play(AnimatorNameHash_Idle);
             }
 
-            //Flip Settings
-            var nowVelocity = NowVelocity;
-            if(nowVelocity.x > FlipThresholdSpeed_X)
-            {
-                transform.rotation = Quaternion.Euler(0, 180, 0);
-                //ThisSpriteRenderer.flipX = FlipFlag_MovingRight;
-            }
-            else if (nowVelocity.x < -FlipThresholdSpeed_X)
-            {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-                //ThisSpriteRenderer.flipX = !FlipFlag_MovingRight;
-            }
-
 
             var targetVelocity = CalculateTargetVelocity();
-            if(targetVelocity.y > 0.1f)
+            Quaternion targetRotation = Quaternion.identity;
+            if (RotateMode == RotationMode.Sprtie)
             {
-                ThisAnimator.SetFloat("MoveY", 1);
-            }
-            else if (targetVelocity.y < -0.1f)
-            {
-                ThisAnimator.SetFloat("MoveY", 0);
+                if (targetVelocity.y > 0.1f)
+                {
+                    ThisAnimator.SetFloat("MoveY", 1);
+                }
+                else if (targetVelocity.y < -0.1f)
+                {
+                    ThisAnimator.SetFloat("MoveY", 0);
+                }
+                else
+                {
+                    ThisAnimator.SetFloat("MoveY", 0.5f);
+                }
             }
             else
             {
                 ThisAnimator.SetFloat("MoveY", 0.5f);
+                if (targetVelocity.y > 0.1f)
+                {
+                    targetRotation = Quaternion.Euler(0, 0, -45f) * targetRotation;
+                    //targetRotation.z = -45f;
+                }
+                else if (targetVelocity.y < -0.1f)
+                {
+                    targetRotation = Quaternion.Euler(0, 0, 45f) * targetRotation;
+                    //targetRotation.z = 45f;
+                }
+                else
+                {
+                    targetRotation = Quaternion.Euler(0, 0, 0f) * targetRotation;
+                    //targetRotation.z = 0f;
+                }
             }
+
+            //Flip Settings
+            var nowVelocity = NowVelocity;
+            var rot = transform.rotation;
+            if (nowVelocity.x > FlipThresholdSpeed_X)
+            {
+                targetRotation = Quaternion.Euler(0, 180, 0) * targetRotation;
+                //targetRotation.y = 180;
+                //transform.rotation = Quaternion.Euler(rot.x, 180, targetAngle);
+                //ThisSpriteRenderer.flipX = FlipFlag_MovingRight;
+            }
+            else if (nowVelocity.x < -FlipThresholdSpeed_X)
+            {
+                targetRotation = Quaternion.Euler(0, 0, 0) * targetRotation;
+                //targetRotation.y = 0;
+                //transform.rotation = Quaternion.Euler(rot.x, 0, targetAngle);
+                //ThisSpriteRenderer.flipX = !FlipFlag_MovingRight;
+            }
+            else
+            {
+                targetRotation = Quaternion.Euler(0, transform.eulerAngles.y, 0) * targetRotation;
+            }
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, targetRotation.eulerAngles.y, transform.eulerAngles.z);
 
 
             //이번 프레임에 눌렀으면, 감지 + 플랑크톤 Snatch 시도
@@ -325,7 +365,7 @@ namespace ForYou.GamePlay
         {
             if(shouldPlayerFishDie)
             {
-                return;
+                //return;
                 InGameManager.Instance.GameOver();
 
                 PlayerInput.Disable();
