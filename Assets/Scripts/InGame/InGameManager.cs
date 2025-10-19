@@ -63,6 +63,12 @@ namespace ForYou.GamePlay
             if (level == 5) return 2400;
             return 0;
         }
+        public string GetSimplifiedScoreExplainString()
+        {
+            string result = string.Empty;
+            result += "\nÁ¡¼ö : " + CalculateScore().ToString();
+            return result;
+        }
         public string GetScoreExplainString()
         {
             string result = string.Empty;
@@ -166,11 +172,26 @@ namespace ForYou.GamePlay
             }
         }
 
+        public bool SimplifiedScoreDisplay = true;
+        public bool IncludeComboTimeInScoreDisplay = true;
         private void Update()
         {
             var cutscene = FindFirstObjectByType<CutscenePlayer>();
             if (cutscene != null && cutscene.IsPlaying == false)
-                ScoreText.text = (Time.time - LastEatTime <= ComboDuration ? $"ÄÞº¸ ½Ã°£({NowComboCounter}) : {Time.time - LastEatTime}\n" : "") + GetScoreExplainString().ToString();
+            {
+                string str = string.Empty;
+                if(IncludeComboTimeInScoreDisplay == true)
+                {
+                    str = (Time.time - LastEatTime <= ComboDuration ? $"ÄÞº¸ ½Ã°£({NowComboCounter}) : {Time.time - LastEatTime}\n" : "");
+                }
+
+                if (SimplifiedScoreDisplay == true)
+                    str += GetSimplifiedScoreExplainString().ToString();
+                else
+                    str += GetScoreExplainString().ToString();
+
+                ScoreText.text = str;
+            }
             else
                 ScoreText.text = string.Empty;
         }
