@@ -1,3 +1,4 @@
+using Helpers;
 using UnityEngine;
 
 namespace ForYou.GamePlay
@@ -34,6 +35,10 @@ namespace ForYou.GamePlay
         void Spawn()
         {
             NowFish = Instantiate(Prefab, transform.position, Quaternion.identity);
+            DelayedFunctionHelper.InvokeDelayed(0.001f, () =>
+            {
+                NowFish.gameObject.SetActive(true);
+            });
         }
     }
 }

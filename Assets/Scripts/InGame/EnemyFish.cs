@@ -85,6 +85,7 @@ namespace ForYou.GamePlay
         {
             StartRecognizePlayerFish();
             EndDetectAttackRange();
+            ThisAgent.enabled = true;
         }
         protected void StartRecognizePlayerFish()
         {
@@ -119,7 +120,21 @@ namespace ForYou.GamePlay
         {
             if (ThisAgent.enabled == false)
                 return;
+            if (ThisAgent.isOnNavMesh == false)
+            {
+                TryPlaceOnNavMesh(5.0f);
+            }
             ThisAgent.SetDestination(position);
+        }
+        bool TryPlaceOnNavMesh(float maxDist = 5f)
+        {
+            if (!ThisAgent.enabled) ThisAgent.enabled = true;
+            if (NavMesh.SamplePosition(transform.position, out var hit, maxDist, ThisAgent.areaMask))
+            {
+                ThisAgent.Warp(hit.position);
+                return true;
+            }
+            return false;
         }
         protected void CheckReachedTargetPosition(Vector3 centerPosition, float radius, float additionalStoppingDistance, ref Vector3 NowTargetPosition)
         {

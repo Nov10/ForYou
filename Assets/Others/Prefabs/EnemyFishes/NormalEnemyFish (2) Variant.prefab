@@ -24,6 +24,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NormalEnemyFish (2) Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5531133300947745287, guid: ed07b628b78566c4aa4b3c47916a7ea6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5952863347752656602, guid: ed07b628b78566c4aa4b3c47916a7ea6, type: 3}
       propertyPath: m_Controller
       value: 
