@@ -13,6 +13,8 @@ public class Anemone : MonoBehaviour
 
     [SerializeField] EnemyFishDetector AttackOrEatRange;
 
+    Animator ThisAnimator;
+
     public int GetNowLevel()
     {
         int gage = Gage;
@@ -61,6 +63,8 @@ public class Anemone : MonoBehaviour
         AttackOrEatRange.OnEnemyFishDetected += OnEnemyFishDetected;
         AttackOrEatRange.StartDetect();
 
+        ThisAnimator = GetComponent<Animator>();
+
         BaseSize = transform.localScale.x;
         UpGage(0);
     }
@@ -104,6 +108,7 @@ public class Anemone : MonoBehaviour
             InGameManager.Instance.OnAnemoneEatPlankton(plankton);
 
             Destroy(plankton.gameObject);
+            ThisAnimator.Play("Eat");
         }
         else
         {
@@ -118,6 +123,7 @@ public class Anemone : MonoBehaviour
 
         if(levelThreshold <= GetNowLevel() && data.CanBeEaten)
         {
+            ThisAnimator.Play("Eat");
             //¸Ô±â
             var gage = data.Gage;
             UpGage(gage);
@@ -126,6 +132,7 @@ public class Anemone : MonoBehaviour
         }
         else
         {
+            ThisAnimator.Play("Attack");
             //ÂÑ¾Æ³»±â
             fish.OnAttackedByAnemone(this);
 
