@@ -366,7 +366,7 @@ namespace ForYou.GamePlay
             if(shouldPlayerFishDie)
             {
                 //return;
-                DelayedFunctionHelper.InvokeDelayed(2.0f, () => InGameManager.Instance.GameOver());
+                DelayedFunctionHelper.InvokeDelayed(2.0f, () => InGameManager.Instance.GameOver_ByDie());
 
                 PlayerInput.Disable();
                 ThisAnimator.Play(AnimatorNameHash_Die);

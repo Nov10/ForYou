@@ -1,4 +1,6 @@
 using ForYou.Cutscene;
+using Helpers;
+using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -32,23 +34,119 @@ namespace ForYou.GamePlay
         public bool IsGameOver { get; private set; } = false;
 
         [SerializeField] int Score;
-        [SerializeField] TMP_Text ScoreText;
+        [Header("GameOver By Die")]
         [SerializeField] RectTransform FinalScoreTextContainer;
+        [SerializeField] Image FinalScoreBackground;
+        [SerializeField] float GameOverFadeTime = 2.0f;
+        [SerializeField] TMP_Text GameOverText;
+        [Space(10)]
+        [SerializeField] Image DieNimo;
+        [SerializeField] Vector2 StartPosition;
+        [SerializeField] float DieNimoMoveDuration = 1.0f;
         [SerializeField] TMP_Text FinalScoreText;
 
+        [Space(10)]
+        [Header("GameOver By Timer")]
+        [SerializeField] RectTransform FinalScoreTextContainer_Timer;
+        [SerializeField] Image FinalScoreBackground_Timer;
+        [SerializeField] float ClearFadeTime = 2.0f;
+        [SerializeField] TMP_Text ClearText;
+        [Space(10)]
+        [SerializeField] Image RotateNimo;
+        [SerializeField] Image RotatedAnemone;
+        [SerializeField] Vector2 StartOffset;
+        [SerializeField] float NimoStartOffsetDuration = 1.0f;
+        [SerializeField] float NimoRotateDuration = 3.0f;
+        [Space(10)]
+        [SerializeField] TMP_Text FinalScoreText_Timer;
 
-        public void GameOver()
+        [SerializeField] TMP_Text ScoreText;
+        public void GameOver_ByDie()
         {
-            IsGameOver = true;
+            GameOver();
 
             FinalScoreTextContainer.gameObject.SetActive(true);
-            FinalScoreText.text = "최종 점수 : " + CalculateScore().ToString();
+            FinalScoreTextContainer.transform.localPosition = Vector3.zero;
+            FinalScoreText.gameObject.SetActive(false);
+
+            FinalScoreBackground.CrossFadeAlpha(0.0f, 0, true);
+            FinalScoreBackground.CrossFadeAlpha(1.0f, GameOverFadeTime, true);
+
+            DelayedFunctionHelper.InvokeDelayed(GameOverFadeTime, () =>
+            {
+                GameOverText.gameObject.SetActive(true);
+
+
+                DieNimo.rectTransform.anchoredPosition = StartPosition;
+                DieNimo.CrossFadeAlpha(0.0f, 0, true);
+                DieNimo.CrossFadeAlpha(1.0f, DieNimoMoveDuration * 0.5f, true);
+                ObjectMoveHelper.MoveObject(DieNimo.transform, Vector3.zero, DieNimoMoveDuration, ePosition.Local);
+
+                DelayedFunctionHelper.InvokeDelayed(DieNimoMoveDuration, () =>
+                {
+                    FinalScoreText.gameObject.SetActive(true);
+                    FinalScoreText.text = "최종 점수 : " + CalculateScore().ToString();
+                });
+
+            });
+        }
+
+
+        public void GameOver_ByTimer()
+        {
+            GameOver();
+            FinalScoreTextContainer_Timer.gameObject.SetActive(true);
+            FinalScoreTextContainer_Timer.transform.localPosition = Vector3.zero;
+            FinalScoreText_Timer.gameObject.SetActive(false);
+            ClearText.gameObject.SetActive(false);
+
+            FinalScoreBackground_Timer.CrossFadeAlpha(0.0f, 0, true);
+            FinalScoreBackground_Timer.CrossFadeAlpha(1.0f, ClearFadeTime, true);
+
+            RotateNimo.gameObject.SetActive(false);
+            RotatedAnemone.gameObject.SetActive(false);
+            DelayedFunctionHelper.InvokeDelayed(ClearFadeTime, () =>
+            {
+                ClearText.gameObject.SetActive(true);
+
+                RotatedAnemone.gameObject.SetActive(true);
+                RotatedAnemone.CrossFadeAlpha(0.0f, 0, true);
+                RotatedAnemone.CrossFadeAlpha(1.0f, 1.0f, true);
+
+                DelayedFunctionHelper.InvokeDelayed(1.0f, () =>
+                {
+                    RotateNimo.gameObject.SetActive(true);
+                    ObjectMoveHelper.MoveObject(RotateNimo.transform, StartOffset, NimoStartOffsetDuration, ePosition.Local);
+                    DelayedFunctionHelper.InvokeDelayed(NimoStartOffsetDuration, () =>
+                    {
+                        RotateNimo.GetComponent<Animator>().Play("Rotate");
+
+                        DelayedFunctionHelper.InvokeDelayed(NimoRotateDuration, () =>
+                        {
+                            FinalScoreText_Timer.gameObject.SetActive(true);
+                            FinalScoreText_Timer.text = "최종 점수 : " + CalculateScore().ToString();
+                        });
+                    });
+                });
+            });
+        }
+        void GameOver()
+        {
+            IsGameOver = true;
         }
         private void OnEnable()
         {
             LastEatTime = -ComboDuration * 10;
             ElaspedTime = 0.0f;
             FinalScoreTextContainer.gameObject.SetActive(false);
+
+            FinalScoreTextContainer.gameObject.SetActive(false);
+
+            DelayedFunctionHelper.InvokeDelayed(1.0f, () =>
+            {
+                GameOver_ByTimer();
+
+            });
         }
         int EatedPlanktonCount = 0;
         int EatedCount_NormalEnemy_L2 = 0;
