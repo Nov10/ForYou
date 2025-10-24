@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1200843960618066532, guid: ed07b628b78566c4aa4b3c47916a7ea6, type: 3}
       propertyPath: _LevelThresholdToEatThis
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1667186684816179822, guid: ed07b628b78566c4aa4b3c47916a7ea6, type: 3}
       propertyPath: m_Sprite

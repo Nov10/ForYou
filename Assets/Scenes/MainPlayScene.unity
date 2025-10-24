@@ -1514,7 +1514,7 @@ MonoBehaviour:
   m_BuildHeightMesh: 0
   m_MinRegionArea: 0
   m_HideEditorLogs: 0
-  m_NavMeshData: {fileID: 23800000, guid: d0264634681bbbc45869e1f565feb8fc, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 84c321ece02d02e49a181a5263ca8e5c, type: 2}
 --- !u!1001 &185977084
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2368,6 +2368,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 109908336294736213, guid: 302dc1469e5a05a47829d344a58d2755, type: 3}
+      propertyPath: m_Radius
+      value: 0.16
+      objectReference: {fileID: 0}
     - target: {fileID: 644026343557627939, guid: 302dc1469e5a05a47829d344a58d2755, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2375,6 +2379,14 @@ PrefabInstance:
     - target: {fileID: 644026343557627939, guid: 302dc1469e5a05a47829d344a58d2755, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978553330272133252, guid: 302dc1469e5a05a47829d344a58d2755, type: 3}
+      propertyPath: m_Size.y
+      value: 0.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 4208760306100682294, guid: 302dc1469e5a05a47829d344a58d2755, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0167
       objectReference: {fileID: 0}
     - target: {fileID: 5108493527148163838, guid: 302dc1469e5a05a47829d344a58d2755, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2431,6 +2443,10 @@ PrefabInstance:
     - target: {fileID: 7886730269779845047, guid: 302dc1469e5a05a47829d344a58d2755, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 7983478651184615173, guid: 302dc1469e5a05a47829d344a58d2755, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 8589458224357757878, guid: 302dc1469e5a05a47829d344a58d2755, type: 3}
       propertyPath: m_Size.x
@@ -2964,11 +2980,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2269793496388337609, guid: 378c34b70855ad84f8875cb20a689dc0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 26.26
+      value: 26.38
       objectReference: {fileID: 0}
     - target: {fileID: 2269793496388337609, guid: 378c34b70855ad84f8875cb20a689dc0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 36.48
+      value: 35.53
       objectReference: {fileID: 0}
     - target: {fileID: 2269793496388337609, guid: 378c34b70855ad84f8875cb20a689dc0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6389,7 +6405,7 @@ PrefabInstance:
     - target: {fileID: 1084555219798750899, guid: e13f78df480784b4a89fd9712c0fa3b7, type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: 6687f1d0eaae17f4a80c112a38a52a8e, type: 2}
+      objectReference: {fileID: 23800000, guid: a84e3f774a18e194f8d2a0430a9230ff, type: 2}
     - target: {fileID: 1256965333915153736, guid: e13f78df480784b4a89fd9712c0fa3b7, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -334
@@ -8585,11 +8601,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6100167282494229976, guid: b48a95ca9b4d7de49b6df23a0ebff33e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.06
+      value: -20.01
       objectReference: {fileID: 0}
     - target: {fileID: 6100167282494229976, guid: b48a95ca9b4d7de49b6df23a0ebff33e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.01
+      value: 13.09
       objectReference: {fileID: 0}
     - target: {fileID: 6100167282494229976, guid: b48a95ca9b4d7de49b6df23a0ebff33e, type: 3}
       propertyPath: m_LocalPosition.z

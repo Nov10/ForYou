@@ -47,7 +47,7 @@ namespace ForYou.GamePlay
         {
             AttackPlayerFishRange.StartDetect();
         }
-        protected void EndDetectAttackRange()
+        public void EndDetectAttackRange()
         {
             AttackPlayerFishRange.EndDetect();
         }
@@ -117,6 +117,8 @@ namespace ForYou.GamePlay
         }
         protected void SetDestination(Vector3 position)
         {
+            if (ThisAgent.enabled == false)
+                return;
             ThisAgent.SetDestination(position);
         }
         protected void CheckReachedTargetPosition(Vector3 centerPosition, float radius, float additionalStoppingDistance, ref Vector3 NowTargetPosition)

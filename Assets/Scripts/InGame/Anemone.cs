@@ -2,6 +2,7 @@ using ForYou.GamePlay;
 using Helpers;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class Anemone : MonoBehaviour
@@ -123,12 +124,28 @@ public class Anemone : MonoBehaviour
 
         if(levelThreshold <= GetNowLevel() && data.CanBeEaten)
         {
-            ThisAnimator.Play("Eat");
+            ObjectMoveHelper.MoveObjectSmooth(fish.transform, transform.position, 0.5f, ePosition.World);
+            fish.EndDetectAttackRange();
+            fish.GetComponent<NavMeshAgent>().enabled = false;
+            if(fish.TryGetComponent<Collider2D>(out var c))
+            {
+                c.enabled = false;
+            }
             //¸Ô±â
-            var gage = data.Gage;
-            UpGage(gage);
-            InGameManager.Instance.OnAnemoneEatEnemyFish(fish);
-            Destroy(fish.gameObject);
+            DelayedFunctionHelper.InvokeDelayed(0.5f, () =>
+            {
+                if (Detector.IsDetectingPlayerFish)
+                {
+                    var player = FindFirstObjectByType<PlayerFish>();
+                    player.AddForceByAnemone(Vector2.up * ForcePower * 10, ForceDuration);
+                }
+
+                ThisAnimator.Play("Eat");
+                var gage = data.Gage;
+                UpGage(gage);
+                InGameManager.Instance.OnAnemoneEatEnemyFish(fish);
+                Destroy(fish.gameObject);
+            });
         }
         else
         {

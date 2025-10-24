@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: _Gage
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4141676519615054516, guid: 455f909bf594e554ebd5efeffb4e1453, type: 3}
+      propertyPath: _LevelThresholdToEatThis
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4536101832980800190, guid: 455f909bf594e554ebd5efeffb4e1453, type: 3}
       propertyPath: m_Sprite
       value: 

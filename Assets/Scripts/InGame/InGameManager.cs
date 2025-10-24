@@ -267,7 +267,7 @@ namespace ForYou.GamePlay
                 }
                 else
                 {
-                    Debug.LogError($"{fish} ??");
+                    //Debug.LogError($"{fish} ??");
                 }
             }
             else if(fish.TryGetComponent<Bacruda>(out var bac))

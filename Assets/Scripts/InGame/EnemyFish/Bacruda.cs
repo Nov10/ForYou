@@ -91,11 +91,7 @@ namespace ForYou.GamePlay
             {
                 case State.Patrol:
                     {
-                        if (((Vector2)(transform.position - NowTargetPosition)).sqrMagnitude < (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_NormalEnemy) * (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_NormalEnemy))
-                        {
-                            NavigationHelper.RandomPoint2D(PatrolCenterPosition, PatrolRadius, out NowTargetPosition);
-                            ThisAgent.destination = NowTargetPosition;
-                        }
+                        CheckReachedTargetPosition(PatrolCenterPosition, PatrolRadius, NavigationHelper.AllowDistance_NormalEnemy, ref NowTargetPosition);
 
                         SetDestination(NowTargetPosition);
                         MoveStepToDestination();
