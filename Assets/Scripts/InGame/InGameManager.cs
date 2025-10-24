@@ -142,11 +142,11 @@ namespace ForYou.GamePlay
 
             FinalScoreTextContainer.gameObject.SetActive(false);
 
-            DelayedFunctionHelper.InvokeDelayed(1.0f, () =>
-            {
-                GameOver_ByTimer();
+            //DelayedFunctionHelper.InvokeDelayed(1.0f, () =>
+            //{
+            //    GameOver_ByTimer();
 
-            });
+            //});
         }
         int EatedPlanktonCount = 0;
         int EatedCount_NormalEnemy_L2 = 0;

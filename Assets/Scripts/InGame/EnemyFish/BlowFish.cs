@@ -153,7 +153,7 @@ namespace ForYou.GamePlay
             {
                 case State.Patrol:
                     {
-                        if ((transform.position - NowTargetPosition).sqrMagnitude < (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_BlowFish) * (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_BlowFish))
+                        if (((Vector2)(transform.position - NowTargetPosition)).sqrMagnitude < (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_BlowFish) * (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_BlowFish))
                         {
                             NavigationHelper.RandomPoint2D(PatrolCenterPosition, PatrolRadius, out NowTargetPosition);
                             ThisAgent.destination = NowTargetPosition;
@@ -168,7 +168,7 @@ namespace ForYou.GamePlay
                     {
                         if (MoveWhileAttack == true)
                         {
-                            if ((transform.position - NowTargetPosition).sqrMagnitude < (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_BlowFish) * (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_BlowFish))
+                            if (((Vector2)(transform.position - NowTargetPosition)).sqrMagnitude < (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_BlowFish) * (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_BlowFish))
                             {
                                 NavigationHelper.RandomPoint2D(PatrolCenterPosition, PatrolRadius, out NowTargetPosition);
                                 ThisAgent.destination = NowTargetPosition;

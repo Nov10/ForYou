@@ -68,7 +68,7 @@ namespace ForYou.GamePlay
                     {
                         EndDetectAttackRange();
                         NavigationHelper.RandomPoint2D(PatrolCenterPosition, PatrolRadius, out NowTargetPosition);
-                        ThisAgent.destination = NowTargetPosition;
+                        SetDestination(NowTargetPosition);
                     }
                     break;
                 case State.Chase:
@@ -110,11 +110,7 @@ namespace ForYou.GamePlay
             {
                 case State.Patrol:
                     {
-                        if ((transform.position - NowTargetPosition).sqrMagnitude < (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_NormalEnemy) * (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_NormalEnemy))
-                        {
-                            NavigationHelper.RandomPoint2D(PatrolCenterPosition, PatrolRadius, out NowTargetPosition);
-                            ThisAgent.destination = NowTargetPosition;
-                        }
+                        CheckReachedTargetPosition(PatrolCenterPosition, PatrolRadius, NavigationHelper.AllowDistance_NormalEnemy, ref NowTargetPosition);
 
                         SetDestination(NowTargetPosition);
                         MoveStepToDestination();

@@ -57,18 +57,21 @@ namespace ForYou.GamePlay
             ThisAgent.updateUpAxis = false;
             ThisAgent.updatePosition = false;
 
-            StartPosition = transform.position;
             ThisAgent.speed = Speed;
         }
-
-
-        private void OnEnable()
+        public void Start()
         {
+            StartPosition = transform.position;
             ThisAnimator.Play(AnimatorNameHash_Idle);
 
 
             NavigationHelper.RandomPoint2D(StartPosition, PatrolRadius, out NowTargetPosition);
             ThisAgent.destination = NowTargetPosition;
+        }
+
+        private void OnEnable()
+        {
+
         }
 
         private void Update()
@@ -88,7 +91,7 @@ namespace ForYou.GamePlay
 
         private void FixedUpdate()
         {
-            if ((transform.position - NowTargetPosition).sqrMagnitude < (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_Plankton) * (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_Plankton))
+            if (((Vector2)(transform.position - NowTargetPosition)).sqrMagnitude < (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_Plankton) * (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_Plankton))
             {
                 NavigationHelper.RandomPoint2D(StartPosition, PatrolRadius, out NowTargetPosition);
                 ThisAgent.destination = NowTargetPosition;

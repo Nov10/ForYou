@@ -104,7 +104,7 @@ namespace ForYou.GamePlay
             base.Update();
             if (IsAttacking == false || (IsAttacking == true && MoveWhileAttack == true))
             {
-                if ((transform.position - NowTargetPosition).sqrMagnitude < (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_BlowFish) * (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_BlowFish))
+                if (((Vector2)(transform.position - NowTargetPosition)).sqrMagnitude < (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_BlowFish) * (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_BlowFish))
                 {
                     NavigationHelper.RandomPointEllipse2D(PatrolCenterPosition, PatrolRadius, out NowTargetPosition);
                     ThisAgent.destination = NowTargetPosition;

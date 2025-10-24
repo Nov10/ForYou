@@ -119,6 +119,14 @@ namespace ForYou.GamePlay
         {
             ThisAgent.SetDestination(position);
         }
+        protected void CheckReachedTargetPosition(Vector3 centerPosition, float radius, float additionalStoppingDistance, ref Vector3 NowTargetPosition)
+        {
+            if (((Vector2)(transform.position - NowTargetPosition)).sqrMagnitude < (ThisAgent.stoppingDistance + additionalStoppingDistance) * (ThisAgent.stoppingDistance + additionalStoppingDistance))
+            {
+                NavigationHelper.RandomPoint2D(centerPosition, radius, out NowTargetPosition);
+                ThisAgent.destination = NowTargetPosition;
+            }
+        }
 
         protected abstract float GetTargetSpeedByNowFishState();
 

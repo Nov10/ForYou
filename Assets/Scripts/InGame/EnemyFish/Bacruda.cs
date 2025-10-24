@@ -91,7 +91,7 @@ namespace ForYou.GamePlay
             {
                 case State.Patrol:
                     {
-                        if ((transform.position - NowTargetPosition).sqrMagnitude < (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_NormalEnemy) * (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_NormalEnemy))
+                        if (((Vector2)(transform.position - NowTargetPosition)).sqrMagnitude < (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_NormalEnemy) * (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_NormalEnemy))
                         {
                             NavigationHelper.RandomPoint2D(PatrolCenterPosition, PatrolRadius, out NowTargetPosition);
                             ThisAgent.destination = NowTargetPosition;
@@ -126,7 +126,7 @@ namespace ForYou.GamePlay
                     break;
                 case State.Dash:
                     {
-                        if ((transform.position - DashTargetPosition).sqrMagnitude < (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_BacurdaDash) * (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_BacurdaDash))
+                        if (((Vector2)(transform.position - DashTargetPosition)).sqrMagnitude < (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_BacurdaDash) * (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_BacurdaDash))
                         {
                             if (Target != null)
                                 SetState(State.Chase);

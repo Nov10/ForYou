@@ -66,12 +66,12 @@ namespace ForYou.GamePlay
                     break;
                 case State.Return2Hide:
                     {
-                        if ((transform.position - NowTargetPosition).sqrMagnitude < (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_MorayReturn2Hide) * (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_MorayReturn2Hide))
+                        if (((Vector2)(transform.position - NowTargetPosition)).sqrMagnitude < (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_MorayReturn2Hide) * (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_MorayReturn2Hide))
                         {
                             SetState(State.Hide);
                             return;
                         }
-                        if ((transform.position - NowTargetPosition).sqrMagnitude < (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_MorayReturn2Hide * 5) * (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_MorayReturn2Hide * 5))
+                        if (((Vector2)(transform.position - NowTargetPosition)).sqrMagnitude < (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_MorayReturn2Hide * 5) * (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_MorayReturn2Hide * 5))
                         {
                             GetComponent<Collider2D>().enabled = false;
                         }
