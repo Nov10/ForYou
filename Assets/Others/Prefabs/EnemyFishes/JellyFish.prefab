@@ -80,7 +80,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 7.46
+  m_Radius: 0.55
 --- !u!1 &6206843495305661621
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,8 +176,8 @@ GameObject:
   - component: {fileID: 6682244222895787789}
   - component: {fileID: 140758330599843205}
   - component: {fileID: 745736346590863712}
-  - component: {fileID: 3704107829595771158}
   - component: {fileID: 7011749637956136461}
+  - component: {fileID: 3899557265033968963}
   m_Layer: 6
   m_Name: JellyFish
   m_TagString: Untagged
@@ -193,9 +193,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8615741988385693760}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.38, y: 21.93, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 3, y: 3, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 436985782833136520}
@@ -246,7 +246,7 @@ SpriteRenderer:
   m_SortingLayerID: -1122508623
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5077608435654824638, guid: 26aee890ac1e4a04abde912e017e04a3, type: 3}
+  m_Sprite: {fileID: -4538430121015870394, guid: 9cd2b65dbf45f68498e82011f59d21ae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -343,7 +343,34 @@ MonoBehaviour:
   _CanBeEaten: 0
   _Gage: 0
   _LevelThresholdToEatThis: 100
---- !u!60 &3704107829595771158
+--- !u!114 &7011749637956136461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8615741988385693760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 643dd9c962274494da9af68b512aceca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RecognizePlayerFishRange: {fileID: 6547226054095979106}
+  AttackPlayerFishRange: {fileID: 6667328466417916773}
+  NormalSpeed: 0.2
+  ChaseSpeed: 0.2
+  Snapping: 5
+  _IsSpriteLookLeft: 1
+  AttackDuration: 1
+  MoveWhileAttack: 0
+  AttackCoolDownTime: 7
+  AdjustSpeedDuration: 3
+  AdjustSpeedValue: 0
+  AnimationName_Idle: Idle
+  AnimationName_Attack: Idle
+  AnimationName_Moving_Patrol: Idle
+  PatrolRadius: {x: 0.28, y: 0.98}
+--- !u!60 &3899557265033968963
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -381,7 +408,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 9.15, y: 9.71}
+    oldSize: {x: 0.31, y: 0.47}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -389,82 +416,27 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.405, y: -0.755}
-      - {x: -0.405, y: -2.675}
-      - {x: -0.385, y: -2.695}
-      - {x: -0.035, y: -3.8149998}
-      - {x: -0.015, y: -3.8349998}
-      - {x: 0.885, y: -3.8349998}
-      - {x: 0.905, y: -3.8149998}
-      - {x: 0.905, y: -2.675}
-      - {x: 0.885, y: -2.655}
-      - {x: 0.545, y: -2.655}
-      - {x: 0.875, y: -1.9549999}
-      - {x: 1.125, y: -3.0549998}
-      - {x: 1.145, y: -3.075}
-      - {x: 1.7049999, y: -3.075}
-      - {x: 1.7249999, y: -3.0549998}
-      - {x: 2.145, y: -2.695}
-      - {x: 2.165, y: -2.675}
-      - {x: 2.165, y: -2.645}
-      - {x: 2.175, y: -1.875}
-      - {x: 2.175, y: -1.495}
-      - {x: 2.145, y: -1.485}
-      - {x: 1.7249999, y: -1.485}
-      - {x: 2.175, y: -0.36499998}
-      - {x: 2.575, y: 0.015}
-      - {x: 2.575, y: 1.525}
-      - {x: 2.165, y: 2.2749999}
-      - {x: 1.265, y: 3.0249999}
-      - {x: 0.755, y: 3.385}
-      - {x: -1.795, y: 3.385}
-      - {x: -1.8149999, y: 3.365}
-      - {x: -2.325, y: 3.0049999}
-      - {x: -2.345, y: 2.985}
-      - {x: -2.7649999, y: 2.625}
-      - {x: -2.7849998, y: 2.605}
-      - {x: -3.215, y: 2.2649999}
-      - {x: -3.625, y: 1.525}
-      - {x: -3.625, y: -0.024999999}
-      - {x: -3.215, y: -0.405}
-      - {x: -3.2549999, y: -1.115}
-      - {x: -3.215, y: -2.375}
-      - {x: -2.7649999, y: -2.695}
-      - {x: -2.375, y: -3.465}
-      - {x: -1.9749999, y: -3.8349998}
-      - {x: -1.185, y: -3.8349998}
-      - {x: -0.505, y: -3.465}
-      - {x: -0.555, y: -2.225}
-      - {x: -0.755, y: -0.755}
-    - - {x: -2.145, y: -1.535}
-      - {x: -1.9549999, y: -1.535}
-      - {x: -1.9549999, y: -2.2649999}
-      - {x: -2.145, y: -2.2649999}
+    - - {x: 0.085, y: 0.235}
+      - {x: -0.105, y: 0.235}
+      - {x: -0.145, y: 0.175}
+      - {x: -0.155, y: 0.145}
+      - {x: -0.155, y: -0.175}
+      - {x: -0.095, y: -0.235}
+      - {x: 0.044999998, y: -0.235}
+      - {x: 0.155, y: -0.155}
+      - {x: 0.155, y: 0.065}
+      - {x: 0.145, y: 0.125}
+    - - {x: 0.105, y: -0.065}
+      - {x: 0.095, y: -0.065}
+      - {x: 0.105, y: -0.074999996}
+      - {x: 0.085, y: -0.095}
+      - {x: 0.095, y: -0.105}
+      - {x: 0.105, y: -0.095}
+    - - {x: -0.105, y: -0.055}
+      - {x: -0.105, y: -0.035}
+      - {x: -0.095, y: -0.024999999}
+      - {x: -0.105, y: -0.035}
+      - {x: -0.085, y: -0.055}
+      - {x: -0.085, y: -0.074999996}
+      - {x: -0.085, y: -0.065}
   m_UseDelaunayMesh: 0
---- !u!114 &7011749637956136461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8615741988385693760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 643dd9c962274494da9af68b512aceca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RecognizePlayerFishRange: {fileID: 6547226054095979106}
-  AttackPlayerFishRange: {fileID: 6667328466417916773}
-  NormalSpeed: 0.2
-  ChaseSpeed: 0.2
-  Snapping: 5
-  _IsSpriteLookLeft: 1
-  AttackDuration: 1
-  MoveWhileAttack: 0
-  AttackCoolDownTime: 7
-  AdjustSpeedDuration: 3
-  AdjustSpeedValue: 0
-  AnimationName_Idle: Idle
-  AnimationName_Attack: Attack
-  AnimationName_Moving_Patrol: Patrol
-  PatrolRadius: {x: 0.28, y: 0.98}

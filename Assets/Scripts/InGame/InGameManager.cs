@@ -2,6 +2,7 @@ using ForYou.Cutscene;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ForYou.GamePlay
 {
@@ -19,6 +20,14 @@ namespace ForYou.GamePlay
         }
         [SerializeField] PlayerFish Player;
         [SerializeField] Anemone Anemone;
+
+        [SerializeField] float Timer = 30.0f;
+        [SerializeField] Slider TimeSlider;
+        float ElaspedTime;
+        public float GetLeftTimeRate()
+        {
+            return Mathf.Clamp01((ElaspedTime) / Timer);
+        }
 
         public bool IsGameOver { get; private set; } = false;
 
@@ -38,6 +47,7 @@ namespace ForYou.GamePlay
         private void OnEnable()
         {
             LastEatTime = -ComboDuration * 10;
+            ElaspedTime = 0.0f;
             FinalScoreTextContainer.gameObject.SetActive(false);
         }
         int EatedPlanktonCount = 0;
@@ -66,7 +76,7 @@ namespace ForYou.GamePlay
         public string GetSimplifiedScoreExplainString()
         {
             string result = string.Empty;
-            result += "\nÁ¡¼ö : " + CalculateScore().ToString();
+            result += CalculateScore().ToString("N0");
             return result;
         }
         public string GetScoreExplainString()
@@ -194,6 +204,10 @@ namespace ForYou.GamePlay
             }
             else
                 ScoreText.text = string.Empty;
+
+
+            ElaspedTime += Time.deltaTime;
+            TimeSlider.value = GetLeftTimeRate();
         }
 
         [SerializeField] SquidFX SquidBlackFX;

@@ -1,4 +1,5 @@
 using ForYou.GamePlay;
+using Helpers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -131,8 +132,10 @@ public class Anemone : MonoBehaviour
             if(Detector.IsDetectingPlayerFish)
             {
                 var player = FindFirstObjectByType<PlayerFish>();
-
-                player.AddForceByAnemone(Vector2.up * ForcePower, ForceDuration);
+                DelayedFunctionHelper.InvokeDelayed(1.0f, () =>
+                {
+                    player.AddForceByAnemone(Vector2.up * ForcePower, ForceDuration);
+                });
             }
         }
     }
