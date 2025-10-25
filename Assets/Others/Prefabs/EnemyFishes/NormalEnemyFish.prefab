@@ -361,6 +361,8 @@ MonoBehaviour:
   ChaseSpeed: 3
   Snapping: 5
   _IsSpriteLookLeft: 1
+  YSpeedThresholdForRotation: 0.3
+  ZAngleHalfRangeForRotation: 25
   NowState: 0
   AnimationName_Idle: Idle
   AnimationName_Attack: Attack

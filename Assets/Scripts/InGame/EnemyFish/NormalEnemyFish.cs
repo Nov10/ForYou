@@ -136,8 +136,8 @@ namespace ForYou.GamePlay
                     ThisAnimator.Play(AnimatorNameHash_Moving_Chase);
                 else if(NowState == State.Patrol)
                     ThisAnimator.Play(AnimatorNameHash_Moving_Patrol);
-                if (NowVelocity.x < 0) transform.rotation = IsSpriteLookLeft ? Quaternion.Euler(0, 0, 0) : Quaternion.Euler(0, 180, 0);
-                if (NowVelocity.x > 0) transform.rotation = IsSpriteLookLeft ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
+                var targetRotation = CalculateTargetRotationByVelocity(NowVelocity, YSpeedThresholdForRotation, ZAngleHalfRangeForRotation, IsSpriteLookLeft);
+                ApplyRotationSlerp_InstanceY(targetRotation);
             }
             else
             {

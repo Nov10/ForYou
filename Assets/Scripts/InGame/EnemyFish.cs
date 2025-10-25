@@ -51,6 +51,27 @@ namespace ForYou.GamePlay
         {
             AttackPlayerFishRange.EndDetect();
         }
+        [SerializeField] protected float YSpeedThresholdForRotation = 0.1f;
+        [SerializeField] protected float ZAngleHalfRangeForRotation = 15.0f;
+        protected static Quaternion CalculateTargetRotationByVelocity(Vector3 velocity, float ySpeedThreshold, float zAngleHalfRange, bool isSpriteLookLeft)
+        {
+            float z = 0;
+            float y = 0;
+            if (velocity.y > ySpeedThreshold)
+                z = -zAngleHalfRange;
+            else if (velocity.y < -ySpeedThreshold)
+                z = zAngleHalfRange;
+            if (velocity.x < 0)
+                y = isSpriteLookLeft ? 0 : 180;
+            if (velocity.x > 0)
+                y = isSpriteLookLeft ? 180 : 0;
+            return Quaternion.Euler(0, y, z);
+        }
+        protected void ApplyRotationSlerp_InstanceY(Quaternion q)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, q, 5 * Time.deltaTime);
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, q.eulerAngles.y, transform.eulerAngles.z);
+        }
 
         protected virtual void Awake()
         {

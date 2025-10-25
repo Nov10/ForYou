@@ -3333,6 +3333,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1760879622555703575, guid: fbc69a995ab9aec468df822e0cf40164, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1760879622555703575, guid: fbc69a995ab9aec468df822e0cf40164, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 0.96
+      objectReference: {fileID: 0}
     - target: {fileID: 2087601886324861105, guid: fbc69a995ab9aec468df822e0cf40164, type: 3}
       propertyPath: Hide2ChaseDelay
       value: 2.5
