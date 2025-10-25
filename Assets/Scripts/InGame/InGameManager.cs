@@ -41,6 +41,7 @@ namespace ForYou.GamePlay
         }
 
         public bool IsGameOver { get; private set; } = false;
+        public bool IsCutsceneMode;
 
         [SerializeField] int Score;
         [Header("GameOver By Die")]
@@ -70,6 +71,7 @@ namespace ForYou.GamePlay
         [SerializeField] TMP_Text FinalScoreText_Timer;
 
         [SerializeField] TMP_Text ScoreText;
+        [SerializeField] Image ScoreTextBackground;
         public void GameOver_ByDie()
         {
             GameOver();
@@ -295,10 +297,10 @@ namespace ForYou.GamePlay
         private void Update()
         {
             var cutscene = FindFirstObjectByType<CutscenePlayer>();
-            if (cutscene != null && cutscene.IsPlaying == false)
+            if (IsCutsceneMode == false)
             {
                 string str = string.Empty;
-                if(IncludeComboTimeInScoreDisplay == true)
+                if (IncludeComboTimeInScoreDisplay == true)
                 {
                     str = (Time.time - LastEatTime <= ComboDuration ? $"ÄÞº¸ ½Ã°£({NowComboCounter}) : {Time.time - LastEatTime}\n" : "");
                 }
@@ -314,12 +316,16 @@ namespace ForYou.GamePlay
                 ScoreText.text = string.Empty;
 
 
-            if (FindFirstObjectByType<CutscenePlayer>()?.IsPlaying == true)
+            if (IsCutsceneMode == true)
             {
+                ScoreTextBackground.gameObject.SetActive(false);
+                ScoreText.gameObject.SetActive(false);
                 TimerAnimator.gameObject.SetActive(false);
                 TimeSlider.gameObject.SetActive(false);
                 return;
             }
+            ScoreTextBackground.gameObject.SetActive(false);
+            ScoreText.gameObject.SetActive(true);
             TimerAnimator.gameObject.SetActive(true);
             TimeSlider.gameObject.SetActive(true);
             ElaspedTime += Time.deltaTime;

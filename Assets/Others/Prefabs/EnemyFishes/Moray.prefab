@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 616516398106832485}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.83, y: 0.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -80,7 +80,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 2.27
+  m_Radius: 3.2
 --- !u!1 &627826430807629429
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +161,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.6
+  m_Radius: 0.23
 --- !u!1 &2527316092892837665
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,9 +193,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2527316092892837665}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.66, y: 32.45, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4273997831765790558}
@@ -251,7 +251,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.4, y: 0.96}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -288,7 +288,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 2527316092892837665}
   m_Enabled: 1
   m_AgentTypeID: -334000983
-  m_Radius: 0.12
+  m_Radius: 0.72
   m_Speed: 1.77
   m_Acceleration: 8
   avoidancePriority: 50
@@ -297,8 +297,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2.6999998
-  m_BaseOffset: 1.3499999
+  m_Height: 0.28
+  m_BaseOffset: 0.11
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!50 &3905035062754350907
@@ -363,7 +363,7 @@ MonoBehaviour:
   _IsSpriteLookLeft: 1
   YSpeedThresholdForRotation: 0.5
   ZAngleHalfRangeForRotation: 15
-  Hide2ChaseDelay: 1
+  Hide2ChaseDelay: 2.5
   IsHoleOnLeftWall: 0
   AnimationName_Idle: Idle
   AnimationName_Hide: Hide
@@ -409,7 +409,7 @@ PolygonCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 2.4, y: 0.96}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 2.4, y: 0.96}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 24e83b49c4d73be489e4f51593e8842a
+guid: 880ebd34ffbd68f418f932205c23d283
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4876196629903936300
-    second: RockGround_0
-  - first:
-      213: 4359838474629690133
-    second: RockGround_1
+      213: -6970391902381317319
+    second: RightRock2_front_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,45 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RockGround_0
+      name: RightRock2_front_0
       rect:
         serializedVersion: 2
-        x: 3815
-        y: 2151
-        width: 18
-        height: 9
+        x: 2996
+        y: 143
+        width: 715
+        height: 1110
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c2b816ceffabba340800000000000000
-      internalID: 4876196629903936300
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RockGround_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 3840
-        height: 1491
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 51332664ef1418c30800000000000000
-      internalID: 4359838474629690133
+      spriteID: 9336d49de71344f90800000000000000
+      internalID: -6970391902381317319
       vertices: []
       indices: 
       edges: []
@@ -150,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 2a86ee8b46f53094ab10f3d1e80539bc
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      RockGround_0: 4876196629903936300
-      RockGround_1: 4359838474629690133
+      RightRock2_front_0: -6970391902381317319
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

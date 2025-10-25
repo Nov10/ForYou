@@ -1,6 +1,7 @@
 using ForYou.GamePlay;
 using Helpers;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace ForYou.Cutscene
 {
@@ -42,6 +43,17 @@ namespace ForYou.Cutscene
         public bool CUTSCENE_ENDFUNCTION_ShowEnemyFish3()
         {
             return ObjectMoveHelper.IsPlaying(ID1);
+        }
+
+        [SerializeField] CutscenePlayer Player;
+        bool Executed = false;
+        private void Update()
+        {
+            if(Player.IsPlaying == false && Executed == false)
+            {
+                Executed = true;
+                SceneManager.LoadScene(ConstValue.SCENE_INDEX_MainPlayScene);
+            }
         }
     }
 }

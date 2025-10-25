@@ -219,6 +219,17 @@ namespace ForYou.Cutscene
                 if (element.PlayWithNextElement == false)
                     onEnd();
             }
+            else if(type == typeof(PlayAnimation))
+            {
+                var playAnim = (PlayAnimation)element;
+                var animator = playAnim.Target;
+                animator.Play(playAnim.AnimationName);
+                if (element.PlayWithNextElement == true)
+                    onEnd();
+                yield return new WaitForSeconds(playAnim.Duration);
+                if (element.PlayWithNextElement == false)
+                    onEnd();
+            }
         }
     }
 }
