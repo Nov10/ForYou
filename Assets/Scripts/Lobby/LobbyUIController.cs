@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace ForYou.Lobby
@@ -34,7 +35,7 @@ namespace ForYou.Lobby
 
         void OnStartButtonPressed()
         {
-
+            SceneManager.LoadScene(ConstValue.SCENE_INDEX_Tutorial);
         }
         void OnRankingButtonPressed()
         {

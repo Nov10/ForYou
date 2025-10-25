@@ -24,11 +24,20 @@ namespace ForYou.GamePlay
         [SerializeField] Anemone Anemone;
 
         [SerializeField] float Timer = 30.0f;
+        [SerializeField] float[] TextTimeThresholds = { 20.0f, 10.0f, 5.0f };
+        bool[] TextThresholdsTriggered;
+        [SerializeField] float HurryTimeThreshold = 10.0f;
         [SerializeField] Slider TimeSlider;
+        [SerializeField] TMP_Text HurryText;
+        [SerializeField] Animator TimerAnimator;
         float ElaspedTime;
-        public float GetLeftTimeRate()
+        public float GetElapsedTimeRate()
         {
             return Mathf.Clamp01((ElaspedTime) / Timer);
+        }
+        public float GetLeftTimeRate()
+        {
+            return 1 - Mathf.Clamp01((ElaspedTime) / Timer);
         }
 
         public bool IsGameOver { get; private set; } = false;
@@ -138,6 +147,7 @@ namespace ForYou.GamePlay
         {
             LastEatTime = -ComboDuration * 10;
             ElaspedTime = 0.0f;
+            TextThresholdsTriggered = new bool[TextTimeThresholds.Length];
             FinalScoreTextContainer.gameObject.SetActive(false);
 
             FinalScoreTextContainer.gameObject.SetActive(false);
@@ -304,8 +314,53 @@ namespace ForYou.GamePlay
                 ScoreText.text = string.Empty;
 
 
+            if (FindFirstObjectByType<CutscenePlayer>()?.IsPlaying == true)
+            {
+                TimerAnimator.gameObject.SetActive(false);
+                TimeSlider.gameObject.SetActive(false);
+                return;
+            }
+            TimerAnimator.gameObject.SetActive(true);
+            TimeSlider.gameObject.SetActive(true);
             ElaspedTime += Time.deltaTime;
-            TimeSlider.value = GetLeftTimeRate();
+            TimeSlider.value = GetElapsedTimeRate();
+
+            if(GetLeftTimeRate() * Timer <= HurryTimeThreshold)
+            {
+                TimerAnimator.Play("Hurry");
+                HurryText.gameObject.SetActive(true);
+                HurryText.text = (GetLeftTimeRate() * Timer).ToString("F2") + "초 남았어!";
+            }
+            else
+            {
+                for (int i = 0; i < TextThresholdsTriggered.Length; i++)
+                {
+                    if (TextThresholdsTriggered[i] == true)
+                        continue;
+                    float t = TextTimeThresholds[i];
+                    if (GetLeftTimeRate() * Timer <= t)
+                    {
+                        TextThresholdsTriggered[i] = true;
+                        TimerAnimator.Play("Text");
+                        HurryText.gameObject.SetActive(true);
+                        HurryText.text = t.ToString() + "초 남았어!";
+
+                        DelayedFunctionHelper.InvokeDelayed(2.0f, () =>
+                        {
+                            if (GetLeftTimeRate() * Timer > HurryTimeThreshold)
+                            {
+                                TimerAnimator.Play("Idle");
+                                HurryText.gameObject.SetActive(false);
+                            }
+                        });
+                    }
+                }
+            }
+
+            if(ElaspedTime >= Timer && IsGameOver == false)
+            {
+                GameOver_ByTimer();
+            }
         }
 
         [SerializeField] SquidFX SquidBlackFX;
