@@ -80,7 +80,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 20.4
+  m_Radius: 2.27
 --- !u!1 &627826430807629429
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,7 +108,7 @@ Transform:
   m_GameObject: {fileID: 627826430807629429}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.33, y: 0, z: 0}
+  m_LocalPosition: {x: -1.17, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -161,7 +161,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 3.04
+  m_Radius: 0.6
 --- !u!1 &2527316092892837665
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 3905035062754350907}
   - component: {fileID: 325225786190706367}
   - component: {fileID: 2087601886324861105}
-  - component: {fileID: 9057206889621351658}
+  - component: {fileID: 1760879622555703575}
   m_Layer: 6
   m_Name: Moray
   m_TagString: Untagged
@@ -195,7 +195,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -4.66, y: 32.45, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4273997831765790558}
@@ -246,7 +246,7 @@ SpriteRenderer:
   m_SortingLayerID: -1122508623
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2569556766785187908, guid: 366dd549557e40a4381318c68f798bb9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5df5b81fdc1f37649b951ccfd8ab4627, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -368,7 +368,7 @@ MonoBehaviour:
   AnimationName_NearHole: NearHole
   AnimationName_Attack: Attack
   AnimationName_Moving_Chase: Chase
---- !u!60 &9057206889621351658
+--- !u!60 &1760879622555703575
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -406,7 +406,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10.22, y: 9.71}
+    oldSize: {x: 2.4, y: 0.96}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -414,56 +414,22 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 2.53, y: -1.185}
-      - {x: 2.24, y: -1.2049999}
-      - {x: 2.22, y: -1.225}
-      - {x: 1.9, y: -1.365}
-      - {x: 1.88, y: -1.385}
-      - {x: 2.1499999, y: -1.055}
-      - {x: 2.1299999, y: -0.875}
-      - {x: 3.1699998, y: -0.875}
-      - {x: 3.1899998, y: -0.85499996}
-      - {x: 3.22, y: -0.66499996}
-      - {x: 2.46, y: -0.48499998}
-      - {x: 3.3899999, y: 0.36499998}
-      - {x: 3.3899999, y: 0.66499996}
-      - {x: 2.6499999, y: 0.97499996}
-      - {x: 1.7199999, y: 0.97499996}
-      - {x: 1.3399999, y: 0.765}
-      - {x: 1.05, y: 0.59499997}
-      - {x: 1.03, y: 0.575}
-      - {x: 0.74, y: 0.42499998}
-      - {x: 0.71999997, y: 0.405}
-      - {x: -0.84, y: 1.155}
-      - {x: -1.26, y: 1.3349999}
-      - {x: -2.8799999, y: 1.3349999}
-      - {x: -2.8999999, y: 1.3149999}
-      - {x: -2.8999999, y: 1.135}
-      - {x: -3.9499998, y: 1.135}
-      - {x: -3.97, y: 1.115}
-      - {x: -4.42, y: 0.955}
-      - {x: -4.44, y: 0.935}
-      - {x: -4.67, y: 0.79499996}
-      - {x: -4.87, y: 0.625}
-      - {x: -4.87, y: 0.005}
-      - {x: -4.71, y: -0.155}
-      - {x: -4.68, y: -0.49499997}
-      - {x: -4.43, y: -0.715}
-      - {x: -4.08, y: -0.875}
-      - {x: -1.4399999, y: -1.235}
-      - {x: -0.17, y: -1.785}
-      - {x: 1.18, y: -1.775}
-      - {x: 1.1999999, y: -1.755}
-      - {x: 1.51, y: -1.5949999}
-      - {x: 1.51, y: -1.935}
-      - {x: 1.53, y: -1.9549999}
-      - {x: 2.23, y: -1.9549999}
-      - {x: 2.25, y: -1.935}
-      - {x: 2.4199998, y: -1.795}
-      - {x: 2.59, y: -1.5849999}
-    - - {x: 4.24, y: 0.405}
-      - {x: 4.24, y: 0.195}
-      - {x: 4.47, y: 0.195}
-      - {x: 4.47, y: 0.385}
-      - {x: 4.45, y: 0.405}
+    - - {x: 1.05, y: -0.089999996}
+      - {x: 1.14, y: -0.04}
+      - {x: 1.14, y: 0.01}
+      - {x: 1.09, y: 0.08}
+      - {x: 0.81, y: 0.17}
+      - {x: 0.39999998, y: 0.17}
+      - {x: 0.32, y: 0.19999999}
+      - {x: -0.59, y: 0.19999999}
+      - {x: -0.87, y: 0.16}
+      - {x: -1.0699999, y: 0.11}
+      - {x: -1.1999999, y: -0.01}
+      - {x: -1.1999999, y: -0.13}
+      - {x: -1.15, y: -0.19}
+      - {x: -1.13, y: -0.19999999}
+      - {x: -0.47, y: -0.19999999}
+      - {x: -0.21, y: -0.17999999}
+      - {x: -0.12, y: -0.17}
+      - {x: 0.82, y: -0.12}
   m_UseDelaunayMesh: 0

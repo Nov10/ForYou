@@ -1,5 +1,6 @@
 using Helpers;
 using UnityEngine;
+using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
 
 namespace ForYou.GamePlay
@@ -93,9 +94,10 @@ namespace ForYou.GamePlay
                         EndDetectAttackRange();
                         StartRecognizePlayerFish();
 
+                        GetComponent<NavMeshAgent>().enabled = false;
                         GetComponent<Collider2D>().enabled = false;
                         if (IsHoleOnLeftWall)
-                            transform.rotation = IsSpriteLookLeft ? Quaternion.Euler(0, 108, 0) : Quaternion.Euler(0, 0, 0);
+                            transform.rotation = IsSpriteLookLeft ? Quaternion.Euler(0, 188, 0) : Quaternion.Euler(0, 0, 0);
                         else
                             transform.rotation = IsSpriteLookLeft ? Quaternion.Euler(0, 0, 0) : Quaternion.Euler(0, 180, 0);
 
@@ -106,24 +108,28 @@ namespace ForYou.GamePlay
                     break;
                 case State.Chase:
                     {
+                        GetComponent<SpriteRenderer>().sortingLayerName = "Fish";
                         StartDetectAttackRange();
+                        GetComponent<NavMeshAgent>().enabled = true;
                         GetComponent<Collider2D>().enabled = true;
                     }
                     break;
                 case State.NearHole:
                     {
+                        GetComponent<SpriteRenderer>().sortingLayerName = "Background";
                         ThisAnimator.Play(AnimatorNameHash_NearHole);
                         DelayedFunctionHelper.InvokeDelayed(Hide2ChaseDelay, () => SetState(State.Chase));
                         ThisRigidbody.linearVelocity = Vector2.zero;
 
                         GetComponent<Collider2D>().enabled = false;
                         if (IsHoleOnLeftWall)
-                            transform.rotation = IsSpriteLookLeft ? Quaternion.Euler(0, 108, 0) : Quaternion.Euler(0, 0, 0);
+                            transform.rotation = IsSpriteLookLeft ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
                         else
                             transform.rotation = IsSpriteLookLeft ? Quaternion.Euler(0, 0, 0) : Quaternion.Euler(0, 180, 0);
                     }
                     break;
                 case State.Attack:
+                    GetComponent<NavMeshAgent>().enabled = true;
                     GetComponent<Collider2D>().enabled = true;
                     EndDetectAttackRange();
                     ThisAnimator.Play(AnimatorNameHash_Attack);
