@@ -4,6 +4,7 @@ using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace ForYou.GamePlay
@@ -72,6 +73,10 @@ namespace ForYou.GamePlay
 
         [SerializeField] TMP_Text ScoreText;
         [SerializeField] Image ScoreTextBackground;
+        string PlayerID;
+        string PlayerName;
+
+        public static int LastScore { get; private set; }
         public void GameOver_ByDie()
         {
             GameOver();
@@ -82,6 +87,11 @@ namespace ForYou.GamePlay
 
             FinalScoreBackground.CrossFadeAlpha(0.0f, 0, true);
             FinalScoreBackground.CrossFadeAlpha(1.0f, GameOverFadeTime, true);
+
+            //FindFirstObjectByType<LeaderboardClient>().SubmitScore(PlayerID, PlayerName, CalculateScore(), (success) =>
+            //{
+
+            //});
 
             DelayedFunctionHelper.InvokeDelayed(GameOverFadeTime, () =>
             {
@@ -106,6 +116,7 @@ namespace ForYou.GamePlay
         public void GameOver_ByTimer()
         {
             GameOver();
+            RankingUI.ShoudSetName = true;
             FinalScoreTextContainer_Timer.gameObject.SetActive(true);
             FinalScoreTextContainer_Timer.transform.localPosition = Vector3.zero;
             FinalScoreText_Timer.gameObject.SetActive(false);
@@ -136,6 +147,11 @@ namespace ForYou.GamePlay
                         {
                             FinalScoreText_Timer.gameObject.SetActive(true);
                             FinalScoreText_Timer.text = "최종 점수 : " + CalculateScore().ToString();
+
+                            DelayedFunctionHelper.InvokeDelayed(4.0f, () =>
+                            {
+                                SceneManager.LoadScene(ConstValue.SCENE_INDEX_Ranking);
+                            });
                         });
                     });
                 });
@@ -144,6 +160,7 @@ namespace ForYou.GamePlay
         void GameOver()
         {
             IsGameOver = true;
+            LastScore = CalculateScore();
         }
         private void OnEnable()
         {
@@ -153,6 +170,18 @@ namespace ForYou.GamePlay
             FinalScoreTextContainer.gameObject.SetActive(false);
 
             FinalScoreTextContainer.gameObject.SetActive(false);
+
+            //DelayedFunctionHelper.InvokeDelayed(0.5f, () =>
+            //{
+            //    StartCoroutine(FindFirstObjectByType<LeaderboardClient>().PostScore("Hello" + Time.time, "ThisisMyName", (int)UnityEngine.Random.value * 100, (b, s) =>
+            //    {
+            //        Debug.Log($"Post Score Result : {b}, {s}");
+            //    }));
+            //    StartCoroutine(FindFirstObjectByType<LeaderboardClient>().GetTop(3, (b, s) =>
+            //    {
+            //        Debug.Log($"Get Score Result : {b}, {s}");
+            //    }));
+            //});
 
             //DelayedFunctionHelper.InvokeDelayed(1.0f, () =>
             //{

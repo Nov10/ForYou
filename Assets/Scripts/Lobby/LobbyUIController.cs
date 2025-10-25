@@ -39,7 +39,8 @@ namespace ForYou.Lobby
         }
         void OnRankingButtonPressed()
         {
-
+            RankingUI.ShoudSetName = false;
+            SceneManager.LoadScene(ConstValue.SCENE_INDEX_Ranking);
         }
         void OnSettingButtonPressed()
         {

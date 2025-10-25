@@ -358,11 +358,30 @@ namespace Helpers
             onEnd?.Invoke();
         }
 
+        public static int ChangeAlpha(CanvasGroup group, float targetAlpha, float time)
+        {
+            ExtendedEnumerator info = new ExtendedEnumerator(_ChangeAlpha(group, targetAlpha, time, null));
+            ExtendedEnumeratorRunner.Instance.Run(info);
+            return info.ID;
+        }
         public static int ChangeAlpha(UnityEngine.UI.Image img, float targetAlpha, float time)
         {
             ExtendedEnumerator info = new ExtendedEnumerator(_ChangeAlpha(img, targetAlpha, time, null));
             ExtendedEnumeratorRunner.Instance.Run(info);
             return info.ID;
+        }
+        static IEnumerator _ChangeAlpha(CanvasGroup group, float targetAlpha, float time, Action onEnd)
+        {
+            float t = 0.0f;
+            float startAlpha = group.alpha;
+            while (t <= time)
+            {
+                t += Time.deltaTime;
+                group.alpha = Mathf.Lerp(startAlpha, targetAlpha, t / time);
+                yield return null;
+            }
+            group.alpha = targetAlpha;
+            onEnd?.Invoke();
         }
         static IEnumerator _ChangeAlpha(UnityEngine.UI.Image img, float targetAlpha, float time, Action onEnd)
         {
