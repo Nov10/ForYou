@@ -353,7 +353,7 @@ namespace ForYou.GamePlay
                 TimeSlider.gameObject.SetActive(false);
                 return;
             }
-            ScoreTextBackground.gameObject.SetActive(false);
+            ScoreTextBackground.gameObject.SetActive(true);
             ScoreText.gameObject.SetActive(true);
             TimerAnimator.gameObject.SetActive(true);
             TimeSlider.gameObject.SetActive(true);

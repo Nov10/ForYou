@@ -484,7 +484,7 @@ GameObject:
   - component: {fileID: 2439673569975757137}
   - component: {fileID: 7195829181186201462}
   m_Layer: 5
-  m_Name: Image
+  m_Name: ScoreBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3011,6 +3011,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8304735352881177748}
   - component: {fileID: 9044832097192277613}
+  - component: {fileID: 1908922122394999447}
   m_Layer: 0
   m_Name: InGameManager
   m_TagString: Untagged
@@ -3087,6 +3088,20 @@ MonoBehaviour:
   SquidBlackFX: {fileID: 5487341891257858553}
   JellyFishBlurFX: {fileID: 1810825693576028831}
   TutorialMessage: {fileID: 3799657491293236383}
+--- !u!114 &1908922122394999447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6163121938829909884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d5f51440807f75448a54c2528b9d4ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  webAppUrl: https://script.google.com/macros/s/AKfycbykXJRPUZu5CmpiSKjA74Ny219QuMilX0cuixX-ITbc2Oj__nqqqlNI8ri2M0khAy6e/exec
+  sharedSecret: 
 --- !u!1 &6224507655137282674
 GameObject:
   m_ObjectHideFlags: 0
@@ -5058,6 +5073,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7968194844154618259, guid: cad8c5259d8cf0b4aa33b23c67aa4f3f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4590664394118940121, guid: 5b8f1a5c15f2f7d45becc7292f2b3cd1, type: 3}
     - target: {fileID: 7968194844154618259, guid: cad8c5259d8cf0b4aa33b23c67aa4f3f, type: 3}
       propertyPath: m_SortingOrder
       value: -1000

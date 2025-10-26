@@ -4817,25 +4817,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1086408260}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1280898891 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6163121938829909884, guid: e13f78df480784b4a89fd9712c0fa3b7, type: 3}
-  m_PrefabInstance: {fileID: 1596788741}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1280898894
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1280898891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d5f51440807f75448a54c2528b9d4ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  webAppUrl: https://script.google.com/macros/s/AKfycbykXJRPUZu5CmpiSKjA74Ny219QuMilX0cuixX-ITbc2Oj__nqqqlNI8ri2M0khAy6e/exec
-  sharedSecret: 
 --- !u!1 &1338405514
 GameObject:
   m_ObjectHideFlags: 0
@@ -5878,6 +5859,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4900238635894171774, guid: e13f78df480784b4a89fd9712c0fa3b7, type: 3}
+      propertyPath: m_SortingOrder
+      value: -7
+      objectReference: {fileID: 0}
     - target: {fileID: 6163121938829909884, guid: e13f78df480784b4a89fd9712c0fa3b7, type: 3}
       propertyPath: m_Name
       value: InGameManager (1)
@@ -5937,10 +5922,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6163121938829909884, guid: e13f78df480784b4a89fd9712c0fa3b7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1280898894}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e13f78df480784b4a89fd9712c0fa3b7, type: 3}
 --- !u!1 &1621310036
 GameObject:
