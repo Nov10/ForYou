@@ -35,12 +35,12 @@ namespace ForYou.Lobby
 
         void OnStartButtonPressed()
         {
-            SceneManager.LoadScene(ConstValue.SCENE_INDEX_Tutorial);
+            SceneLoader.LoadScene(ConstValue.SCENE_INDEX_MainPlayScene);
         }
         void OnRankingButtonPressed()
         {
             RankingUI.ShoudSetName = false;
-            SceneManager.LoadScene(ConstValue.SCENE_INDEX_Ranking);
+            SceneLoader.LoadScene(ConstValue.SCENE_INDEX_Ranking);
         }
         void OnSettingButtonPressed()
         {

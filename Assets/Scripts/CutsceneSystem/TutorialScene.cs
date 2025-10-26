@@ -65,11 +65,11 @@ namespace ForYou.Cutscene
 
             if (isAnemoneEatPlankton == true)
             {
-                SceneManager.LoadScene(ConstValue.SCENE_INDEX_Stage1);
+                SceneLoader.LoadScene(ConstValue.SCENE_INDEX_Stage1);
             }
             else
             {
-                SceneManager.LoadScene(ConstValue.SCENE_INDEX_Tutorial);
+                SceneLoader.LoadScene(ConstValue.SCENE_INDEX_Tutorial);
             }
         }
         public bool CUTSCENE_ENDFUNCTION_CheckSuccess()

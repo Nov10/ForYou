@@ -52,7 +52,7 @@ namespace ForYou.Cutscene
             if(Player.IsPlaying == false && Executed == false)
             {
                 Executed = true;
-                SceneManager.LoadScene(ConstValue.SCENE_INDEX_MainPlayScene);
+                SceneLoader.LoadScene(ConstValue.SCENE_INDEX_MainPlayScene);
             }
         }
     }

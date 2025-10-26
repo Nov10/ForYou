@@ -1,7 +1,6 @@
 using ForYou.GamePlay;
 using Helpers;
 using TMPro;
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,7 +17,7 @@ public class RankingUI : MonoBehaviour
     {
         CloseButton.onClick.AddListener(() =>
         {
-            SceneManager.LoadScene(ConstValue.SCENE_INDEX_Title);
+            SceneLoader.LoadScene(ConstValue.SCENE_INDEX_Title);
         });
         StartRankingUI(ShoudSetName, InGameManager.LastScore);
     }

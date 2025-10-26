@@ -15,7 +15,7 @@ namespace ForYou.Cutscene
             {
                 DelayedFunctionHelper.InvokeDelayed(SceneTransitionDelay, () =>
                 {
-                    SceneManager.LoadScene(ConstValue.SCENE_INDEX_Stage2);
+                    SceneLoader.LoadScene(ConstValue.SCENE_INDEX_Stage2);
                 });
 
 

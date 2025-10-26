@@ -150,7 +150,7 @@ namespace ForYou.GamePlay
 
                             DelayedFunctionHelper.InvokeDelayed(4.0f, () =>
                             {
-                                SceneManager.LoadScene(ConstValue.SCENE_INDEX_Ranking);
+                                SceneLoader.LoadScene(ConstValue.SCENE_INDEX_Ranking);
                             });
                         });
                     });
