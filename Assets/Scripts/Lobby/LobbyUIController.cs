@@ -35,7 +35,7 @@ namespace ForYou.Lobby
 
         void OnStartButtonPressed()
         {
-            SceneLoader.LoadScene(ConstValue.SCENE_INDEX_MainPlayScene);
+            SceneLoader.LoadScene(ConstValue.SCENE_INDEX_Tutorial);
         }
         void OnRankingButtonPressed()
         {

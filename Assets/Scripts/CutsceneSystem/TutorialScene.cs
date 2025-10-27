@@ -109,5 +109,13 @@ namespace ForYou.Cutscene
             }
             return true;
         }
+        public void CUTSCENE_FUNCTION_GoToMainPlayScene()
+        {
+            SceneLoader.LoadScene(ConstValue.SCENE_INDEX_MainPlayScene);
+        }
+        public bool CUTSCENE_ENDFUNCTION_GoToMainPlayScene()
+        {
+            return false;
+        }
     }
 }

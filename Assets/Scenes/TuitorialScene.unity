@@ -150,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Elements:
   - rid: 1982472677625430261
+  - rid: 1982472865873920225
   - rid: 1982472277290385523
   - rid: 1982472274260525246
   - rid: 1982472274260525247
@@ -699,6 +700,11 @@ MonoBehaviour:
       data:
         PlayWithNextElement: 0
         Duration: 0.14
+    - rid: 1982472865873920225
+      type: {class: Delay, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Duration: 4
     - rid: 3402255282952732740
       type: {class: SpeechBubbleText, ns: ForYou.Cutscene, asm: Assembly-CSharp}
       data:
@@ -2728,6 +2734,7 @@ MonoBehaviour:
   - rid: 1982472589742440591
   - rid: 1982472589742440592
   - rid: 1982472589742440593
+  - rid: 1982472865873920221
   references:
     version: 2
     RefIds:
@@ -2840,6 +2847,13 @@ MonoBehaviour:
         Offset: {x: -1.11, y: -0.99}
         Duration: 0
         AutoReturn: 0
+    - rid: 1982472865873920221
+      type: {class: CustomFunctionPlayer, ns: ForYou.Cutscene, asm: Assembly-CSharp}
+      data:
+        PlayWithNextElement: 0
+        Target: {fileID: 1338405515}
+        FunctionName: CUTSCENE_FUNCTION_GoToMainPlayScene
+        EndCheckFunction: CUTSCENE_ENDFUNCTION_GoToMainPlayScene
 --- !u!4 &1667968023
 Transform:
   m_ObjectHideFlags: 0
