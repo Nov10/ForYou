@@ -13,8 +13,8 @@ public class ExtendedSentence
     [SerializeField, Tooltip("Shock 파형 계단 단계 수(0 또는 1이면 비활성)")] public int ShockStairSteps = 0;
 
     [Header("Chat Bubble")]
-    [SerializeField] public Vector2 Padding = new Vector2(20, 20);
-    [SerializeField] public Vector2 MinSize = new Vector2(80, 50);
+    public Vector2 Padding { get; private set; } = new Vector2(20, 20);
+    public Vector2 MinSize { get; private set; } = new Vector2(80, 50);
     [SerializeField] public float ChatBubbleScaleDuration = 0.18f;
     [SerializeField] public float ChatKeepAliveDurationBeforeBubbleOff = 1.0f;
 

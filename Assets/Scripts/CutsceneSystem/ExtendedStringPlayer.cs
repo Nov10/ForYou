@@ -42,6 +42,7 @@ public class ExtendedStringPlayer : MonoBehaviour
             var parent = Text.transform.parent;
             parent.transform.localScale = Vector3.one * 0.4f;
             ObjectMoveHelper.ScaleObject(parent, Vector3.one, sentence.ChatBubbleScaleDuration);
+            ObjectMoveHelper.ChangeAlpha(parent.GetComponent<CanvasGroup>(), 1.0f, Sentence.ChatBubbleScaleDuration);
             DelayedFunctionHelper.InvokeDelayed(sentence.ChatBubbleScaleDuration, () =>
             {
                 IsTextPlaying = true;
@@ -174,6 +175,7 @@ public class ExtendedStringPlayer : MonoBehaviour
                     {
                         var parent = Text.transform.parent;
                         ObjectMoveHelper.ScaleObject(parent, Vector3.one * 0.4f, Sentence.ChatBubbleScaleDuration);
+                        ObjectMoveHelper.ChangeAlpha(parent.GetComponent<CanvasGroup>(), 0.0f, Sentence.ChatBubbleScaleDuration);
                         DelayedFunctionHelper.InvokeDelayed(Sentence.ChatBubbleScaleDuration, () =>
                         {
                             IsChatBubbleOffAnimationEnd = true;
