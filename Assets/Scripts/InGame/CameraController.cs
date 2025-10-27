@@ -7,11 +7,15 @@ namespace ForYou.GamePlay
         public Transform FollowTarget;
         [SerializeField] Transform OffsetObject;
         int OffsetID;
-        [SerializeField] float FollowSnapping = 5;
+        [SerializeField] public float FollowSnapping = 5;
         [SerializeField] float CameraZPosition = -10.0f;
+
+        public bool Follow = true;
 
         private void FixedUpdate()
         {
+            if (Follow == false)
+                return;
             var nowPosition = transform.position;
             var targetPosition = FollowTarget.position;
 
@@ -35,7 +39,7 @@ namespace ForYou.GamePlay
                 return;
             }
 
-            OffsetID = ObjectMoveHelper.MoveObjectSmooth(OffsetObject, offset, duration, ePosition.Local);
+            OffsetID = ObjectMoveHelper.MoveObjectSmooth_FixedUpdate(OffsetObject, offset, duration, ePosition.Local);
         }
     }
 }

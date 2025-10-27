@@ -162,6 +162,16 @@ namespace Helpers
             ExtendedEnumeratorRunner.Instance.Run(info);
             return info.ID;
         }
+        /// <summary>
+        /// mover를 현재 위치에서 target까지 time의 시간동안 '부드러운(SmootherStep)' 이징으로 이동시킵니다. ID를 반환합니다.
+        /// </summary>
+        /// <param name="position">좌표 기준(World, Local)</param>
+        public static int MoveObjectSmooth_FixedUpdate(Transform mover, Vector3 target, float time, ePosition position)
+        {
+            ExtendedEnumerator info = new ExtendedEnumerator(_MoveObjectSmooth_FixedUpdate(mover, target, time, position, null));
+            ExtendedEnumeratorRunner.Instance.Run(info);
+            return info.ID;
+        }
 
         /// <summary>
         /// mover를 현재 위치에서 target까지 time의 시간동안 '부드러운(SmootherStep)' 이징으로 이동시킵니다. 종료 시 onEnd를 호출합니다.
@@ -173,7 +183,6 @@ namespace Helpers
             ExtendedEnumeratorRunner.Instance.Run(info);
             return info.ID;
         }
-
         static IEnumerator _MoveObjectSmooth(Transform mover, Vector3 target, float time, ePosition position, Action onEnd)
         {
             // 즉시 이동 케이스 방어
@@ -213,6 +222,52 @@ namespace Helpers
 
                     mover.localPosition = Vector3.Lerp(startPos, target, s);
                     yield return null;
+                }
+                mover.localPosition = target; // 최종 보정
+            }
+
+            onEnd?.Invoke();
+        }
+
+        static IEnumerator _MoveObjectSmooth_FixedUpdate(Transform mover, Vector3 target, float time, ePosition position, Action onEnd)
+        {
+            // 즉시 이동 케이스 방어
+            if (time <= 0f)
+            {
+                if (position == ePosition.World) mover.position = target;
+                else mover.localPosition = target;
+
+                onEnd?.Invoke();
+                yield break;
+            }
+
+            float t = 0f;
+            if (position == ePosition.World)
+            {
+                Vector3 startPos = mover.position;
+                while (t < time)
+                {
+                    t += Time.deltaTime;
+                    float u = Mathf.Clamp01(t / time);
+                    // SmootherStep: 6x^5 - 15x^4 + 10x^3  (양 끝 미분 0 → 더 매끈)
+                    float s = u * u * u * (u * (u * 6f - 15f) + 10f);
+
+                    mover.position = Vector3.Lerp(startPos, target, s);
+                    yield return new WaitForFixedUpdate();
+                }
+                mover.position = target; // 최종 보정
+            }
+            else // Local
+            {
+                Vector3 startPos = mover.localPosition;
+                while (t < time)
+                {
+                    t += Time.deltaTime;
+                    float u = Mathf.Clamp01(t / time);
+                    float s = u * u * u * (u * (u * 6f - 15f) + 10f);
+
+                    mover.localPosition = Vector3.Lerp(startPos, target, s);
+                    yield return new WaitForFixedUpdate();
                 }
                 mover.localPosition = target; // 최종 보정
             }

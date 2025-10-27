@@ -10,7 +10,12 @@ namespace ForYou.Cutscene
 {
     public class CutscenePlayer : MonoBehaviour
     {
-        [SerializeField] CutsceneData Data;
+        [SerializeField] CutsceneData[] Datas;
+        int NowDataIndex;
+        CutsceneData Data
+        {
+            get { return Datas[NowDataIndex]; }
+        }
         [SerializeField] bool PlayOnStart;
         bool Started = false;
         private void Start()
@@ -20,10 +25,12 @@ namespace ForYou.Cutscene
         }
 
         int NowIndex = 0;
+        [SerializeField] int StartIndex;
 
         public void Play()
         {
-            NowIndex = -1;
+            //NowIndex = -1;
+            NowIndex = StartIndex - 1;
             PlayNext();
             Started = true;
 
@@ -64,8 +71,16 @@ namespace ForYou.Cutscene
             NowIndex++;
             if (NowIndex >= Data.Elements.Length)
             {
-                FindFirstObjectByType<Anemone>()?.SetActiveGageSlider(true);
-                return;
+                if(NowDataIndex < Datas.Length - 1)
+                {
+                    NowDataIndex++;
+                    NowIndex = 0;
+                }
+                else
+                {
+                    FindFirstObjectByType<Anemone>()?.SetActiveGageSlider(true);
+                    return;
+                }
             }
             StartCoroutine(_PlaySingleElement(Data.Elements[NowIndex], PlayNext));
         }
@@ -152,19 +167,17 @@ namespace ForYou.Cutscene
                     playerRigidBody.linearVelocity = Vector2.Lerp(playerRigidBody.linearVelocity, diff.normalized * player.GetTargetSpeed(), 10 * Time.fixedDeltaTime);
                     yield return new WaitForFixedUpdate();
                 }
-                while(playerRigidBody.linearVelocity.magnitude > 0.4f)
+                if (move.AutoReturnToPlayerControlMode == true)
+                    player.ChangeControlMode(ControlMode.Self);
+                if (element.PlayWithNextElement == false)
+                    onEnd();
+                while (playerRigidBody.linearVelocity.magnitude > 0.4f)
                 {
                     playerRigidBody.linearVelocity = Vector2.Lerp(playerRigidBody.linearVelocity, Vector2.zero, 5 * Time.fixedDeltaTime);
                     yield return new WaitForFixedUpdate();
                 }
 
                 playerRigidBody.linearVelocity = Vector2.zero;
-                player.InputDirectionByCutscene = Vector2.zero;
-
-                if (move.AutoReturnToPlayerControlMode == true)
-                    player.ChangeControlMode(ControlMode.Self);
-                if (element.PlayWithNextElement == false)
-                    onEnd();
             }
             else if(type == typeof(ShakeCamera))
             {
@@ -229,6 +242,14 @@ namespace ForYou.Cutscene
                 yield return new WaitForSeconds(playAnim.Duration);
                 if (element.PlayWithNextElement == false)
                     onEnd();
+            }
+            else if(type == typeof(SetActiveCameraFollowTarget))
+            {
+                var active = (SetActiveCameraFollowTarget)element;
+                var c = FindFirstObjectByType<CameraController>();
+                c.Follow = active.IsActive;
+                c.FollowSnapping = active.FollowSnapping;
+                onEnd();
             }
         }
     }
