@@ -10,7 +10,7 @@ public class Anemone : MonoBehaviour
     [SerializeField] int Gage;
     [SerializeField] int[] GageThresholdsForLevelUp;
     [SerializeField] TMP_Text GageText;
-    [SerializeField] Slider GageSlider;
+    [SerializeField] BlockGage GageSlider;
 
     [SerializeField] EnemyFishDetector AttackOrEatRange;
 
@@ -78,7 +78,8 @@ public class Anemone : MonoBehaviour
         Gage += delta;
         SetSizeByLevel();
         GageText.text = $"{GetNetGage()} / {GetGageThreshold(GetNowLevel())}";
-        GageSlider.value = GetNetGage() / (float)GetGageThreshold(GetNowLevel());
+        //GageSlider.value = GetNetGage() / (float)GetGageThreshold(GetNowLevel());
+        GageSlider.SetGage(GetNetGage(), GetGageThreshold(GetNowLevel()));
     }
 
     public int GetGage()
