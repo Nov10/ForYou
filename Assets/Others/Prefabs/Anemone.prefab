@@ -254,6 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3656b848c9a6a664bbbe42799651517a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BackgroundImage: {fileID: 0}
   BlockImagePrefab: {fileID: 6557115619470100379, guid: 1202f0af47a61a042ae16607dcd29701, type: 3}
   MinWidth: 18.7
   MaxWidth: 81.9
@@ -264,6 +265,7 @@ MonoBehaviour:
   Max: 2
   MinBlock: 2
   MaxBlock: 15
+  Offset: 0
 --- !u!1 &2581467868026217843
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,7 +552,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Gage: 0
-  GageThresholdsForLevelUp: 02000000030000000400000005000000
+  GageThresholdsForLevelUp: 03000000060000000a0000000f000000
   GageText: {fileID: 3717299181948646988}
   GageSlider: {fileID: 3311406598443396077}
   AttackOrEatRange: {fileID: 1752516292326177376}

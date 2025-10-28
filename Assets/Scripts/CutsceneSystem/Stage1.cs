@@ -11,18 +11,7 @@ namespace ForYou.Cutscene
         bool Executed = false;
         private void Update()
         {
-            if(InGameManager.Instance.IsGameOver == true && Executed == false)
-            {
-                DelayedFunctionHelper.InvokeDelayed(SceneTransitionDelay, () =>
-                {
-                    SceneLoader.LoadScene(ConstValue.SCENE_INDEX_Stage2);
-                });
 
-
-
-
-                Executed = true;
-            }
         }
     }
 }

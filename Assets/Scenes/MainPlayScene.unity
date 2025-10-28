@@ -5946,10 +5946,26 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4900238635894171774, guid: e13f78df480784b4a89fd9712c0fa3b7, type: 3}
-      propertyPath: m_SortingOrder
-      value: -7
+    - target: {fileID: 844950644226009347, guid: e13f78df480784b4a89fd9712c0fa3b7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.66
       objectReference: {fileID: 0}
+    - target: {fileID: 844950644226009347, guid: e13f78df480784b4a89fd9712c0fa3b7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084555219798750899, guid: e13f78df480784b4a89fd9712c0fa3b7, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 67ce6d4341ab605439c0ce3bbadf46eb, type: 2}
+    - target: {fileID: 2924513595964184711, guid: e13f78df480784b4a89fd9712c0fa3b7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2924513595964184711, guid: e13f78df480784b4a89fd9712c0fa3b7, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 08392aef073bd0843be52493a4c565b2, type: 2}
     - target: {fileID: 6163121938829909884, guid: e13f78df480784b4a89fd9712c0fa3b7, type: 3}
       propertyPath: m_Name
       value: InGameManager (1)
@@ -5999,10 +6015,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9044832097192277613, guid: e13f78df480784b4a89fd9712c0fa3b7, type: 3}
-      propertyPath: Timer
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 9044832097192277613, guid: e13f78df480784b4a89fd9712c0fa3b7, type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 280634215}
@@ -6010,7 +6022,11 @@ PrefabInstance:
       propertyPath: Anemone
       value: 
       objectReference: {fileID: 500081867}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3115129504126298299, guid: e13f78df480784b4a89fd9712c0fa3b7, type: 3}
+    - {fileID: 2137552233292085796, guid: e13f78df480784b4a89fd9712c0fa3b7, type: 3}
+    - {fileID: 7976330137468232446, guid: e13f78df480784b4a89fd9712c0fa3b7, type: 3}
+    - {fileID: 1789731568622138146, guid: e13f78df480784b4a89fd9712c0fa3b7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

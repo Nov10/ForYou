@@ -7,8 +7,6 @@ public class ConstValue
     public const int SCENE_INDEX_Title =            0;
     public const int SCENE_INDEX_LoadingScene =     SCENE_INDEX_Title + 1;
     public const int SCENE_INDEX_Tutorial = SCENE_INDEX_LoadingScene + 1;
-    public const int SCENE_INDEX_Stage1 = SCENE_INDEX_Tutorial + 1;
-    public const int SCENE_INDEX_Stage2 = SCENE_INDEX_Stage1 + 1;
-    public const int SCENE_INDEX_MainPlayScene = SCENE_INDEX_Stage2 + 1;
+    public const int SCENE_INDEX_MainPlayScene = SCENE_INDEX_Tutorial + 1;
     public const int SCENE_INDEX_Ranking = SCENE_INDEX_MainPlayScene + 1;
 }

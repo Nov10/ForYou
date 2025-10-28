@@ -27,7 +27,8 @@ public class Anemone : MonoBehaviour
                 return i + 1;
             }
         }
-        return GageThresholdsForLevelUp.Length + 1;
+        //최대 레벨
+        return GageThresholdsForLevelUp.Length;
     }
 
     int GetGageThreshold(int level)
@@ -73,13 +74,31 @@ public class Anemone : MonoBehaviour
     {
         GageSlider.gameObject.SetActive(active);
     }
+    int GetTotalGage()
+    {
+        int total = 0;
+        foreach (var t in GageThresholdsForLevelUp)
+        {
+            total += t;
+        }
+        return total;
+    }
     public void UpGage(int delta)
     {
         Gage += delta;
-        SetSizeByLevel();
-        GageText.text = $"{GetNetGage()} / {GetGageThreshold(GetNowLevel())}";
+        if (Gage > GetTotalGage())
+        {
+            //최대 레벨에 도달한 경우
+            Gage = GetTotalGage();
+            GageSlider.SetGage(GetGageThreshold(GetNowLevel()), GetGageThreshold(GetNowLevel()));
+        }
+        else
+        {
+            GageSlider.SetGage(GetNetGage(), GetGageThreshold(GetNowLevel()));
+        }
+            SetSizeByLevel();
+        //GageText.text = $"{GetNetGage()} / {GetGageThreshold(GetNowLevel())}";
         //GageSlider.value = GetNetGage() / (float)GetGageThreshold(GetNowLevel());
-        GageSlider.SetGage(GetNetGage(), GetGageThreshold(GetNowLevel()));
     }
 
     public int GetGage()
