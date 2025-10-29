@@ -370,7 +370,7 @@ namespace ForYou.GamePlay
 
                 PlayerInput.Disable();
                 ThisAnimator.Play(AnimatorNameHash_Die);
-                DelayedFunctionHelper.InvokeDelayed(1.0f, () => gameObject.SetActive(false));
+                DelayedFunctionHelper.InvokeDelayed(1.0f, () => gameObject?.SetActive(false));
             }
             else
             {

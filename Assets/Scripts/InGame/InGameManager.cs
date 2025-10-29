@@ -79,6 +79,7 @@ namespace ForYou.GamePlay
         public static int LastScore { get; private set; }
         public void GameOver_ByDie()
         {
+            if (IsCutsceneMode) return;
             GameOver();
 
             FinalScoreTextContainer.gameObject.SetActive(true);
@@ -122,6 +123,8 @@ namespace ForYou.GamePlay
 
         public void GameOver_ByTimer()
         {
+            if (IsCutsceneMode) return;
+
             GameOver();
             RankingUI.ShoudSetName = true;
             FinalScoreTextContainer_Timer.gameObject.SetActive(true);
@@ -365,7 +368,7 @@ namespace ForYou.GamePlay
             TimerAnimator.gameObject.SetActive(true);
             TimeSlider.gameObject.SetActive(true);
             ElaspedTime += Time.deltaTime;
-            TimeSlider.value = GetElapsedTimeRate();
+            TimeSlider.value = 1 - GetElapsedTimeRate();
 
             if(GetLeftTimeRate() * Timer <= HurryTimeThreshold)
             {

@@ -1,3 +1,4 @@
+using ForYou.Cutscene;
 using Helpers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -48,6 +49,8 @@ namespace ForYou.Lobby
 
         void OnStartButtonPressed()
         {
+            TutorialScene.StartCutSceneDataIndex = 0;
+            TutorialScene.StartCutSceneElementIndex = 0;
             SceneLoader.LoadScene(ConstValue.SCENE_INDEX_Tutorial);
         }
         void OnRankingButtonPressed()

@@ -2300,6 +2300,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1084555219798750899, guid: e13f78df480784b4a89fd9712c0fa3b7, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: fe2a614c6bfcbcc49a286b0b4dee8cb4, type: 2}
+    - target: {fileID: 2924513595964184711, guid: e13f78df480784b4a89fd9712c0fa3b7, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: c7c549317dd63074a85ac5f8c32a69e5, type: 2}
     - target: {fileID: 6163121938829909884, guid: e13f78df480784b4a89fd9712c0fa3b7, type: 3}
       propertyPath: m_Name
       value: InGameManager (1)
@@ -2421,6 +2429,7 @@ MonoBehaviour:
   - {fileID: 1950372319}
   - {fileID: 1156770215}
   - {fileID: 1667968022}
+  NowDataIndex: 0
   PlayOnStart: 1
   StartIndex: 0
   PlayerPrefab: {fileID: 1891429155901928894, guid: 0bcc9110797a71d4586afec4f92798d0, type: 3}

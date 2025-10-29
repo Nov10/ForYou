@@ -11,7 +11,7 @@ namespace ForYou.Cutscene
     public class CutscenePlayer : MonoBehaviour
     {
         [SerializeField] CutsceneData[] Datas;
-        int NowDataIndex;
+        public int NowDataIndex;
         CutsceneData Data
         {
             get { return Datas[NowDataIndex]; }
@@ -25,7 +25,7 @@ namespace ForYou.Cutscene
         }
 
         int NowIndex = 0;
-        [SerializeField] int StartIndex;
+        [SerializeField] public int StartIndex;
 
         public void Play()
         {

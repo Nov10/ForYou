@@ -7,6 +7,13 @@ namespace ForYou.Cutscene
 {
     public class TutorialScene : MonoBehaviour
     {
+        public static int StartCutSceneDataIndex = 0;
+        public static int StartCutSceneElementIndex = 0;
+        private void Awake()
+        {
+            FindFirstObjectByType<CutscenePlayer>().NowDataIndex = StartCutSceneDataIndex;
+            FindFirstObjectByType<CutscenePlayer>().StartIndex = StartCutSceneElementIndex;
+        }
         //bool SnatchedPlankton;
         public void CUTSCENE_FUNCTION_TakePlankton()
         {
@@ -87,7 +94,16 @@ namespace ForYou.Cutscene
         {
             if (FindFirstObjectByType<PlayerFish>().DoesHavePlankton == false)
             {
-                //«√∂˚≈©≈Ê¿ª πˆ∑»¿Ω -> ¡æ∑·
+                if (FindFirstObjectByType<Anemone>().GetGage() < 2)
+                {
+                    //«√∂˚≈©≈Ê¿ª πˆ∑»¿Ω -> ¡æ∑·
+                    StartCutSceneDataIndex = 1;
+                    StartCutSceneElementIndex = 0;
+                    SceneLoader.LoadScene(ConstValue.SCENE_INDEX_Tutorial);
+
+                    return false;
+                }
+                //∏ªπÃ¿ﬂø°∞‘ ∞°¡Æ¥Ÿ ¡·¿Ω
                 return false;
             }
             return true;
