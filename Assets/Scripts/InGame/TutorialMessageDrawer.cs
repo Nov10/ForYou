@@ -29,7 +29,7 @@ namespace ForYou.GamePlay
         {
             if (IsEnd == true)
                 return;
-            if(Input.GetKeyDown(KeyCode.Return))
+            if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space))
             {
                 Background.SetActive(false);
                 Destroy(Message);

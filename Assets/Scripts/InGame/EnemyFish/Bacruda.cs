@@ -142,7 +142,9 @@ namespace ForYou.GamePlay
         {
             SetState(State.Patrol);
             EndRecognizePlayerFish();
-            DelayedFunctionHelper.InvokeDelayed(3.0f, StartRecognizePlayerFish);
+            DelayedFunctionHelper.InvokeDelayed(ConstValue.Delay_NotRecognizeAttackedByAnemone, StartRecognizePlayerFish);
+            EndDetectAttackRange();
+            DelayedFunctionHelper.InvokeDelayed(ConstValue.Delay_NotRecognizeAttackedByAnemone, StartDetectAttackRange);
         }
 
         protected override float GetTargetSpeedByNowFishState()

@@ -173,14 +173,14 @@ public class Anemone : MonoBehaviour
             //ÂÑ¾Æ³»±â
             fish.OnAttackedByAnemone(this);
 
-            if(Detector.IsDetectingPlayerFish)
+            DelayedFunctionHelper.InvokeDelayed(2.0f, () =>
             {
-                var player = FindFirstObjectByType<PlayerFish>();
-                DelayedFunctionHelper.InvokeDelayed(1.0f, () =>
+                if (Detector.IsDetectingPlayerFish)
                 {
+                    var player = FindFirstObjectByType<PlayerFish>();
                     player.AddForceByAnemone(Vector2.up * ForcePower, ForceDuration);
-                });
-            }
+                }
+            });
         }
     }
 

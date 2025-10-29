@@ -80,7 +80,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 1.13
+  m_Radius: 2.67
 --- !u!1 &3572298190111825944
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,9 +336,11 @@ MonoBehaviour:
   RecognizePlayerFishRange: {fileID: 1925079241194633725}
   AttackPlayerFishRange: {fileID: 8930984606978111080}
   NormalSpeed: 2
-  ChaseSpeed: 1
+  ChaseSpeed: 3
   Snapping: 5
   _IsSpriteLookLeft: 1
+  YSpeedThresholdForRotation: 0.1
+  ZAngleHalfRangeForRotation: 15
   DashSpeed: 7.5
   AnimationName_Idle: Idle
   AnimationName_Attack: Attack
@@ -347,8 +349,8 @@ MonoBehaviour:
   AnimationName_Dash: Dash
   AnimationName_Eaten: Eaten
   PatrolRadius: 5.8
-  DashDistance: 7.12
-  DashAllowHeight: 0.38
+  DashDistance: 10.45
+  DashAllowHeight: 0.55
 --- !u!195 &1467886725666509472
 NavMeshAgent:
   m_ObjectHideFlags: 0

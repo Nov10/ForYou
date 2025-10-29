@@ -92,6 +92,7 @@ namespace ForYou.GamePlay
             //{
 
             //});
+            RankingUI.ShoudSetName = true;
 
             DelayedFunctionHelper.InvokeDelayed(GameOverFadeTime, () =>
             {
@@ -107,6 +108,12 @@ namespace ForYou.GamePlay
                 {
                     FinalScoreText.gameObject.SetActive(true);
                     FinalScoreText.text = "최종 점수 : " + CalculateScore().ToString();
+
+
+                    DelayedFunctionHelper.InvokeDelayed(4.0f, () =>
+                    {
+                        SceneLoader.LoadScene(ConstValue.SCENE_INDEX_Ranking);
+                    });
                 });
 
             });

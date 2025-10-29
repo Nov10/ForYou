@@ -158,7 +158,9 @@ namespace ForYou.GamePlay
         {
             SetState(State.Return2Hide);
             EndRecognizePlayerFish();
-            DelayedFunctionHelper.InvokeDelayed(3.0f, StartRecognizePlayerFish);
+            DelayedFunctionHelper.InvokeDelayed(ConstValue.Delay_NotRecognizeAttackedByAnemone, StartRecognizePlayerFish);
+            EndDetectAttackRange();
+            DelayedFunctionHelper.InvokeDelayed(ConstValue.Delay_NotRecognizeAttackedByAnemone, StartDetectAttackRange);
         }
 
         public override void OnPlayerFishInAttackRange(PlayerFish fish)

@@ -196,10 +196,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RecognizePlayerFishRange: {fileID: 4834597137862432065}
   AttackPlayerFishRange: {fileID: 7412434649120570621}
-  NormalSpeed: 0.5
-  ChaseSpeed: 0.6
+  NormalSpeed: 2.5
+  ChaseSpeed: 4
   Snapping: 5
   _IsSpriteLookLeft: 1
+  YSpeedThresholdForRotation: 0.1
+  ZAngleHalfRangeForRotation: 15
   AnimationName_Idle: Idle
   AnimationName_Attack: Attack
   AnimationName_Moving_Patrol: Idle
