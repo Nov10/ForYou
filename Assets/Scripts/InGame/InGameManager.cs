@@ -414,7 +414,7 @@ namespace ForYou.GamePlay
             {
                 TimerAnimator.Play("Hurry");
                 HurryText.gameObject.SetActive(true);
-                HurryText.text = (GetLeftTimeRate() * Timer).ToString("F2") + "초 남았어!";
+                HurryText.text = (GetLeftTimeRate() * Timer).ToString("F1") + "초 남았어!";
             }
             else
             {
@@ -428,7 +428,17 @@ namespace ForYou.GamePlay
                         TextThresholdsTriggered[i] = true;
                         TimerAnimator.Play("Text");
                         HurryText.gameObject.SetActive(true);
-                        HurryText.text = t.ToString() + "초 남았어!";
+                        string ConvertTime2String(float t)
+                        {
+                            int minutes = (int)(t / 60);
+                            int seconds = (int)(t % 60);
+                            if(seconds == 0)
+                                return minutes.ToString() + "분 남았어!";
+                            if (minutes == 0)
+                                return seconds.ToString() + "초 남았어!";
+                            return minutes.ToString() + "분 " + seconds.ToString() + "초 남았어!";
+                        }
+                        HurryText.text = ConvertTime2String(t) + "초 남았어!";
 
                         DelayedFunctionHelper.InvokeDelayed(2.0f, () =>
                         {
