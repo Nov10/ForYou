@@ -62,6 +62,14 @@ namespace ForYou.GamePlay
         public void SetState(State state)
         {
             NowState = state;
+            if (state == State.Attack || state == State.Chase || state == State.Attack_BlackFX)
+            {
+                InGameManager.Instance.AddAsChasingEnemy(transform.GetInstanceID());
+            }
+            else
+            {
+                InGameManager.Instance.RemoveChasingEnemy(transform.GetInstanceID());
+            }
             switch (NowState)
             {
                 case State.Patrol:

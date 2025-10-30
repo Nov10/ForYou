@@ -39,7 +39,10 @@ namespace ForYou.Cutscene
             if (s == null) s = target.gameObject.AddComponent<CameraShaker>();
             return s;
         }
-
+        private void Awake()
+        {
+            ShakeSound = GetComponent<AudioSource>();
+        }
         /// <summary>
         /// 흔들기 요청(정적 헬퍼). 기본적으로 Camera.main.transform에 적용
         /// </summary>
@@ -81,7 +84,7 @@ namespace ForYou.Cutscene
                 seed = UnityEngine.Random.Range(0, 999999)
             });
         }
-
+        AudioSource ShakeSound;
         private void LateUpdate()
         {
             // 1) 현재 트랜스폼에서 '직전에 적용한 오프셋' 제거 → 드리프트 방지
@@ -116,6 +119,8 @@ namespace ForYou.Cutscene
 
                 if (p >= 1f)
                 {
+                    if((i - 1) >= 0)
+                        ShakeSound.Play();
                     _reqs.RemoveAt(i);
                     continue;
                 }

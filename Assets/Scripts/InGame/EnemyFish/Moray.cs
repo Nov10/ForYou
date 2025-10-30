@@ -87,6 +87,14 @@ namespace ForYou.GamePlay
         void SetState(State state)
         {
             NowState = state;
+            if (state == State.Attack || state == State.Chase)
+            {
+                InGameManager.Instance.AddAsChasingEnemy(transform.GetInstanceID());
+            }
+            else
+            {
+                InGameManager.Instance.RemoveChasingEnemy(transform.GetInstanceID());
+            }
             switch (NowState)
             {
                 case State.Hide:

@@ -1,6 +1,7 @@
 using ForYou.Cutscene;
 using Helpers;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -43,6 +44,10 @@ namespace ForYou.GamePlay
 
         public bool IsGameOver { get; private set; } = false;
         public bool IsCutsceneMode;
+        [SerializeField] AudioSource GameOverSound_ByDie;
+        [SerializeField] AudioSource GameOverSound_ByTimer;
+        [SerializeField] AudioSource BGM_Chase;
+        [SerializeField] AudioSource BGM_Normal;
 
         [SerializeField] int Score;
         [Header("GameOver By Die")]
@@ -75,13 +80,48 @@ namespace ForYou.GamePlay
         [SerializeField] Image ScoreTextBackground;
         string PlayerID;
         string PlayerName;
-
+        int _ChasingEnemyCount = 0;
+        HashSet<int> ChasingEnemyIds;
+        public void AddAsChasingEnemy(int id)
+        {
+            if(ChasingEnemyIds.Contains(id) == false)
+            {
+                ChasingEnemyIds.Add(id);
+                ChasingEnemyCount++;
+            }
+        }
+        public void RemoveChasingEnemy(int id)
+        {
+            if (ChasingEnemyIds.Contains(id) == true)
+            {
+                ChasingEnemyIds.Remove(id);
+                ChasingEnemyCount--;
+            }
+        }
+        int ChasingEnemyCount
+        {
+            get { return _ChasingEnemyCount; }
+            set
+            {
+                _ChasingEnemyCount = value;
+                if(_ChasingEnemyCount >= 1)
+                {
+                    BGM_Chase.volume = 1.0f;
+                    BGM_Normal.volume = 0.0f;
+                }
+                else
+                {
+                    BGM_Chase.volume = 0.0f;
+                    BGM_Normal.volume = 1.0f;
+                }
+            }
+        }
         public static int LastScore { get; private set; }
         public void GameOver_ByDie()
         {
             if (IsCutsceneMode) return;
             GameOver();
-
+            GameOverSound_ByDie.Play();
             FinalScoreTextContainer.gameObject.SetActive(true);
             FinalScoreTextContainer.transform.localPosition = Vector3.zero;
             FinalScoreText.gameObject.SetActive(false);
@@ -124,7 +164,7 @@ namespace ForYou.GamePlay
         public void GameOver_ByTimer()
         {
             if (IsCutsceneMode) return;
-
+            GameOverSound_ByTimer.Play();
             GameOver();
             RankingUI.ShoudSetName = true;
             FinalScoreTextContainer_Timer.gameObject.SetActive(true);

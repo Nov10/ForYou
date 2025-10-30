@@ -43,6 +43,10 @@ namespace ForYou.GamePlay
              get { return NowVelocity.magnitude > 0.1f; } //Velocity ±â¹Ý
         }
 
+        private void OnDestroy()
+        {
+            InGameManager.Instance.RemoveChasingEnemy(transform.GetInstanceID());
+        }
         protected void StartDetectAttackRange()
         {
             AttackPlayerFishRange.StartDetect();

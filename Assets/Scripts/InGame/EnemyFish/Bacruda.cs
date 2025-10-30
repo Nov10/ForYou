@@ -162,6 +162,14 @@ namespace ForYou.GamePlay
         void SetState(State state)
         {
             NowState = state;
+            if(state == State.Attack || state == State.Chase || state == State.Dash)
+            {
+                InGameManager.Instance.AddAsChasingEnemy(transform.GetInstanceID());
+            }
+            else
+            {
+                InGameManager.Instance.RemoveChasingEnemy(transform.GetInstanceID());
+            }
             switch (NowState)
             {
                 case State.Patrol:
@@ -187,7 +195,7 @@ namespace ForYou.GamePlay
                         else direction = new Vector3(-1, 0, 0) * DashDistance;
                         var startDirection = direction;
                         float Multiplier = 1.0f;
-                        while(NavigationHelper.RandomPoint2D(transform.position + direction, 0.1f, out DashTargetPosition) == false)
+                        while (NavigationHelper.RandomPoint2D(transform.position + direction, 0.1f, out DashTargetPosition) == false)
                         {
                             direction = startDirection * Multiplier;
                             Multiplier -= 0.05f;
@@ -197,7 +205,7 @@ namespace ForYou.GamePlay
                                 return;
                             }
                         }
-                        
+
                         NowTargetPosition = DashTargetPosition;
                         ThisAgent.destination = DashTargetPosition;
                     }

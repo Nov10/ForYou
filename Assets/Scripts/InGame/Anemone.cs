@@ -14,6 +14,9 @@ public class Anemone : MonoBehaviour
 
     [SerializeField] EnemyFishDetector AttackOrEatRange;
 
+    [SerializeField] AudioSource AttackSound;
+    [SerializeField] AudioSource EatSound;
+
     Animator ThisAnimator;
 
     public int GetNowLevel()
@@ -130,6 +133,7 @@ public class Anemone : MonoBehaviour
 
             Destroy(plankton.gameObject);
             ThisAnimator.Play("Eat");
+            EatSound.Play();
         }
         else
         {
@@ -161,6 +165,7 @@ public class Anemone : MonoBehaviour
                 }
 
                 ThisAnimator.Play("Eat");
+                EatSound.Play();
                 var gage = data.Gage;
                 UpGage(gage);
                 InGameManager.Instance.OnAnemoneEatEnemyFish(fish);
@@ -170,6 +175,7 @@ public class Anemone : MonoBehaviour
         else
         {
             ThisAnimator.Play("Attack");
+            AttackSound.Play();
             //ÂÑ¾Æ³»±â
             fish.OnAttackedByAnemone(this);
 

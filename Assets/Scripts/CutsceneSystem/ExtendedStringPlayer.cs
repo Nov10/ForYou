@@ -30,6 +30,9 @@ public class ExtendedStringPlayer : MonoBehaviour
     public bool IsTextPlaying = false;
     public float ElapsedTextTime = 0.0f;
     bool PlayBubble = true;
+    [SerializeField] AudioClip AnemoneSound;
+    [SerializeField] AudioClip NimoSound;
+    AudioSource Audio;
     public void Play(ExtendedSentence sentence, TMP_Text text, bool playBubble = true, Transform _unused = null)
     {
         Sentence = sentence;
@@ -52,6 +55,17 @@ public class ExtendedStringPlayer : MonoBehaviour
         {
             IsTextPlaying = true;
         }
+
+        var parentName = Text.transform.name.ToLower();
+        if (parentName.Contains("Anemone"))
+        {
+            Audio.clip = AnemoneSound;
+        }
+        else
+        {
+            Audio.clip = NimoSound;
+        }
+        Audio.Play();
     }
 
     void ResetTimer()
