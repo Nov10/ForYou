@@ -94,8 +94,14 @@ namespace ForYou.Cutscene
         {
             if (FindFirstObjectByType<PlayerFish>().DoesHavePlankton == false)
             {
-                if (FindFirstObjectByType<Anemone>().GetGage() < 2)
+                if (FindFirstObjectByType<Anemone>().GetGage() == 2)
                 {
+                    //말미잘에게 가져다 줬음
+                    return false;
+                }
+                else
+                {
+
                     //플랑크톤을 버렸음 -> 종료
                     StartCutSceneDataIndex = 1;
                     StartCutSceneElementIndex = 0;
@@ -103,8 +109,6 @@ namespace ForYou.Cutscene
 
                     return false;
                 }
-                //말미잘에게 가져다 줬음
-                return false;
             }
             return true;
         }

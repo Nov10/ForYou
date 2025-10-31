@@ -25,6 +25,8 @@ namespace ForYou.GamePlay
         [SerializeField] PlayerFish Player;
         [SerializeField] Anemone Anemone;
 
+        public PlayerFish GetPlayerFish() { return Player; }
+
         [SerializeField] float Timer = 30.0f;
         [SerializeField] float[] TextTimeThresholds = { 20.0f, 10.0f, 5.0f };
         bool[] TextThresholdsTriggered;
