@@ -2908,7 +2908,7 @@ MonoBehaviour:
       data:
         PlayWithNextElement: 1
         Offset: {x: -1.11, y: -0.99}
-        Duration: 0
+        Duration: 0.9
         AutoReturn: 0
     - rid: 1982472865873920221
       type: {class: CustomFunctionPlayer, ns: ForYou.Cutscene, asm: Assembly-CSharp}

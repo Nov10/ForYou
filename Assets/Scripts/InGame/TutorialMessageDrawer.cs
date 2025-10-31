@@ -33,6 +33,8 @@ namespace ForYou.GamePlay
         {
             if (IsEnd == true)
                 return;
+            if (Message == null)
+                return;
             if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space))
             {
                 ObjectMoveHelper.ChangeAlpha(Message.GetComponent<CanvasGroup>(), 1.0f, 0.2f);

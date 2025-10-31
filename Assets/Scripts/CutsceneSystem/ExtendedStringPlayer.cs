@@ -57,6 +57,7 @@ public class ExtendedStringPlayer : MonoBehaviour
         }
 
         var parentName = Text.transform.name.ToLower();
+        Audio = GetComponent<AudioSource>();
         if (parentName.Contains("Anemone"))
         {
             Audio.clip = AnemoneSound;

@@ -81,7 +81,7 @@ namespace ForYou.GamePlay
         string PlayerID;
         string PlayerName;
         int _ChasingEnemyCount = 0;
-        HashSet<int> ChasingEnemyIds;
+        HashSet<int> ChasingEnemyIds = new HashSet<int>();
         public void AddAsChasingEnemy(int id)
         {
             if(ChasingEnemyIds.Contains(id) == false)
