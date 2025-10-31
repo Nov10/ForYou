@@ -31,6 +31,7 @@ namespace ForYou.GamePlay
         Rigidbody2D ThisRigidbody;
         Animator ThisAnimator;
         SpriteRenderer ThisSpriteRenderer;
+        [SerializeField] AudioSource DieSound;
         [Header("Animation Settings")]
         [SerializeField] string AnimationName_Idle = "Idle";
         [SerializeField] string AnimationName_IdleWithPlankton = "IdleWithPlankton";
@@ -360,22 +361,24 @@ namespace ForYou.GamePlay
             SnatchedPlankton = null;
         }
 
-
+        public bool IsDied { get; private set; } = false;
         public void OnAttackedByEnemyFish(EnemyFish enemyFish, bool shouldPlayerFishDie)
         {
             if(shouldPlayerFishDie)
             {
                 //return;
                 DelayedFunctionHelper.InvokeDelayed(2.0f, () => InGameManager.Instance.GameOver_ByDie());
-
+                IsDied = true;
                 PlayerInput.Disable();
                 ThisAnimator.Play(AnimatorNameHash_Die);
                 DelayedFunctionHelper.InvokeDelayed(1.0f, () => gameObject?.SetActive(false));
+                //gameObject.SetActive(false);
             }
             else
             {
                 //...
             }
+            DieSound.Play();
         }
     }
 }

@@ -176,6 +176,10 @@ public class Anemone : MonoBehaviour
         {
             ThisAnimator.Play("Attack");
             AttackSound.Play();
+            DelayedFunctionHelper.InvokeDelayed(0.9f, () =>
+            {
+                AttackSound.Stop();
+            });
             //ÂÑ¾Æ³»±â
             fish.OnAttackedByAnemone(this);
 

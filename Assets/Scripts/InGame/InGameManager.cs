@@ -34,6 +34,7 @@ namespace ForYou.GamePlay
         [SerializeField] Slider TimeSlider;
         [SerializeField] TMP_Text HurryText;
         [SerializeField] Animator TimerAnimator;
+        [SerializeField] AudioSource TimerSound;
         float ElaspedTime;
         public float GetElapsedTimeRate()
         {
@@ -100,21 +101,48 @@ namespace ForYou.GamePlay
                 ChasingEnemyCount--;
             }
         }
+        IEnumerator _VolumeChanger(AudioSource source, float targetVolume, float duration)
+        {
+            float startVolume = source.volume;
+            float elapsed = 0.0f;
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                source.volume = Mathf.Lerp(startVolume, targetVolume, elapsed / duration);
+                yield return null;
+            }
+            source.volume = targetVolume;
+        }
+        Coroutine NormalBGMVolumeChanger;
+        Coroutine ChaseBGMVolumeChanger;
         int ChasingEnemyCount
         {
             get { return _ChasingEnemyCount; }
             set
             {
                 _ChasingEnemyCount = value;
-                if(_ChasingEnemyCount >= 1)
+                if(Player.IsDied == false)
                 {
-                    BGM_Chase.volume = 1.0f;
-                    BGM_Normal.volume = 0.0f;
-                }
-                else
-                {
-                    BGM_Chase.volume = 0.0f;
-                    BGM_Normal.volume = 1.0f;
+                    if (_ChasingEnemyCount >= 1)
+                    {
+                        //BGM_Chase.volume = 1.0f;
+                        if (ChaseBGMVolumeChanger != null) StopCoroutine(ChaseBGMVolumeChanger);
+                        ChaseBGMVolumeChanger = StartCoroutine(_VolumeChanger(BGM_Chase, 1.0f, 0.5f));
+                        BGM_Chase.time = 0.0f;
+                        BGM_Chase.Play();
+
+                        if (NormalBGMVolumeChanger != null) StopCoroutine(NormalBGMVolumeChanger);
+                        NormalBGMVolumeChanger = StartCoroutine(_VolumeChanger(BGM_Normal, 0.0f, 0.5f));
+                    }
+                    else
+                    {
+                        //BGM_Chase.volume = 0.0f;
+                        if (ChaseBGMVolumeChanger != null) StopCoroutine(ChaseBGMVolumeChanger);
+                        ChaseBGMVolumeChanger = StartCoroutine(_VolumeChanger(BGM_Chase, 0.0f, 0.5f));
+
+                        if (NormalBGMVolumeChanger != null) StopCoroutine(NormalBGMVolumeChanger);
+                        NormalBGMVolumeChanger = StartCoroutine(_VolumeChanger(BGM_Normal, 1.0f, 0.5f));
+                    }
                 }
             }
         }
@@ -213,6 +241,12 @@ namespace ForYou.GamePlay
         {
             IsGameOver = true;
             LastScore = CalculateScore();
+            TimerSound.Stop();
+
+            if (NormalBGMVolumeChanger != null) StopCoroutine(NormalBGMVolumeChanger);
+            NormalBGMVolumeChanger = StartCoroutine(_VolumeChanger(BGM_Normal, 0.0f, 0.5f));
+            if (ChaseBGMVolumeChanger != null) StopCoroutine(ChaseBGMVolumeChanger);
+            ChaseBGMVolumeChanger = StartCoroutine(_VolumeChanger(BGM_Chase, 0.0f, 0.5f));
         }
         private void OnEnable()
         {
@@ -411,9 +445,14 @@ namespace ForYou.GamePlay
             TimeSlider.gameObject.SetActive(true);
             ElaspedTime += Time.deltaTime;
             TimeSlider.value = 1 - GetElapsedTimeRate();
+            if (IsGameOver == true)
+                return;
 
             if(GetLeftTimeRate() * Timer <= HurryTimeThreshold)
             {
+                if(TimerSound.isPlaying == false)
+                    TimerSound.Play();
+                TimerSound.loop = true;
                 TimerAnimator.Play("Hurry");
                 HurryText.gameObject.SetActive(true);
                 HurryText.text = (GetLeftTimeRate() * Timer).ToString("F1") + "초 남았어!";
@@ -429,6 +468,7 @@ namespace ForYou.GamePlay
                     {
                         TextThresholdsTriggered[i] = true;
                         TimerAnimator.Play("Text");
+                        TimerSound.Play();
                         HurryText.gameObject.SetActive(true);
                         string ConvertTime2String(float t)
                         {
@@ -440,7 +480,7 @@ namespace ForYou.GamePlay
                                 return seconds.ToString() + "초 남았어!";
                             return minutes.ToString() + "분 " + seconds.ToString() + "초 남았어!";
                         }
-                        HurryText.text = ConvertTime2String(t) + "초 남았어!";
+                        HurryText.text = ConvertTime2String(t);
 
                         DelayedFunctionHelper.InvokeDelayed(2.0f, () =>
                         {
