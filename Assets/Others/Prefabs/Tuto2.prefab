@@ -303,6 +303,7 @@ GameObject:
   - component: {fileID: 896298225326629425}
   - component: {fileID: 4943182195259711809}
   - component: {fileID: 5032171583299831116}
+  - component: {fileID: -4198049445700612252}
   m_Layer: 5
   m_Name: Tuto2
   m_TagString: Untagged
@@ -468,6 +469,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!225 &-4198049445700612252
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8638715575161425931}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &4446974463905394316
 PrefabInstance:
   m_ObjectHideFlags: 0

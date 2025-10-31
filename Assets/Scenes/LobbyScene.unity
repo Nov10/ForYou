@@ -2495,6 +2495,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2129334587}
   - component: {fileID: 2129334588}
+  - component: {fileID: 2129334589}
   m_Layer: 5
   m_Name: SettingPanel
   m_TagString: Untagged
@@ -2543,6 +2544,18 @@ MonoBehaviour:
   ExitButton: {fileID: 1483155330}
   BGMGroup: {fileID: -3770624892414206919, guid: bf9603c62163aa641a0f6af14d60b8ce, type: 2}
   SFXGroup: {fileID: -3775614756155050446, guid: bf9603c62163aa641a0f6af14d60b8ce, type: 2}
+--- !u!225 &2129334589
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129334586}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2141186693
 GameObject:
   m_ObjectHideFlags: 0

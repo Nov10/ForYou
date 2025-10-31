@@ -1,3 +1,4 @@
+using Helpers;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -22,6 +23,9 @@ namespace ForYou.GamePlay
         {
             Background.SetActive(true);
             Message = Instantiate(prefab, Container);
+            var cg = Message.GetComponent<CanvasGroup>();
+            cg.alpha = 0.0f;
+            ObjectMoveHelper.ChangeAlpha(cg, 1.0f, 0.2f);
             IsEnd = false;
         }
 
@@ -31,9 +35,13 @@ namespace ForYou.GamePlay
                 return;
             if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space))
             {
-                Background.SetActive(false);
-                Destroy(Message);
-                IsEnd = true;
+                ObjectMoveHelper.ChangeAlpha(Message.GetComponent<CanvasGroup>(), 1.0f, 0.2f);
+                DelayedFunctionHelper.InvokeDelayed(0.2f, () =>
+                {
+                    Background.SetActive(false);
+                    Destroy(Message);
+                    IsEnd = true;
+                });
             }
         }
     }

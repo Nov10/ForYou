@@ -44,7 +44,22 @@ namespace ForYou.Lobby
         public void ShowStartSceen()
         {
             ButtonContainer.gameObject.SetActive(true);
-            SettingPanel.gameObject.SetActive(false);
+            ObjectMoveHelper.ChangeAlpha(SettingPanel.GetComponent<CanvasGroup>(), 0.0f, 0.2f);
+            if(SettingPanel.gameObject.activeSelf == true)
+            {
+                DelayedFunctionHelper.InvokeDelayed(0.2f, () =>
+                {
+                    SettingPanel.gameObject.SetActive(false);
+                });
+            }
+            ObjectMoveHelper.ChangeAlpha(CreditPanel, 0.0f, 0.2f);
+            if (CreditPanel.gameObject.activeSelf == true)
+            {
+                DelayedFunctionHelper.InvokeDelayed(0.2f, () =>
+                {
+                    CreditPanel.gameObject.SetActive(false);
+                });
+            }
         }
 
         void OnStartButtonPressed()
@@ -61,6 +76,10 @@ namespace ForYou.Lobby
         void OnSettingButtonPressed()
         {
             SettingPanel.gameObject.SetActive(true);
+            var cg = SettingPanel.GetComponent<CanvasGroup>();
+            cg.alpha = 0.0f;
+            cg.transform.localPosition = Vector3.zero;
+            ObjectMoveHelper.ChangeAlpha(cg, 1.0f, 0.2f);
         }
         void OnCreditButtonPressed()
         {
