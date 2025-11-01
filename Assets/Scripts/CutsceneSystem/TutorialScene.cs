@@ -78,6 +78,23 @@ namespace ForYou.Cutscene
             return true;
         }
 
+        bool IsSkipRequested = false;
+        private void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.P))
+            {
+                SkipTutorial();
+            }
+        }
+
+        public void SkipTutorial()
+        {
+            if (IsSkipRequested == true)
+                return;
+            IsSkipRequested = true;
+            SceneLoader.LoadScene(ConstValue.SCENE_INDEX_MainPlayScene);
+        }
+
         public void CUTSCENE_FUNCTION_RunFish()
         {
             ObjectMoveHelper.TryStop(ID1);
