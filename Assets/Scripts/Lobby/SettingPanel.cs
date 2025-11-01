@@ -19,6 +19,13 @@ namespace ForYou.Lobby
         const string ScreenLightKey = "ScreenLight";
         const string BGMKey = "BGM";
         const string SFXKey = "SFX";
+        [SerializeField] AudioSource SliderValueChangedSound;
+
+        void PlaySliderValueChangedSound()
+        {
+            SliderValueChangedSound.time = 0.0f;
+            SliderValueChangedSound.Play();
+        }
 
         private void Start()
         {
@@ -35,8 +42,8 @@ namespace ForYou.Lobby
 
         void ApplyValues()
         {
-            BGMGroup.audioMixer.SetFloat("BGMVolume", Mathf.Log10(BGMSlider.value) * 20);
-            SFXGroup.audioMixer.SetFloat("SFXVolume", Mathf.Log10(SFXSlider.value) * 20);
+            BGMGroup.audioMixer.SetFloat("BGMVolume", Mathf.Log10(BGMSlider.value + 0.001f) * 20);
+            SFXGroup.audioMixer.SetFloat("SFXVolume", Mathf.Log10(SFXSlider.value + 0.001f) * 20);
             BrightnessVolume.Instance.SetValue(ScreeLightSlider.value);
             SaveValues();
         }
@@ -69,6 +76,7 @@ namespace ForYou.Lobby
             SFXSlider.onValueChanged.AddListener((v) =>
             {
                 ApplyValues();
+                PlaySliderValueChangedSound();
             });
             ApplyButton.onClick.AddListener(() =>
             {
