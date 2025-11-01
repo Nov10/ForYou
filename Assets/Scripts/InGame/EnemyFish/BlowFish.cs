@@ -64,6 +64,7 @@ namespace ForYou.GamePlay
 
         public void SetState(State state)
         {
+            if (InGameManager.Instance.IsGameOver) return;
             NowState = state;
             switch (NowState)
             {
@@ -149,6 +150,7 @@ namespace ForYou.GamePlay
         protected override void Update()
         {
             base.Update();
+            if (InGameManager.Instance.IsGameOver) return;
             switch (NowState)
             {
                 case State.Patrol:

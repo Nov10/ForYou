@@ -61,6 +61,7 @@ namespace ForYou.GamePlay
 
         public void SetState(State state)
         {
+            if (InGameManager.Instance.IsGameOver) return;
             NowState = state;
             if (state == State.Attack || state == State.Chase || state == State.Attack_BlackFX)
             {
@@ -163,6 +164,7 @@ namespace ForYou.GamePlay
         protected override void Update()
         {
             base.Update();
+            if (InGameManager.Instance.IsGameOver) return;
             switch (NowState)
             {
                 case State.Patrol:

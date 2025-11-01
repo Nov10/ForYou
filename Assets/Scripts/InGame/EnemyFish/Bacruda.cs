@@ -87,6 +87,7 @@ namespace ForYou.GamePlay
         protected override void Update()
         {
             base.Update();
+            if (InGameManager.Instance.IsGameOver) return;
             switch (NowState)
             {
                 case State.Patrol:
@@ -170,6 +171,7 @@ namespace ForYou.GamePlay
 
         void SetState(State state)
         {
+            if (InGameManager.Instance.IsGameOver) return;
             NowState = state;
             if(state == State.Attack || state == State.Chase || state == State.Dash)
             {

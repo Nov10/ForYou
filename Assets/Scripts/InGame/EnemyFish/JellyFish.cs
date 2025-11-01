@@ -102,6 +102,7 @@ namespace ForYou.GamePlay
         protected override void Update()
         {
             base.Update();
+            if (InGameManager.Instance.IsGameOver) return;
             if (IsAttacking == false || (IsAttacking == true && MoveWhileAttack == true))
             {
                 if (((Vector2)(transform.position - NowTargetPosition)).sqrMagnitude < (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_BlowFish) * (ThisAgent.stoppingDistance + NavigationHelper.AllowDistance_BlowFish))
