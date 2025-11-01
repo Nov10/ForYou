@@ -140,7 +140,18 @@ public class Anemone : MonoBehaviour
 
         }
     }
-
+    Coroutine AttackSoundVolumeChanger;
+    public void PlayAttackSound()
+    {
+        AttackSound.time = 0.0f;
+        AttackSound.Play();
+        DelayedFunctionHelper.InvokeDelayed(0.9f, () =>
+        {
+            if (AttackSoundVolumeChanger != null)
+                StopCoroutine(AttackSoundVolumeChanger);
+            AttackSoundVolumeChanger = StartCoroutine(InGameManager._VolumeChanger(AttackSound, 0.0f, 0.5f));
+        });
+    }
     public void OnEnemyFishDetected(EnemyFish fish)
     {
         var data = fish.GetComponent<EatableByAnemone>();
@@ -175,11 +186,7 @@ public class Anemone : MonoBehaviour
         else
         {
             ThisAnimator.Play("Attack");
-            AttackSound.Play();
-            DelayedFunctionHelper.InvokeDelayed(0.9f, () =>
-            {
-                AttackSound.Stop();
-            });
+            PlayAttackSound();
             //ÂÑ¾Æ³»±â
             fish.OnAttackedByAnemone(this);
 

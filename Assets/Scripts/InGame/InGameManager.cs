@@ -101,7 +101,7 @@ namespace ForYou.GamePlay
                 ChasingEnemyCount--;
             }
         }
-        IEnumerator _VolumeChanger(AudioSource source, float targetVolume, float duration)
+        public static IEnumerator _VolumeChanger(AudioSource source, float targetVolume, float duration)
         {
             float startVolume = source.volume;
             float elapsed = 0.0f;

@@ -646,14 +646,14 @@ MonoBehaviour:
       data:
         PlayWithNextElement: 1
         Target: {fileID: 2123065757}
-        AnimationName: Attack
+        AnimationName: Attack_CutScene
         Duration: 0
     - rid: 1982472865873920074
       type: {class: PlayAnimation, ns: ForYou.Cutscene, asm: Assembly-CSharp}
       data:
         PlayWithNextElement: 1
         Target: {fileID: 2123065757}
-        AnimationName: Attack
+        AnimationName: Attack_CutScene
         Duration: 0
     - rid: 1982472865873920101
       type: {class: ChangeCameraOffset, ns: ForYou.Cutscene, asm: Assembly-CSharp}
