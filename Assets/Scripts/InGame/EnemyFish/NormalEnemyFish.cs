@@ -131,6 +131,16 @@ namespace ForYou.GamePlay
                         SetDestination(NowTargetPosition);
                         MoveStepToDestination();
                         PlayAnimationByNowVelocity();
+
+
+                        if(Vector2.Distance(transform.position, Target.transform.position) > ConstValue.DistanceThreshold_Return2Patrol)
+                        {
+                            SetState(State.Patrol);
+                            EndRecognizePlayerFish();
+                            DelayedFunctionHelper.InvokeDelayed(ConstValue.Delay_NotRecognizeAttackedByAnemone, StartRecognizePlayerFish);
+                            EndDetectAttackRange();
+                            DelayedFunctionHelper.InvokeDelayed(ConstValue.Delay_NotRecognizeAttackedByAnemone, StartDetectAttackRange);
+                        }
                     }
                     break;
             }
