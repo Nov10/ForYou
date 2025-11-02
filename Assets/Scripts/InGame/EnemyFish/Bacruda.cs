@@ -248,6 +248,8 @@ namespace ForYou.GamePlay
             else
             {
                 ThisAnimator.Play(AnimatorNameHash_Idle);
+                var targetRotation = CalculateTargetRotationByVelocity(NowVelocity, YSpeedThresholdForRotation, ZAngleHalfRangeForRotation, IsSpriteLookLeft);
+                ApplyRotationSlerp_InstanceY(targetRotation);
             }
         }
         public override void OnRecognizePlayerFish(PlayerFish fish)
