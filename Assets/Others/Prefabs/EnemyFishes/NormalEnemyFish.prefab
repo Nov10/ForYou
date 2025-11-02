@@ -367,7 +367,7 @@ MonoBehaviour:
   AnimationName_Idle: Idle
   AnimationName_Attack: Attack
   AnimationName_Moving_Patrol: Moving
-  AnimationName_Moving_Chase: Moving
+  AnimationName_Moving_Chase: Chase
   AnimationName_Eaten: Eaten
   PatrolRadius: 4.91
   IsRunningAI: 1
