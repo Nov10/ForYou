@@ -13,17 +13,17 @@ namespace ForYou.GamePlay
             FXVolume = GetComponent<Volume>();
             FXVolume.enabled = false;
         }
-        public void Play(float duration)
+        public void Play(float duration, float intensity)
         {
             FXVolume.enabled = true;
             if (Player != null)
                 StopCoroutine(Player);
-            Player = StartCoroutine(_Play(duration));
+            Player = StartCoroutine(_Play(duration, intensity));
         }
 
-        IEnumerator _Play(float duration)
+        IEnumerator _Play(float duration, float intensity)
         {
-            float targetValue = 1.0f;
+            float targetValue = intensity;
             float elapsed = 0.0f;
             float reachThreshold = 0.05f;
             float snapping = 30.0f;
@@ -39,7 +39,7 @@ namespace ForYou.GamePlay
                 }
                 else if(Mathf.Abs(FXVolume.weight - targetValue) < reachThreshold)
                 {
-                    targetValue = UnityEngine.Random.Range(0.8f, 1.0f);
+                    targetValue = UnityEngine.Random.Range(intensity * 0.8f, intensity * 1.0f);
                 }
 
                 yield return null;

@@ -96,7 +96,10 @@ namespace ForYou.GamePlay
 
             ThisAnimator.Play(AnimatorNameHash_Attack);
             LastTime_Attack = Time.time;
-            InGameManager.Instance.PlayJellyFishBlurFX(AdjustSpeedDuration);
+            InGameManager.Instance.PlayJellyFishBlurFX(AdjustSpeedDuration, 1.0f);
+            var audio = GetComponent<AudioSource>();
+            audio.time = 0.0f;
+            audio.Play();
             fish.SetSpeedMultiplier(ConstValue.SpeedAdjustID_JellyFish, new SpeedMultipler(AdjustSpeedDuration, Time.time, AdjustSpeedValue));
         }
         protected override void Update()

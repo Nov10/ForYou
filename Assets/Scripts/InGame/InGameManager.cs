@@ -515,9 +515,9 @@ namespace ForYou.GamePlay
             SquidBlackFX.Play();
         }
 
-        public void PlayJellyFishBlurFX(float duration)
+        public void PlayJellyFishBlurFX(float duration, float intensity)
         {
-            JellyFishBlurFX.Play(duration);
+            JellyFishBlurFX.Play(duration, intensity);
         }
 
         [SerializeField] TutorialMessageDrawer TutorialMessage;

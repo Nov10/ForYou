@@ -1,4 +1,5 @@
 using Helpers;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace ForYou.GamePlay
@@ -85,6 +86,8 @@ namespace ForYou.GamePlay
                     }
                     break;
             }
+            if (NowState != State.Attack)
+                Attacked = false;
             ThisAgent.speed = GetTargetSpeedByNowFishState();
         }
 
@@ -95,13 +98,20 @@ namespace ForYou.GamePlay
             DelayedFunctionHelper.InvokeDelayed(3.0f, StartRecognizePlayerFish);
         }
 
+        bool Attacked = false;
         public override void OnPlayerFishInAttackRange(PlayerFish fish)
         {
-            if (NowState == State.Attack)
+            if (NowState == State.Attack && Attacked == false)
             {
+                Attacked = true;
                 //물고기에게 속도 딜레이 부여
                 fish.SetSpeedMultiplier(ConstValue.SpeedAdjustID_BlowFish,
-                    new SpeedMultipler(SpeedAdjustDuration, Time.time, SpeedAdjustValue));
+    new SpeedMultipler(SpeedAdjustDuration, Time.time, SpeedAdjustValue));
+
+                var audio = GetComponent<AudioSource>();
+                audio.time = 0.2f;
+                audio.Play();
+                InGameManager.Instance.PlayJellyFishBlurFX(SpeedAdjustDuration, 0.2f);
             }
         }
 
