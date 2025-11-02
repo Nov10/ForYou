@@ -133,7 +133,11 @@ public class Anemone : MonoBehaviour
 
             Destroy(plankton.gameObject);
             ThisAnimator.Play("Eat");
-            EatSound.Play();
+            if(EatSound.isPlaying == false)
+            {
+                EatSound.time = 0.0f;
+                EatSound.Play();
+            }
         }
         else
         {
@@ -143,14 +147,17 @@ public class Anemone : MonoBehaviour
     Coroutine AttackSoundVolumeChanger;
     public void PlayAttackSound()
     {
-        AttackSound.time = 0.0f;
-        AttackSound.Play();
-        DelayedFunctionHelper.InvokeDelayed(0.9f, () =>
+        if(AttackSound.isPlaying == false)
         {
-            if (AttackSoundVolumeChanger != null)
-                StopCoroutine(AttackSoundVolumeChanger);
-            AttackSoundVolumeChanger = StartCoroutine(InGameManager._VolumeChanger(AttackSound, 0.0f, 0.5f));
-        });
+            AttackSound.time = 0.0f;
+            AttackSound.Play();
+            DelayedFunctionHelper.InvokeDelayed(0.9f, () =>
+            {
+                if (AttackSoundVolumeChanger != null)
+                    StopCoroutine(AttackSoundVolumeChanger);
+                AttackSoundVolumeChanger = StartCoroutine(InGameManager._VolumeChanger(AttackSound, 0.0f, 0.5f));
+            });
+        }
     }
     public void OnEnemyFishDetected(EnemyFish fish)
     {
