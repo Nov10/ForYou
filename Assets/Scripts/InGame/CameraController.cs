@@ -20,21 +20,27 @@ namespace ForYou.GamePlay
             if (StartZoomEffect == true)
             {
                 Follow = false;
-                DelayedFunctionHelper.InvokeDelayed(3.0f, () =>
-                {
-                    StartCoroutine(_ChangeCameraSize(CameraSize, 2.0f));
-                    Follow = true;
-                    FollowSnapping = 2.0f;
-                    DelayedFunctionHelper.InvokeDelayed(2.0f, () =>
-                    {
-                        FollowSnapping = 5.0f;
-                    });
-                });
+                StartCoroutine(_S());
             }
             else
             {
                 GetComponentInChildren<Camera>().orthographicSize = CameraSize;
             }
+        }
+        IEnumerator _S()
+        {
+            while(InGameManager.Instance.IsRunning == false)
+                yield return null;
+            DelayedFunctionHelper.InvokeDelayed(3.0f, () =>
+            {
+                StartCoroutine(_ChangeCameraSize(CameraSize, 2.0f));
+                Follow = true;
+                FollowSnapping = 2.0f;
+                DelayedFunctionHelper.InvokeDelayed(2.0f, () =>
+                {
+                    FollowSnapping = 5.0f;
+                });
+            });
         }
 
         IEnumerator _ChangeCameraSize(float targetSize, float duration)

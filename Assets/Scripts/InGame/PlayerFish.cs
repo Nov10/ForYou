@@ -281,6 +281,8 @@ namespace ForYou.GamePlay
 
         Vector2 CalculateTargetVelocity()
         {
+            if (InGameManager.Instance.IsRunning == false)
+                return Vector2.zero;
             var direction = GetInputDirection();
             float speed = NormalSpeed;
             if(DoesHavePlankton == true)

@@ -259,11 +259,12 @@ namespace ForYou.GamePlay
             {
                 ThisRuleBook.gameObject.SetActive(true);
                 ThisRuleBook.transform.localPosition = Vector3.zero;
-                Time.timeScale = 0.0f;
+                IsRunning = false;
             }
             else
             {
                 ThisRuleBook.gameObject.SetActive(false);
+                IsRunning = true;
             }
         }
         private void OnEnable()
@@ -303,6 +304,7 @@ namespace ForYou.GamePlay
         [SerializeField] float ComboDuration = 20.0f;
         int NowComboCounter = 1;
         int ComboScore;
+        public bool IsRunning { get; private set; } = false;
         int GetComboScore(int comboCounter)
         {
             return 5 * (comboCounter - 1);
@@ -458,12 +460,12 @@ namespace ForYou.GamePlay
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     ThisRuleBook.gameObject.SetActive(false);
-                    Time.timeScale = 1.0f;
+                    IsRunning = true;
                 }
             }
             if(ThisRuleBook.gameObject.activeSelf == false)
             {
-                Time.timeScale = 1.0f;
+                IsRunning = true;
             }
 
 
