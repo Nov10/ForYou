@@ -71,7 +71,8 @@ public class Anemone : MonoBehaviour
         ThisAnimator = GetComponent<Animator>();
 
         BaseSize = transform.localScale.x;
-        UpGage(0);
+        if(InGameManager.Instance.IsCutsceneMode == false)
+            UpGage(0);
     }
     public void SetActiveGageSlider(bool active)
     {
@@ -147,17 +148,17 @@ public class Anemone : MonoBehaviour
     Coroutine AttackSoundVolumeChanger;
     public void PlayAttackSound()
     {
-        if(AttackSound.isPlaying == false)
+        if (AttackSoundVolumeChanger != null)
+            StopCoroutine(AttackSoundVolumeChanger);
+        AttackSoundVolumeChanger = StartCoroutine(InGameManager._VolumeChanger(AttackSound, 1.0f, 0.2f));
+        AttackSound.time = 0.0f;
+        AttackSound.Play();
+        DelayedFunctionHelper.InvokeDelayed(0.9f, () =>
         {
-            AttackSound.time = 0.0f;
-            AttackSound.Play();
-            DelayedFunctionHelper.InvokeDelayed(0.9f, () =>
-            {
-                if (AttackSoundVolumeChanger != null)
-                    StopCoroutine(AttackSoundVolumeChanger);
-                AttackSoundVolumeChanger = StartCoroutine(InGameManager._VolumeChanger(AttackSound, 0.0f, 0.5f));
-            });
-        }
+            if (AttackSoundVolumeChanger != null)
+                StopCoroutine(AttackSoundVolumeChanger);
+            AttackSoundVolumeChanger = StartCoroutine(InGameManager._VolumeChanger(AttackSound, 0.0f, 0.5f));
+        });
     }
     public void OnEnemyFishDetected(EnemyFish fish)
     {
@@ -189,6 +190,11 @@ public class Anemone : MonoBehaviour
                 InGameManager.Instance.OnAnemoneEatEnemyFish(fish);
                 Destroy(fish.gameObject);
             });
+            AttackOrEatRange.EndDetect();
+            DelayedFunctionHelper.InvokeDelayed(0.9f, () =>
+            {
+                AttackOrEatRange.StartDetect();
+            });
         }
         else
         {
@@ -196,6 +202,11 @@ public class Anemone : MonoBehaviour
             PlayAttackSound();
             //ÂÑ¾Æ³»±â
             fish.OnAttackedByAnemone(this);
+            AttackOrEatRange.EndDetect();
+            DelayedFunctionHelper.InvokeDelayed(0.9f, () =>
+            {
+                AttackOrEatRange.StartDetect();
+            });
 
             DelayedFunctionHelper.InvokeDelayed(2.0f, () =>
             {

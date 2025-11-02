@@ -2589,17 +2589,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1533243950 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5666981098313021894, guid: 302dc1469e5a05a47829d344a58d2755, type: 3}
-  m_PrefabInstance: {fileID: 1186210745073871167}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1572640336
 GameObject:
   m_ObjectHideFlags: 0
@@ -2664,6 +2653,8 @@ MonoBehaviour:
   FollowSnapping: 5
   CameraZPosition: -10
   Follow: 1
+  StartZoomEffect: 0
+  CameraSize: 7
 --- !u!82 &1572640340
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3651,10 +3642,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3311406598443396077, guid: 302dc1469e5a05a47829d344a58d2755, type: 3}
-      propertyPath: BackgroundImage
-      value: 
-      objectReference: {fileID: 1533243950}
+    - target: {fileID: 1493420109781698109, guid: 302dc1469e5a05a47829d344a58d2755, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5108493527148163838, guid: 302dc1469e5a05a47829d344a58d2755, type: 3}
       propertyPath: m_LocalPosition.x
       value: -19.64
@@ -3698,26 +3689,6 @@ PrefabInstance:
     - target: {fileID: 5869359644611319409, guid: 302dc1469e5a05a47829d344a58d2755, type: 3}
       propertyPath: m_Name
       value: Anemone
-      objectReference: {fileID: 0}
-    - target: {fileID: 5980885883863841983, guid: 302dc1469e5a05a47829d344a58d2755, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.0056
-      objectReference: {fileID: 0}
-    - target: {fileID: 5980885883863841983, guid: 302dc1469e5a05a47829d344a58d2755, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.0835
-      objectReference: {fileID: 0}
-    - target: {fileID: 7008271876162873054, guid: 302dc1469e5a05a47829d344a58d2755, type: 3}
-      propertyPath: ForcePower
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7008271876162873054, guid: 302dc1469e5a05a47829d344a58d2755, type: 3}
-      propertyPath: ForceDuration
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7008271876162873054, guid: 302dc1469e5a05a47829d344a58d2755, type: 3}
-      propertyPath: 'GageThresholdsForLevelUp.Array.data[0]'
-      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 8301775154977110767, guid: 302dc1469e5a05a47829d344a58d2755, type: 3}
       propertyPath: m_IsActive

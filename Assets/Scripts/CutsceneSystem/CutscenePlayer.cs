@@ -237,6 +237,10 @@ namespace ForYou.Cutscene
                 var playAnim = (PlayAnimation)element;
                 var animator = playAnim.Target;
                 animator.Play(playAnim.AnimationName);
+                if(playAnim.AnimationName == "Attack_CutScene")
+                {
+                    FindFirstObjectByType<Anemone>().PlayAttackSound();
+                }
                 if (element.PlayWithNextElement == true)
                     onEnd();
                 yield return new WaitForSeconds(playAnim.Duration);
