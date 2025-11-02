@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 78, y: 125}
-  m_SizeDelta: {x: -202.4961, y: -409.5578}
+  m_AnchoredPosition: {x: -43.94751, y: 125}
+  m_SizeDelta: {x: -446.3911, y: -409.5578}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3009770331429861096
 CanvasRenderer:
@@ -65,12 +65,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB204\uAD70\uAC00\uC5D0\uAC90 \uB2F9\uC2E0\uB3C4 \uD6CC\uB96D\uD55C \uBA39\uC787\uAC10\uC77C
-    \uBFD0\uC785\uB2C8\uB2E4.\n\uCC9C\uC801\uC744 \uD53C\uD574 \uB9D0\uBBF8\uC798\uB9D0\uBBF8\uC798\uC740
-    \uB2C8\uBAA8\uC758 \uB4E0\uB4E0\uD55C \uC9C0\uC6D0\uAD70\uC774\uC790, \uCE5C\uAD6C\uC785\uB2C8\uB2E4.\n\uCC9C\uC801\uC774
-    \uCAD3\uC544\uC62C \uB54C \uB9D0\uBBF8\uC798 \uC548\uC73C\uB85C \uBAB8\uC744
-    \uC228\uAE30\uBA74 \uB9D0\uBBF8\uC798\uC774 \uCC9C\uC801\uC744 \uCAD3\uC544\uB0B4\uAC70\uB098
-    \uC7A1\uC544\uBA39\uC2B5\uB2C8\uB2E4. \uB54C\uC5D0\uB294 \uC18D\uB3C4\uAC00 \uB290\uB824\uC9D1\uB2C8\uB2E4."
+  m_text: "\uB9D0\uBBF8\uC798\uC740 \uB2C8\uBAA8\uC758 \uB4E0\uB4E0\uD55C \uC9C0\uC6D0\uAD70\uC774\uC790,
+    \uCE5C\uAD6C\uC785\uB2C8\uB2E4.\n\uCC9C\uC801\uC774 \uCAD3\uC544\uC62C \uB54C
+    \uB9D0\uBBF8\uC798 \uC548\uC73C\uB85C \uBAB8\uC744 \uC228\uAE30\uBA74 \uB9D0\uBBF8\uC798\uC774
+    \uCC9C\uC801\uC744 \uCAD3\uC544\uB0B4\uAC70\uB098 \uC7A1\uC544\uBA39\uC2B5\uB2C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9b17cd3f842fb6140a95ce3746c56783, type: 2}
   m_sharedMaterial: {fileID: 5379823474777041941, guid: 9b17cd3f842fb6140a95ce3746c56783, type: 2}
@@ -104,7 +102,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: -10.2
