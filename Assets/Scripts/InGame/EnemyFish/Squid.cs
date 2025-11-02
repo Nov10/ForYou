@@ -95,7 +95,13 @@ namespace ForYou.GamePlay
                             ThisAnimator.Play(AnimatorNameHash_Attack);
                             InGameManager.Instance.PlaySquidBlackFX();
                         }
-                        DelayedFunctionHelper.InvokeDelayed(1.0f, () => SetState(State.Chase));
+                        DelayedFunctionHelper.InvokeDelayed(3.0f, () =>
+                        {
+                            if(Vector2.Distance(Target.transform.position, transform.position) < 8.0f)
+                                SetState(State.Chase);
+                            else
+                                SetState(State.Patrol);
+                        });
                     }
                     break;
                 case State.Attack:
@@ -118,6 +124,16 @@ namespace ForYou.GamePlay
             DelayedFunctionHelper.InvokeDelayed(ConstValue.Delay_NotRecognizeAttackedByAnemone, StartRecognizePlayerFish);
             EndDetectAttackRange();
             DelayedFunctionHelper.InvokeDelayed(ConstValue.Delay_NotRecognizeAttackedByAnemone, StartDetectAttackRange);
+        }
+        public override void EndDetectAttackRange()
+        {
+            base.EndDetectAttackRange();
+            PlayerDetector_Attack.EndDetect();
+        }
+        protected override void StartDetectAttackRange()
+        {
+            base.StartDetectAttackRange();
+            PlayerDetector_Attack.StartDetect();
         }
 
         public override void OnPlayerFishInAttackRange(PlayerFish fish)
@@ -200,18 +216,18 @@ namespace ForYou.GamePlay
                 case State.Attack_BlackFX:
                     {
                         //공격 직후에 이동에 대한 딜레이를 부여
-                        //if(Time.time - LastBlackFXAttackUsedTime > BlackFXAttackCoolDownTime * 0.5f)
-                        //{
-                        //    NowTargetPosition = Target.transform.position;
-                        //    SetDestination(NowTargetPosition);
-                        //    MoveStepToDestination();
-                        //    PlayAnimationByNowVelocity();
-                        //    ThisAnimator.Play(AnimatorNameHash_Idle);
-                        //}
-                        //else
-                        //{
-                        //    ThisRigidbody.linearVelocity = Vector2.zero;
-                        //}
+                        if (Time.time - LastBlackFXAttackUsedTime > BlackFXAttackCoolDownTime * 0.5f)
+                        {
+                            NowTargetPosition = Target.transform.position;
+                            SetDestination(NowTargetPosition);
+                            MoveStepToDestination();
+                            PlayAnimationByNowVelocity();
+                            //ThisAnimator.Play(AnimatorNameHash_Idle);
+                        }
+                        else
+                        {
+                            ThisRigidbody.linearVelocity = Vector2.zero;
+                        }
 
 
                         //if (Time.time - LastBlackFXAttackUsedTime > BlackFXAttackCoolDownTime)

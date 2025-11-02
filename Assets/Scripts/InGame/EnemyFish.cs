@@ -47,11 +47,11 @@ namespace ForYou.GamePlay
         {
             InGameManager.Instance.RemoveChasingEnemy(transform.GetInstanceID());
         }
-        protected void StartDetectAttackRange()
+        protected virtual void StartDetectAttackRange()
         {
             AttackPlayerFishRange.StartDetect();
         }
-        public void EndDetectAttackRange()
+        public virtual void EndDetectAttackRange()
         {
             AttackPlayerFishRange.EndDetect();
         }
