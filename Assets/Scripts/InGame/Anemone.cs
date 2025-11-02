@@ -16,6 +16,7 @@ public class Anemone : MonoBehaviour
 
     [SerializeField] AudioSource AttackSound;
     [SerializeField] AudioSource EatSound;
+    [SerializeField] TMP_Text LevelText;
 
     Animator ThisAnimator;
 
@@ -72,7 +73,14 @@ public class Anemone : MonoBehaviour
 
         BaseSize = transform.localScale.x;
         if(InGameManager.Instance.IsCutsceneMode == false)
+        {
             UpGage(0);
+        }
+        else
+        {
+            LevelText.gameObject.SetActive(false);
+            GageSlider.gameObject.SetActive(false);
+        }
     }
     public void SetActiveGageSlider(bool active)
     {
@@ -103,6 +111,7 @@ public class Anemone : MonoBehaviour
             SetSizeByLevel();
         //GageText.text = $"{GetNetGage()} / {GetGageThreshold(GetNowLevel())}";
         //GageSlider.value = GetNetGage() / (float)GetGageThreshold(GetNowLevel());
+        LevelText.text = $"Lv.{GetNowLevel()}";
     }
 
     public int GetGage()

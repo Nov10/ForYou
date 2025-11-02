@@ -461,6 +461,10 @@ namespace ForYou.GamePlay
                     Time.timeScale = 1.0f;
                 }
             }
+            if(ThisRuleBook.gameObject.activeSelf == false)
+            {
+                Time.timeScale = 1.0f;
+            }
 
 
             if (IsCutsceneMode == true)
