@@ -147,9 +147,11 @@ namespace ForYou.GamePlay
             }
         }
         public static int LastScore { get; private set; }
+        bool IsGameOver_ByTimer = false;
         public void GameOver_ByDie()
         {
             if (IsCutsceneMode) return;
+            IsGameOver_ByTimer = false;
             GameOver();
             GameOverSound_ByDie.Play();
             FinalScoreTextContainer.gameObject.SetActive(true);
@@ -194,6 +196,7 @@ namespace ForYou.GamePlay
         public void GameOver_ByTimer()
         {
             if (IsCutsceneMode) return;
+            IsGameOver_ByTimer = true;
             GameOverSound_ByTimer.Play();
             GameOver();
             RankingUI.ShoudSetName = true;
@@ -319,6 +322,7 @@ namespace ForYou.GamePlay
             result += "\n콤보 보너스 : " + ComboScore; //콤보
 
             result += "\n특수 보너스 : " + 10 * (EatedCount_Bacruda + EatedCount_Squid); //특수 보너스
+            result += "\n게임 클리어 보너스 : " + (IsGameOver_ByTimer == true ? 300 : 0).ToString();
             result += "\n합계 " + CalculateScore().ToString();  
             return result;
         }
@@ -338,6 +342,10 @@ namespace ForYou.GamePlay
             sum += ComboScore; //콤보
 
             sum += 10 * (EatedCount_Bacruda + EatedCount_Squid); //특수 보너스
+
+            //게임 클리어 보너스
+            if (IsGameOver_ByTimer == true)
+                sum += 300;
 
             return sum;
         }
