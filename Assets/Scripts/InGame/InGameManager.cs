@@ -24,6 +24,7 @@ namespace ForYou.GamePlay
         }
         [SerializeField] PlayerFish Player;
         [SerializeField] Anemone Anemone;
+        RuleBook ThisRuleBook;
 
         public PlayerFish GetPlayerFish() { return Player; }
 
@@ -251,6 +252,20 @@ namespace ForYou.GamePlay
             if (ChaseBGMVolumeChanger != null) StopCoroutine(ChaseBGMVolumeChanger);
             ChaseBGMVolumeChanger = StartCoroutine(_VolumeChanger(BGM_Chase, 0.0f, 0.5f));
         }
+        private void Start()
+        {
+            ThisRuleBook = GetComponentInChildren<RuleBook>();
+            if (IsCutsceneMode == false)
+            {
+                ThisRuleBook.gameObject.SetActive(true);
+                ThisRuleBook.transform.localPosition = Vector3.zero;
+                Time.timeScale = 0.0f;
+            }
+            else
+            {
+                ThisRuleBook.gameObject.SetActive(false);
+            }
+        }
         private void OnEnable()
         {
             LastEatTime = -ComboDuration * 10;
@@ -437,6 +452,15 @@ namespace ForYou.GamePlay
             }
             else
                 ScoreText.text = string.Empty;
+
+            if(ThisRuleBook.gameObject.activeSelf == true)
+            {
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    ThisRuleBook.gameObject.SetActive(false);
+                    Time.timeScale = 1.0f;
+                }
+            }
 
 
             if (IsCutsceneMode == true)
