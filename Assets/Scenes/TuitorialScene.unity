@@ -3253,6 +3253,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2468108923777942414, guid: b48a95ca9b4d7de49b6df23a0ebff33e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4408338261011891500, guid: b48a95ca9b4d7de49b6df23a0ebff33e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538530931441306416, guid: b48a95ca9b4d7de49b6df23a0ebff33e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6100167282494229976, guid: b48a95ca9b4d7de49b6df23a0ebff33e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.68
@@ -3296,6 +3308,14 @@ PrefabInstance:
     - target: {fileID: 8082588428945881308, guid: b48a95ca9b4d7de49b6df23a0ebff33e, type: 3}
       propertyPath: m_Name
       value: PlayerFish
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082588428945881308, guid: b48a95ca9b4d7de49b6df23a0ebff33e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8515124426860671218, guid: b48a95ca9b4d7de49b6df23a0ebff33e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
