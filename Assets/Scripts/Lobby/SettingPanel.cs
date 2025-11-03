@@ -1,3 +1,4 @@
+using ForYou.GamePlay;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -85,7 +86,10 @@ namespace ForYou.Lobby
             ExitButton.onClick.AddListener(() =>
             {
                 ApplyValues();
-                LobbyUIController.Instance.ShowStartSceen();
+                if(LobbyUIController.Instance != null)
+                    LobbyUIController.Instance.ShowStartSceen();
+                if (InGameManager.Instance != null)
+                    InGameManager.Instance.OffSettingPanel();
             });
         }
     }

@@ -1,4 +1,5 @@
 using ForYou.Cutscene;
+using ForYou.Lobby;
 using Helpers;
 using System.Collections;
 using System.Collections.Generic;
@@ -52,6 +53,30 @@ namespace ForYou.GamePlay
         [SerializeField] AudioSource GameOverSound_ByTimer;
         [SerializeField] AudioSource BGM_Chase;
         [SerializeField] AudioSource BGM_Normal;
+        [SerializeField] SettingPanel SettingPanel;
+        int SettingPanelAnimation;
+        void ShowSettingPanel()
+        {
+            SettingPanel.gameObject.SetActive(true);
+            var cg = SettingPanel.GetComponent<CanvasGroup>();
+            cg.alpha = 0.0f;
+            cg.transform.localPosition = Vector3.zero;
+            ObjectMoveHelper.TryStop(SettingPanelAnimation);
+            SettingPanelAnimation = ObjectMoveHelper.ChangeAlpha(cg, 1.0f, 0.2f);
+        }
+
+        public void OffSettingPanel()
+        {
+            ObjectMoveHelper.TryStop(SettingPanelAnimation);
+            ObjectMoveHelper.ChangeAlpha(SettingPanel.GetComponent<CanvasGroup>(), 0.0f, 0.2f);
+            if (SettingPanel.gameObject.activeSelf == true)
+            {
+                DelayedFunctionHelper.InvokeDelayed(0.2f, () =>
+                {
+                    SettingPanel.gameObject.SetActive(false);
+                });
+            }
+        }
 
         [SerializeField] int Score;
         [Header("GameOver By Die")]
@@ -259,12 +284,10 @@ namespace ForYou.GamePlay
             {
                 ThisRuleBook.gameObject.SetActive(true);
                 ThisRuleBook.transform.localPosition = Vector3.zero;
-                IsRunning = false;
             }
             else
             {
                 ThisRuleBook.gameObject.SetActive(false);
-                IsRunning = true;
             }
         }
         private void OnEnable()
@@ -275,6 +298,7 @@ namespace ForYou.GamePlay
             FinalScoreTextContainer.gameObject.SetActive(false);
 
             FinalScoreTextContainer.gameObject.SetActive(false);
+            OffSettingPanel();
 
             //DelayedFunctionHelper.InvokeDelayed(0.5f, () =>
             //{
@@ -304,7 +328,13 @@ namespace ForYou.GamePlay
         [SerializeField] float ComboDuration = 20.0f;
         int NowComboCounter = 1;
         int ComboScore;
-        public bool IsRunning { get; private set; } = false;
+        public bool IsRunning
+        {
+            get
+            {
+                return SettingPanel.gameObject.activeSelf == false && ThisRuleBook.gameObject.activeSelf == false;
+            }
+        }
         int GetComboScore(int comboCounter)
         {
             return 5 * (comboCounter - 1);
@@ -455,17 +485,28 @@ namespace ForYou.GamePlay
             else
                 ScoreText.text = string.Empty;
 
-            if(ThisRuleBook.gameObject.activeSelf == true)
+            //if(ThisRuleBook.gameObject.activeSelf == true)
+            //{
+            //    if (Input.GetKeyDown(KeyCode.Escape))
+            //    {
+            //        ThisRuleBook.gameObject.SetActive(false);
+            //        IsRunning = true;
+            //    }
+            //}
+            //if(ThisRuleBook.gameObject.activeSelf == false)
+            //{
+            //    IsRunning = true;
+            //}
+            if(Input.GetKeyDown(KeyCode.Escape))
             {
-                if (Input.GetKeyDown(KeyCode.Escape))
+                if (SettingPanel.gameObject.activeSelf == false)
                 {
-                    ThisRuleBook.gameObject.SetActive(false);
-                    IsRunning = true;
+                    ShowSettingPanel();
                 }
-            }
-            if(ThisRuleBook.gameObject.activeSelf == false)
-            {
-                IsRunning = true;
+                else
+                {
+                    OffSettingPanel();
+                }
             }
 
 
