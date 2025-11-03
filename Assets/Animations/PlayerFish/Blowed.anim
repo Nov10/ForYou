@@ -27,6 +27,15 @@ AnimationClip:
     classID: 212
     script: {fileID: 0}
     flags: 2
+  - serializedVersion: 2
+    curve:
+    - time: 0
+      value: {fileID: 5080479001178542503, guid: 66be9f34b5ace424894aa7791afd139c, type: 3}
+    attribute: m_Sprite
+    path: GameObject
+    classID: 212
+    script: {fileID: 0}
+    flags: 2
   m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
@@ -43,7 +52,17 @@ AnimationClip:
       isPPtrCurve: 1
       isIntCurve: 0
       isSerializeReferenceCurve: 0
+    - serializedVersion: 2
+      path: 1482111001
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     pptrCurveMapping:
+    - {fileID: 5080479001178542503, guid: 66be9f34b5ace424894aa7791afd139c, type: 3}
     - {fileID: 5080479001178542503, guid: 66be9f34b5ace424894aa7791afd139c, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2

@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Prefab: {fileID: 9140831286674185427, guid: 589d0923c05df1b44a22c34da7e29b02, type: 3}
-  ReSpawnDuration: 60
+  ReSpawnDuration: 120

@@ -188,6 +188,10 @@ public class ExtendedStringPlayer : MonoBehaviour
 
                     DelayedFunctionHelper.InvokeDelayed(Sentence.ChatKeepAliveDurationBeforeBubbleOff, () =>
                     {
+                        if (Text == null)
+                            return;
+                        if (Text.transform == null)
+                            return;
                         var parent = Text.transform.parent;
                         ObjectMoveHelper.ScaleObject(parent, Vector3.one * 0.4f, Sentence.ChatBubbleScaleDuration);
                         ObjectMoveHelper.ChangeAlpha(parent.GetComponent<CanvasGroup>(), 0.0f, Sentence.ChatBubbleScaleDuration);

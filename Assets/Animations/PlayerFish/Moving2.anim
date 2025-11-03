@@ -35,6 +35,23 @@ AnimationClip:
     classID: 212
     script: {fileID: 0}
     flags: 2
+  - serializedVersion: 2
+    curve:
+    - time: 0
+      value: {fileID: -3189636280247933811, guid: a2ea6c7c770c8874e9b4829be0f03b8f, type: 3}
+    - time: 0.16666667
+      value: {fileID: -4996232003874051720, guid: 51f286d201ae7034e8392b3940dd3c67, type: 3}
+    - time: 0.33333334
+      value: {fileID: -1566418837728110056, guid: 66c261137386c6f489441253ec8612fd, type: 3}
+    - time: 0.5
+      value: {fileID: 2509171559576925886, guid: d72f21ca5935dbd47b13bfa41375b7c6, type: 3}
+    - time: 0.6666667
+      value: {fileID: 7831030526905329204, guid: e45fd873f5f715b43aec07526d15c1c4, type: 3}
+    attribute: m_Sprite
+    path: GameObject
+    classID: 212
+    script: {fileID: 0}
+    flags: 2
   m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
@@ -51,7 +68,21 @@ AnimationClip:
       isPPtrCurve: 1
       isIntCurve: 0
       isSerializeReferenceCurve: 0
+    - serializedVersion: 2
+      path: 1482111001
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     pptrCurveMapping:
+    - {fileID: -3189636280247933811, guid: a2ea6c7c770c8874e9b4829be0f03b8f, type: 3}
+    - {fileID: -4996232003874051720, guid: 51f286d201ae7034e8392b3940dd3c67, type: 3}
+    - {fileID: -1566418837728110056, guid: 66c261137386c6f489441253ec8612fd, type: 3}
+    - {fileID: 2509171559576925886, guid: d72f21ca5935dbd47b13bfa41375b7c6, type: 3}
+    - {fileID: 7831030526905329204, guid: e45fd873f5f715b43aec07526d15c1c4, type: 3}
     - {fileID: -3189636280247933811, guid: a2ea6c7c770c8874e9b4829be0f03b8f, type: 3}
     - {fileID: -4996232003874051720, guid: 51f286d201ae7034e8392b3940dd3c67, type: 3}
     - {fileID: -1566418837728110056, guid: 66c261137386c6f489441253ec8612fd, type: 3}

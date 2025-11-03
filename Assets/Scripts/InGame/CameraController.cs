@@ -1,5 +1,6 @@
 using Helpers;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 namespace ForYou.GamePlay
 {
@@ -27,11 +28,29 @@ namespace ForYou.GamePlay
                 GetComponentInChildren<Camera>().orthographicSize = CameraSize;
             }
         }
+        [SerializeField] TMP_Text StartText;
+        IEnumerator _BlinkText()
+        {
+            while (true)
+            {
+                StartText.gameObject.SetActive(!StartText.gameObject.activeSelf);
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+        public bool IsStarted = false;
         IEnumerator _S()
         {
+            Coroutine c = StartCoroutine(_BlinkText());
             while(InGameManager.Instance.IsRunning == false)
                 yield return null;
-            DelayedFunctionHelper.InvokeDelayed(3.0f, () =>
+            while (InGameManager.Instance.GetPlayerFish().NowVelocity.magnitude < 0.1f)
+            {
+                yield return null;
+            }
+            IsStarted = true;
+            StopCoroutine(c);
+            StartText.gameObject.SetActive(false);
+            DelayedFunctionHelper.InvokeDelayed(0.0f, () =>
             {
                 StartCoroutine(_ChangeCameraSize(CameraSize, 2.0f));
                 Follow = true;

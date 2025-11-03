@@ -289,6 +289,8 @@ namespace ForYou.GamePlay
             {
                 ThisRuleBook.gameObject.SetActive(false);
             }
+
+            ThisCameraController = FindFirstObjectByType<CameraController>();
         }
         private void OnEnable()
         {
@@ -335,6 +337,7 @@ namespace ForYou.GamePlay
                 return SettingPanel.gameObject.activeSelf == false && ThisRuleBook.gameObject.activeSelf == false;
             }
         }
+        CameraController ThisCameraController;
         int GetComboScore(int comboCounter)
         {
             return 5 * (comboCounter - 1);
@@ -522,7 +525,8 @@ namespace ForYou.GamePlay
             ScoreText.gameObject.SetActive(true);
             TimerAnimator.gameObject.SetActive(true);
             TimeSlider.gameObject.SetActive(true);
-            ElaspedTime += Time.deltaTime;
+            if(IsRunning == true && ThisCameraController.IsStarted == true)
+                ElaspedTime += Time.deltaTime;
             TimeSlider.value = 1 - GetElapsedTimeRate();
             if (IsGameOver == true)
                 return;

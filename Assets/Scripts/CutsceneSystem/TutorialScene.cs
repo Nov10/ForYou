@@ -64,6 +64,8 @@ namespace ForYou.Cutscene
         {
             Enemy.gameObject.SetActive(true);
             Enemy.IsRunningAI = false;
+            Enemy.SetTarget(FindFirstObjectByType<PlayerFish>());
+            Enemy.SetState(NormalEnemyFish.State.Chase);
             t = Time.time;
             ID1 = ObjectMoveHelper.MoveObjectSmooth(Enemy.transform, EnemyMoveTarget1.position, MoveDuration, ePosition.World);
             Enemy.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
