@@ -15,7 +15,11 @@ namespace ForYou.GamePlay
         {
             Spawn();
         }
-
+        PlayerFish Player;
+        private void Start()
+        {
+            Player = FindFirstObjectByType<PlayerFish>();
+        }
         private void Update()
         {
             if (IsTimerRunning == false && NowFish == null)
@@ -24,8 +28,9 @@ namespace ForYou.GamePlay
                 EnemyDiedTime = Time.time;
             }
 
-
-            if (IsTimerRunning == true && Time.time - EnemyDiedTime > ReSpawnDuration)
+            if (Player == null) return;
+            if (IsTimerRunning == true && Time.time - EnemyDiedTime > ReSpawnDuration
+                && Vector2.Distance(transform.position, Player.transform.position) > 5.0f)
             {
                 IsTimerRunning = false;
                 Spawn();

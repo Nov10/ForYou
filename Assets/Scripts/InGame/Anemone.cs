@@ -200,7 +200,7 @@ public class Anemone : MonoBehaviour
                 Destroy(fish.gameObject);
             });
             AttackOrEatRange.EndDetect();
-            DelayedFunctionHelper.InvokeDelayed(0.9f, () =>
+            DelayedFunctionHelper.InvokeDelayed(0.4f, () =>
             {
                 AttackOrEatRange.StartDetect();
             });
@@ -212,7 +212,7 @@ public class Anemone : MonoBehaviour
             //ÂÑ¾Æ³»±â
             fish.OnAttackedByAnemone(this);
             AttackOrEatRange.EndDetect();
-            DelayedFunctionHelper.InvokeDelayed(0.9f, () =>
+            DelayedFunctionHelper.InvokeDelayed(0.4f, () =>
             {
                 AttackOrEatRange.StartDetect();
             });
